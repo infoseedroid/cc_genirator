@@ -8,8 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>
-IT Credential Card Generator V1.3
+IT Credential Card Generator V1.3 Production
 </title>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -18,57 +19,77 @@ IT Credential Card Generator V1.3
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 
+
 <style>
 
+
 *{
+
 box-sizing:border-box;
+
 font-family:Tahoma,Arial,sans-serif;
+
 }
+
+
 
 body{
 
 margin:0;
+
 background:#eef3f1;
+
 color:#222;
 
 }
 
 
-/* Splash Screen */
+
+/* =========================
+   شاشة البداية
+========================= */
+
 
 #splashScreen{
 
 position:fixed;
+
 top:0;
+
 left:0;
 
 width:100%;
+
 height:100%;
 
 background:white;
 
 display:flex;
+
 justify-content:center;
+
 align-items:center;
 
 z-index:99999;
 
-transition:.6s;
-
 }
+
 
 
 .splash-content{
 
 text-align:center;
+
 padding:20px;
 
 }
 
 
+
 .splash-logo{
 
 width:150px;
+
 height:150px;
 
 object-fit:contain;
@@ -82,16 +103,20 @@ animation:pulse 2s infinite;
 .splash-content h2{
 
 color:#0b6b4a;
+
 font-size:22px;
 
 }
 
 
+
 .splash-content p{
 
-font-size:15px;
-line-height:2;
 color:#555;
+
+font-size:15px;
+
+line-height:2;
 
 }
 
@@ -100,6 +125,7 @@ color:#555;
 .loader{
 
 width:45px;
+
 height:45px;
 
 border-radius:50%;
@@ -108,7 +134,7 @@ border:5px solid #ddd;
 
 border-top-color:#0b6b4a;
 
-margin:auto;
+margin:20px auto;
 
 animation:spin 1s linear infinite;
 
@@ -119,20 +145,97 @@ animation:spin 1s linear infinite;
 @keyframes spin{
 
 100%{
+
 transform:rotate(360deg);
+
 }
 
 }
+
 
 
 @keyframes pulse{
 
 50%{
+
 transform:scale(1.05);
-}
 
 }
 
+}
+
+
+
+/* =========================
+   شاشة إنشاء البطاقة
+========================= */
+
+
+#processingScreen{
+
+display:none;
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(255,255,255,.95);
+
+z-index:99998;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+
+
+.processing-box{
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+text-align:center;
+
+box-shadow:0 5px 20px #aaa;
+
+}
+
+
+
+.progress-loader{
+
+width:50px;
+
+height:50px;
+
+border-radius:50%;
+
+border:5px solid #ddd;
+
+border-top-color:#0b6b4a;
+
+margin:20px auto;
+
+animation:spin 1s linear infinite;
+
+}
+
+
+
+/* =========================
+   الهيدر
+========================= */
 
 
 .header{
@@ -152,6 +255,7 @@ padding:25px;
 .header img{
 
 width:90px;
+
 height:90px;
 
 border-radius:50%;
@@ -166,6 +270,17 @@ object-fit:contain;
 
 
 
+.header h1{
+
+margin:10px 0;
+
+font-size:25px;
+
+}
+
+
+
+
 .container{
 
 max-width:900px;
@@ -177,17 +292,19 @@ padding:20px;
 }
 
 
+
 .box{
 
 background:white;
 
-padding:20px;
-
 border-radius:15px;
+
+padding:20px;
 
 box-shadow:0 4px 12px #ccc;
 
 }
+
 
 
 h2{
@@ -197,6 +314,7 @@ text-align:center;
 color:#0b6b4a;
 
 }
+
 
 
 label{
@@ -210,7 +328,9 @@ margin-top:15px;
 }
 
 
-input,textarea{
+
+input,
+textarea{
 
 width:100%;
 
@@ -237,6 +357,7 @@ resize:none;
 }
 
 
+
 button{
 
 width:100%;
@@ -261,28 +382,44 @@ cursor:pointer;
 
 
 
-/* شاشة معالجة إنشاء البطاقة */
+button:disabled{
+
+opacity:.6;
+
+}
 
 
-#processingScreen{
 
-display:none;
+/* =========================
+   البطاقة
+========================= */
 
-position:fixed;
 
-top:0;
-left:0;
+#cardResult{
 
-width:100%;
-height:100%;
+margin-top:30px;
 
-background:rgba(255,255,255,.95);
+}
 
-z-index:99998;
 
-justify-content:center;
 
-align-items:center;
+.credential-card{
+
+background:white;
+
+border-radius:20px;
+
+padding:25px;
+
+border-top:8px solid #0b6b4a;
+
+box-shadow:0 5px 15px #bbb;
+
+}
+
+
+
+.card-logo{
 
 text-align:center;
 
@@ -290,41 +427,96 @@ text-align:center;
 
 
 
-.processing-box{
+.card-logo img{
 
-background:white;
+width:80px;
 
-padding:30px;
+height:80px;
 
-border-radius:20px;
-
-box-shadow:0 5px 20px #aaa;
+object-fit:contain;
 
 }
 
 
-.processing-box h2{
 
-margin-bottom:15px;
+.title{
+
+text-align:center;
+
+color:#0b6b4a;
 
 }
 
 
-.progress-loader{
 
-width:50px;
+.row{
 
-height:50px;
+background:#f5f7f6;
 
-border-radius:50%;
+padding:12px;
 
-border:5px solid #ddd;
+border-radius:10px;
 
-border-top-color:#0b6b4a;
+margin-top:10px;
 
-margin:20px auto;
+}
 
-animation:spin 1s linear infinite;
+
+
+.instructions{
+
+margin-top:20px;
+
+background:#fff4d6;
+
+padding:15px;
+
+border-radius:10px;
+
+line-height:1.8;
+
+font-size:14px;
+
+}
+
+
+
+.footer{
+
+text-align:center;
+
+font-size:12px;
+
+color:#777;
+
+margin-top:20px;
+
+}
+
+
+
+@media(max-width:600px){
+
+.header h1{
+
+font-size:20px;
+
+}
+
+
+.container{
+
+padding:10px;
+
+}
+
+
+.credential-card{
+
+padding:15px;
+
+}
+
 
 }
 
@@ -340,6 +532,7 @@ animation:spin 1s linear infinite;
 <div id="splashScreen">
 
 <div class="splash-content">
+
 
 <img src="logo.png" class="splash-logo">
 
@@ -363,19 +556,23 @@ animation:spin 1s linear infinite;
 
 
 
-<!-- شاشة معالجة إنشاء البطاقة -->
+
+
+<!-- شاشة المعالجة -->
 
 <div id="processingScreen">
 
+
 <div class="processing-box">
+
 
 <h2>
 ⏳ جاري إنشاء البطاقة
 </h2>
 
+
 <p>
-يتم تجهيز بيانات الدخول<br>
-وتجهيز البطاقة النهائية
+يتم تجهيز بطاقة بيانات الدخول
 </p>
 
 
@@ -389,7 +586,11 @@ animation:spin 1s linear infinite;
 
 </div>
 
+
 </div>
+
+
+
 
 
 
@@ -406,7 +607,7 @@ animation:spin 1s linear infinite;
 
 
 <p>
-IT Credential Card Generator V1.3
+IT Credential Card Generator V1.3 Production
 </p>
 
 
@@ -416,11 +617,13 @@ IT Credential Card Generator V1.3
 
 
 
+
+
 <div class="container">
 
 
-
 <div class="box">
+
 
 
 <h2>
@@ -455,13 +658,12 @@ IT Credential Card Generator V1.3
 
 
 
+
 <label>
 بنية النظام
 </label>
 
 
-
-<div style="margin-top:10px">
 
 
 <label>
@@ -472,9 +674,11 @@ value="Desktop App"
 checked
 onchange="changeSystemType()">
 
-Desktop App
+🖥 Desktop App
 
 </label>
+
+
 
 
 
@@ -485,12 +689,10 @@ name="systemType"
 value="Web App"
 onchange="changeSystemType()">
 
-Web App
+🌐 Web App
 
 </label>
 
-
-</div>
 
 
 
@@ -498,7 +700,7 @@ Web App
 
 
 <div id="urlContainer"
-style="display:none">
+style="display:none;">
 
 
 
@@ -511,7 +713,9 @@ style="display:none">
 placeholder="انسخ الرابط هنا">
 
 
+
 </div>
+
 
 
 
@@ -525,6 +729,7 @@ placeholder="انسخ الرابط هنا">
 
 
 <input id="username">
+
 
 
 
@@ -566,8 +771,8 @@ onclick="generateCard()">
 
 
 
-</div>
 
+</div>
 
 
 
@@ -575,8 +780,9 @@ onclick="generateCard()">
 
 
 
-
 </div>
+
+
 
 
 
@@ -590,6 +796,11 @@ let systemType="Desktop App";
 
 
 
+
+
+// اختيار نوع النظام
+
+
 function changeSystemType(){
 
 
@@ -598,33 +809,47 @@ let selected=document.querySelector(
 );
 
 
+
 systemType=selected.value;
 
 
 
-let urlBox=document.getElementById("urlContainer");
+let urlContainer=
+document.getElementById("urlContainer");
 
 
 
-if(systemType=="Web App"){
+if(systemType==="Web App"){
 
-urlBox.style.display="block";
+
+urlContainer.style.display="block";
+
 
 }
 
 else{
 
-urlBox.style.display="none";
+
+urlContainer.style.display="none";
+
 
 document.getElementById("systemUrl").value="";
 
-}
-
 
 }
 
 
+}
 
+
+
+
+
+
+
+
+
+// إنشاء البطاقة
 
 
 function generateCard(){
@@ -632,52 +857,67 @@ function generateCard(){
 
 
 let employee=
-document.getElementById("employeeName").value;
+document.getElementById("employeeName").value.trim();
+
 
 
 let system=
-document.getElementById("systemName").value;
+document.getElementById("systemName").value.trim();
+
 
 
 let url=
-document.getElementById("systemUrl").value;
+document.getElementById("systemUrl").value.trim();
+
 
 
 let username=
-document.getElementById("username").value;
+document.getElementById("username").value.trim();
+
 
 
 let password=
-document.getElementById("password").value;
+document.getElementById("password").value.trim();
+
 
 
 let notes=
-document.getElementById("notes").value;
+document.getElementById("notes").value.trim();
+
 
 
 
 
 
 if(
-employee=="" ||
-system=="" ||
-username=="" ||
-password==""
+employee==="" ||
+system==="" ||
+username==="" ||
+password===""
 ){
+
 
 alert("يرجى تعبئة البيانات الأساسية");
 
+
 return;
+
 
 }
 
 
 
-if(systemType=="Web App" && url==""){
+
+
+
+if(systemType==="Web App" && url===""){
+
 
 alert("يرجى إدخال رابط النظام");
 
+
 return;
+
 
 }
 
@@ -685,12 +925,17 @@ return;
 
 
 
-let btn=document.getElementById("generateBtn");
+
+
+let btn=
+document.getElementById("generateBtn");
+
 
 
 btn.disabled=true;
 
-btn.innerHTML="⏳ جاري الإنشاء...";
+
+btn.innerHTML="⏳ جاري إنشاء البطاقة...";
 
 
 
@@ -700,7 +945,10 @@ document.getElementById("processingScreen")
 
 
 
+
+
 setTimeout(function(){
+
 
 
 createCard(
@@ -718,9 +966,12 @@ document.getElementById("processingScreen")
 .style.display="none";
 
 
+
 btn.disabled=false;
 
+
 btn.innerHTML="إنشاء البطاقة";
+
 
 
 },5000);
@@ -748,6 +999,7 @@ notes
 let now=new Date();
 
 
+
 let date=
 
 now.getFullYear()
@@ -759,6 +1011,7 @@ String(now.getMonth()+1).padStart(2,"0")
 "/"
 +
 String(now.getDate()).padStart(2,"0");
+
 
 
 
@@ -775,73 +1028,13 @@ Math.floor(Math.random()*90000+10000);
 
 
 
-
-document.getElementById("cardResult").innerHTML=`
-
-<div class="credential-card" id="printCard">
+let systemDetails="";
 
 
-<div class="card-logo">
-
-<img src="logo.png">
-
-</div>
+if(systemType==="Web App"){
 
 
-<h2 class="title">
-
-🔐 بيانات الدخول للنظام
-
-</h2>
-
-
-
-<div style="text-align:center;margin:15px">
-
-<div id="qrcode"></div>
-
-</div>
-
-
-<div class="row">
-
-<b>رقم البطاقة:</b><br>
-
-${cardId}
-
-</div>
-
-
-<div class="row">
-
-<b>بنية النظام:</b><br>
-
-${systemType}
-
-</div>
-
-
-<div class="row">
-
-<b>الموظف:</b><br>
-
-${employee}
-
-</div>
-
-
-<div class="row">
-
-<b>النظام:</b><br>
-
-${system}
-
-</div>
-
-
-`;
-
-${systemType=="Web App" ? `
+systemDetails=`
 
 <div class="row">
 
@@ -855,7 +1048,15 @@ ${url}
 
 </div>
 
-` : `
+`;
+
+
+}
+
+else{
+
+
+systemDetails=`
 
 <div class="row">
 
@@ -869,7 +1070,123 @@ Desktop Application
 
 </div>
 
-`}
+
+`;
+
+
+}
+
+
+
+
+
+document.getElementById("cardResult").innerHTML=
+
+`
+
+<div class="credential-card" id="printCard">
+
+
+<div class="card-logo">
+
+<img src="logo.png">
+
+</div>
+
+
+
+
+
+<h2 class="title">
+
+🔐 بيانات الدخول للنظام
+
+</h2>
+
+
+
+
+
+<div style="text-align:center;margin:15px">
+
+<div id="qrcode"></div>
+
+</div>
+
+
+
+
+
+
+<div class="row">
+
+<b>
+رقم البطاقة:
+</b>
+
+<br>
+
+${cardId}
+
+</div>
+
+
+
+
+
+<div class="row">
+
+<b>
+بنية النظام:
+</b>
+
+<br>
+
+${systemType}
+
+</div>
+
+
+
+
+
+<div class="row">
+
+<b>
+الموظف:
+</b>
+
+<br>
+
+${employee}
+
+</div>
+
+
+
+
+
+<div class="row">
+
+<b>
+النظام:
+</b>
+
+<br>
+
+${system}
+
+</div>
+
+
+
+
+
+${systemDetails}
+
+
+
+
 
 
 
@@ -887,13 +1204,21 @@ ${username}
 
 
 
+
+
+
+
+
 <div class="row">
+
 
 <b>
 🔑 كلمة المرور:
 </b>
 
+
 <br>
+
 
 
 <span id="maskedPassword">
@@ -911,11 +1236,13 @@ ${password}
 </span>
 
 
+
 <br><br>
 
 
-<button style="background:#1565c0"
 
+<button 
+style="background:#1565c0"
 onclick="togglePassword()">
 
 👁 عرض / إخفاء كلمة المرور
@@ -923,7 +1250,10 @@ onclick="togglePassword()">
 </button>
 
 
+
 </div>
+
+
 
 
 
@@ -934,9 +1264,7 @@ ${notes ? `
 <div class="row">
 
 <b>
-
 ملاحظات:
-
 </b>
 
 <br>
@@ -950,14 +1278,16 @@ ${notes}
 
 
 
+
+
+
 <div class="instructions">
 
 
 <b>
-
 تعليمات الاستخدام:
-
 </b>
+
 
 
 <br><br>
@@ -986,6 +1316,7 @@ ${notes}
 
 
 </div>
+
 
 
 
@@ -1024,8 +1355,10 @@ IT Credential Card Generator
 
 
 
-
 </div>
+
+
+
 
 
 
@@ -1033,11 +1366,14 @@ IT Credential Card Generator
 <div id="actions">
 
 
+
 <button onclick="downloadCard()">
 
 📥 تحميل PNG
 
 </button>
+
+
 
 
 
@@ -1049,11 +1385,15 @@ IT Credential Card Generator
 
 
 
+
+
 <button onclick="printCard()">
 
 🖨 طباعة
 
 </button>
+
+
 
 
 
@@ -1064,8 +1404,8 @@ IT Credential Card Generator
 </button>
 
 
-</div>
 
+</div>
 
 
 `;
@@ -1074,9 +1414,12 @@ IT Credential Card Generator
 
 
 
-// إنشاء QR فقط لتطبيقات الويب
 
-if(systemType=="Web App"){
+// إنشاء QR فقط للويب
+
+
+if(systemType==="Web App"){
+
 
 
 new QRCode(
@@ -1094,6 +1437,7 @@ height:150
 }
 
 );
+
 
 
 }
@@ -1116,23 +1460,22 @@ document.getElementById("qrcode").innerHTML="";
 
 
 
+
 function togglePassword(){
 
 
-
-let masked=
-document.getElementById("maskedPassword");
+let masked=document.getElementById("maskedPassword");
 
 
-let real=
-document.getElementById("realPassword");
+let real=document.getElementById("realPassword");
 
 
 
-if(real.style.display=="none"){
+if(real.style.display==="none"){
 
 
 real.style.display="inline";
+
 
 masked.style.display="none";
 
@@ -1144,10 +1487,12 @@ else{
 
 real.style.display="none";
 
+
 masked.style.display="inline";
 
 
 }
+
 
 
 }
@@ -1169,11 +1514,15 @@ let card=document.getElementById("printCard");
 
 if(!card){
 
+
 alert("يرجى إنشاء البطاقة أولاً");
+
 
 return;
 
+
 }
+
 
 
 
@@ -1201,11 +1550,11 @@ link.href=canvas.toDataURL("image/png");
 link.click();
 
 
+
 });
 
 
 }
-
 
 
 
@@ -1222,37 +1571,50 @@ let card=document.getElementById("printCard");
 
 if(!card){
 
+
 alert("يرجى إنشاء البطاقة أولاً");
 
+
 return;
+
 
 }
 
 
 
 
+
 html2canvas(card,{
 
+
 scale:3
+
 
 })
 
 .then(canvas=>{
 
 
+
 let image=canvas.toDataURL("image/png");
+
 
 
 
 let pdf=new jspdf.jsPDF({
 
+
 orientation:"portrait",
+
 
 unit:"mm",
 
+
 format:[100,150]
 
+
 });
+
 
 
 
@@ -1287,6 +1649,7 @@ pdf.save(
 
 
 }
+
 
 function printCard(){
 
@@ -1395,19 +1758,15 @@ margin-top:20px;
 <body>
 
 
-
 <div class="credential-card">
 
-
 ${card}
-
 
 </div>
 
 
 
 </body>
-
 
 
 </html>
@@ -1516,6 +1875,7 @@ whatsapp,
 
 
 
+
 function newCard(){
 
 
@@ -1547,7 +1907,6 @@ behavior:"smooth"
 });
 
 
-
 }
 
 
@@ -1556,25 +1915,37 @@ behavior:"smooth"
 
 
 
-window.addEventListener("load", function(){
 
-    const splash = document.getElementById("splashScreen");
 
-    if(splash){
+// إخفاء شاشة البداية بشكل مضمون
 
-        setTimeout(function(){
 
-            splash.style.opacity = "0";
+window.addEventListener("load",function(){
 
-            setTimeout(function(){
 
-                splash.style.display = "none";
 
-            },600);
+const splash=document.getElementById("splashScreen");
 
-        },2000);
 
-    }
+
+setTimeout(function(){
+
+
+if(splash){
+
+
+splash.style.opacity="0";
+
+
+splash.style.visibility="hidden";
+
+
+}
+
+
+},2000);
+
+
 
 });
 
@@ -1587,9 +1958,9 @@ window.addEventListener("load", function(){
 
 
 
-<button class="secondary"
 
-onclick="newCard()">
+<button onclick="newCard()"
+style="background:#555;margin:20px">
 
 
 🆕 إنشاء بطاقة جديدة
@@ -1602,7 +1973,26 @@ onclick="newCard()">
 
 
 
-<div class="github-info">
+
+<div style="
+
+background:white;
+
+margin:20px;
+
+padding:15px;
+
+border-radius:12px;
+
+text-align:center;
+
+font-size:13px;
+
+color:#666;
+
+box-shadow:0 2px 8px #ddd;
+
+">
 
 
 <b>
