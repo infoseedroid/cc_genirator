@@ -1556,34 +1556,25 @@ behavior:"smooth"
 
 
 
-window.addEventListener("load",function(){
+window.addEventListener("load", function(){
 
+    const splash = document.getElementById("splashScreen");
 
+    if(splash){
 
-let splash=document.getElementById("splashScreen");
+        setTimeout(function(){
 
+            splash.style.opacity = "0";
 
+            setTimeout(function(){
 
-setTimeout(function(){
+                splash.style.display = "none";
 
+            },600);
 
-splash.style.opacity="0";
+        },2000);
 
-
-
-setTimeout(function(){
-
-
-splash.style.display="none";
-
-
-},600);
-
-
-
-},1500);
-
-
+    }
 
 });
 
