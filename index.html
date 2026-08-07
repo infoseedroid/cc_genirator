@@ -7,11 +7,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <title>
 IT Credential Card Generator V1.2
 </title>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -20,18 +18,13 @@ IT Credential Card Generator V1.2
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 
-
 <style>
 
 
 *{
-
 box-sizing:border-box;
-
 font-family:Tahoma,Arial,sans-serif;
-
 }
-
 
 
 body{
@@ -43,6 +36,160 @@ background:#eef3f1;
 color:#222;
 
 }
+
+
+
+/* ==========================
+   شاشة البداية الجديدة
+========================== */
+
+
+#splashScreen{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:white;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:99999;
+
+transition:opacity .6s ease;
+
+}
+
+
+
+.splash-content{
+
+text-align:center;
+
+padding:20px;
+
+animation:splashShow 1s ease;
+
+}
+
+
+
+.splash-logo{
+
+width:150px;
+
+height:150px;
+
+object-fit:contain;
+
+margin-bottom:20px;
+
+animation:pulse 2s infinite;
+
+}
+
+
+
+.splash-content h2{
+
+color:#0b6b4a;
+
+font-size:22px;
+
+margin:10px;
+
+}
+
+
+
+.splash-content p{
+
+color:#555;
+
+font-size:15px;
+
+line-height:2;
+
+max-width:500px;
+
+}
+
+
+
+.loader{
+
+width:45px;
+
+height:45px;
+
+border-radius:50%;
+
+border:5px solid #ddd;
+
+border-top-color:#0b6b4a;
+
+margin:20px auto;
+
+animation:spin 1s linear infinite;
+
+}
+
+
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+
+
+@keyframes pulse{
+
+50%{
+
+transform:scale(1.05);
+
+}
+
+}
+
+
+
+@keyframes splashShow{
+
+from{
+
+opacity:0;
+
+transform:scale(.8);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+}
+
 
 
 
@@ -85,7 +232,6 @@ margin:10px 0;
 font-size:25px;
 
 }
-
 
 
 .header p{
@@ -174,7 +320,6 @@ resize:none;
 }
 
 
-
 button{
 
 width:100%;
@@ -198,14 +343,11 @@ cursor:pointer;
 }
 
 
-
 button:hover{
 
 opacity:.9;
 
 }
-
-
 
 .security-note{
 
@@ -322,13 +464,105 @@ margin-top:20px;
 }
 
 
-</style>
+#actions button{
 
+margin-top:12px;
+
+}
+
+
+
+.secondary{
+
+background:#555 !important;
+
+}
+
+
+
+.github-info{
+
+margin-top:25px;
+
+background:white;
+
+padding:15px;
+
+border-radius:12px;
+
+text-align:center;
+
+font-size:13px;
+
+color:#666;
+
+box-shadow:0 2px 8px #ddd;
+
+}
+
+
+
+@media(max-width:600px){
+
+.header h1{
+
+font-size:20px;
+
+}
+
+
+.container{
+
+padding:10px;
+
+}
+
+
+.credential-card{
+
+padding:15px;
+
+}
+
+}
+
+
+</style>
 
 </head>
 
 
 <body>
+
+
+
+<!-- شاشة البداية -->
+
+<div id="splashScreen">
+
+<div class="splash-content">
+
+
+<img src="logo.png" class="splash-logo">
+
+
+<h2>
+مولد بطاقات حساب التعامل مع الأنظمة
+</h2>
+
+
+<p>
+جاري تحميل نظام مولد بطاقات حساب التعامل مع الأنظمة في دائرة الإفتاء العام
+</p>
+
+
+<div class="loader"></div>
+
+
+</div>
+
+</div>
+
 
 
 
@@ -353,6 +587,7 @@ IT Credential Card Generator V1.2
 
 
 
+
 <div class="container">
 
 
@@ -368,12 +603,14 @@ IT Credential Card Generator V1.2
 
 
 
+
 <div class="box">
 
 
 <h2>
 بيانات البطاقة
 </h2>
+
 
 
 
@@ -388,12 +625,16 @@ onchange="changeLogo(event)">
 
 
 
+
+
 <label>
 اسم الموظف
 </label>
 
 
 <input id="employeeName">
+
+
 
 
 
@@ -406,6 +647,8 @@ onchange="changeLogo(event)">
 
 
 
+
+
 <label>
 رابط النظام
 </label>
@@ -415,12 +658,16 @@ onchange="changeLogo(event)">
 
 
 
+
+
 <label>
 اسم المستخدم
 </label>
 
 
 <input id="username">
+
+
 
 
 
@@ -434,12 +681,16 @@ type="password">
 
 
 
+
+
 <label>
 ملاحظات
 </label>
 
 
 <textarea id="notes"></textarea>
+
+
 
 
 
@@ -455,46 +706,40 @@ type="password">
 
 
 
+
 <div id="cardResult"></div>
 
 
 
 </div>
-<!-- الجزء الثاني V1.2 -->
+
 
 
 <script>
 
 
-let selectedLogo = "logo.png";
+let selectedLogo="logo.png";
 
 
-
-
-// تغيير الشعار
 
 function changeLogo(event){
 
 
-let file =
-event.target.files[0];
+let file=event.target.files[0];
 
 
 if(file)
 
 {
 
-selectedLogo =
-URL.createObjectURL(file);
+selectedLogo=URL.createObjectURL(file);
 
-
-document.getElementById("pageLogo").src =
-selectedLogo;
+document.getElementById("pageLogo").src=selectedLogo;
 
 }
 
-
 }
+
 
 
 
@@ -502,35 +747,17 @@ selectedLogo;
 function generateCard(){
 
 
+let employee=document.getElementById("employeeName").value;
 
-let employee =
-document.getElementById("employeeName").value;
+let system=document.getElementById("systemName").value;
 
+let url=document.getElementById("systemUrl").value;
 
+let username=document.getElementById("username").value;
 
-let system =
-document.getElementById("systemName").value;
+let password=document.getElementById("password").value;
 
-
-
-let url =
-document.getElementById("systemUrl").value;
-
-
-
-let username =
-document.getElementById("username").value;
-
-
-
-let password =
-document.getElementById("password").value;
-
-
-
-let notes =
-document.getElementById("notes").value;
-
+let notes=document.getElementById("notes").value;
 
 
 
@@ -545,61 +772,40 @@ return;
 
 
 
-
-let now =
-new Date();
+let now=new Date();
 
 
-
-let date =
+let date=
 
 now.getFullYear()
-
 +
-
 "/"
-
 +
-
 String(now.getMonth()+1).padStart(2,"0")
-
 +
-
 "/"
-
 +
-
 String(now.getDate()).padStart(2,"0");
 
 
 
-
-let cardId =
+let cardId=
 
 "CC-"
 
-+
++now.getFullYear()
 
-now.getFullYear()
++"-"
 
-+
-
-"-"
-
-+
-
-Math.floor(Math.random()*90000+10000);
++Math.floor(Math.random()*90000+10000);
 
 
 
-
-
-document.getElementById("cardResult").innerHTML = `
+document.getElementById("cardResult").innerHTML=`
 
 
 
 <div class="credential-card" id="printCard">
-
 
 
 <div class="card-logo">
@@ -610,13 +816,11 @@ document.getElementById("cardResult").innerHTML = `
 
 
 
-
 <h2 class="title">
 
 🔐 بيانات الدخول للنظام
 
 </h2>
-
 
 
 <div style="text-align:center;margin:15px">
@@ -626,14 +830,9 @@ document.getElementById("cardResult").innerHTML = `
 </div>
 
 
-
-
-
 <div class="row">
 
-<b>
-رقم البطاقة:
-</b>
+<b>رقم البطاقة:</b>
 
 <br>
 
@@ -643,12 +842,9 @@ ${cardId}
 
 
 
-
 <div class="row">
 
-<b>
-الإصدار:
-</b>
+<b>الإصدار:</b>
 
 <br>
 
@@ -658,13 +854,9 @@ V1.2 Production
 
 
 
-
-
 <div class="row">
 
-<b>
-الموظف:
-</b>
+<b>الموظف:</b>
 
 <br>
 
@@ -674,13 +866,9 @@ ${employee}
 
 
 
-
-
 <div class="row">
 
-<b>
-النظام:
-</b>
+<b>النظام:</b>
 
 <br>
 
@@ -690,13 +878,9 @@ ${system}
 
 
 
-
-
 <div class="row">
 
-<b>
-🌐 رابط النظام:
-</b>
+<b>🌐 رابط النظام:</b>
 
 <br>
 
@@ -706,13 +890,9 @@ ${url}
 
 
 
-
-
 <div class="row">
 
-<b>
-👤 اسم المستخدم:
-</b>
+<b>👤 اسم المستخدم:</b>
 
 <br>
 
@@ -721,26 +901,17 @@ ${username}
 </div>
 
 
-
-
-
 <div class="row">
 
-
-<b>
-🔑 كلمة المرور:
-</b>
-
+<b>🔑 كلمة المرور:</b>
 
 <br>
-
 
 <span id="maskedPassword">
 
 ••••••••••
 
 </span>
-
 
 
 <span id="realPassword" style="display:none">
@@ -753,8 +924,7 @@ ${password}
 <br><br>
 
 
-<button 
-style="background:#1565c0"
+<button style="background:#1565c0"
 onclick="togglePassword()">
 
 👁 عرض / إخفاء كلمة المرور
@@ -766,8 +936,8 @@ onclick="togglePassword()">
 
 
 
-
-
+`;
+  
 ${notes ? `
 
 <div class="row">
@@ -783,7 +953,6 @@ ${notes}
 </div>
 
 ` : ""}
-
 
 
 
@@ -833,7 +1002,6 @@ ${notes}
 
 
 
-
 <div class="footer">
 
 
@@ -864,8 +1032,8 @@ IT Credential Card Generator
 
 
 
-
 </div>
+
 
 
 
@@ -907,6 +1075,7 @@ IT Credential Card Generator
 </div>
 
 
+
 `;
 
 
@@ -936,17 +1105,12 @@ height:150
 
 
 
-
-
 function togglePassword(){
 
 
-let masked =
-document.getElementById("maskedPassword");
+let masked=document.getElementById("maskedPassword");
 
-
-let real =
-document.getElementById("realPassword");
+let real=document.getElementById("realPassword");
 
 
 
@@ -975,18 +1139,14 @@ masked.style.display="inline";
 
 
 
-</script>
-<!-- الجزء الثالث V1.2 -->
 
-
-<script>
 
 
 function downloadCard(){
 
 
-let card =
-document.getElementById("printCard");
+
+let card=document.getElementById("printCard");
 
 
 
@@ -1002,7 +1162,9 @@ return;
 
 
 
+
 html2canvas(card,
+
 {
 
 scale:3,
@@ -1014,23 +1176,19 @@ backgroundColor:"#ffffff"
 .then(canvas=>{
 
 
-let link =
-document.createElement("a");
+let link=document.createElement("a");
 
 
-link.download =
-"Credential_Card.png";
+link.download="Credential_Card.png";
 
 
-link.href =
-canvas.toDataURL("image/png");
+link.href=canvas.toDataURL("image/png");
 
 
 link.click();
 
 
 });
-
 
 
 }
@@ -1045,8 +1203,7 @@ function downloadPDF(){
 
 
 
-let card =
-document.getElementById("printCard");
+let card=document.getElementById("printCard");
 
 
 
@@ -1063,6 +1220,7 @@ return;
 
 
 html2canvas(card,
+
 {
 
 scale:3
@@ -1072,13 +1230,11 @@ scale:3
 .then(canvas=>{
 
 
-let image =
-canvas.toDataURL("image/png");
+let image=canvas.toDataURL("image/png");
 
 
 
-let pdf =
-new jspdf.jsPDF({
+let pdf=new jspdf.jsPDF({
 
 orientation:"portrait",
 
@@ -1119,11 +1275,7 @@ pdf.save(
 });
 
 
-
 }
-
-
-
 
 
 
@@ -1134,13 +1286,11 @@ function printCard(){
 
 
 
-let card =
-document.getElementById("printCard").innerHTML;
+let card=document.getElementById("printCard").innerHTML;
 
 
 
-let win =
-window.open("","_blank");
+let win=window.open("","_blank");
 
 
 
@@ -1154,8 +1304,11 @@ win.document.write(`
 
 
 <title>
+
 Credential Card
+
 </title>
+
 
 
 
@@ -1229,7 +1382,9 @@ margin-top:20px;
 </style>
 
 
+
 </head>
+
 
 
 
@@ -1272,29 +1427,24 @@ win.print();
 
 
 
-
-
 function shareWhatsApp(){
 
 
 
-let employee =
-document.getElementById("employeeName").value;
+let employee=document.getElementById("employeeName").value;
 
 
 
-let system =
-document.getElementById("systemName").value;
+let system=document.getElementById("systemName").value;
 
 
 
-let url =
-document.getElementById("systemUrl").value;
+let url=document.getElementById("systemUrl").value;
 
 
 
 
-let message =
+let message=
 
 
 "🔐 تم إصدار بيانات الدخول الخاصة بك\n\n"
@@ -1346,7 +1496,7 @@ url
 
 
 
-let whatsapp =
+let whatsapp=
 
 "https://wa.me/?text="
 
@@ -1371,90 +1521,7 @@ whatsapp,
 
 
 
-
-
-
-</script>
-<!-- الجزء الرابع والأخير V1.2 -->
-
-
-<style>
-
-
-#actions button{
-
-margin-top:12px;
-
-}
-
-
-
-.secondary{
-
-background:#555 !important;
-
-}
-
-
-
-.github-info{
-
-margin-top:25px;
-
-background:white;
-
-padding:15px;
-
-border-radius:12px;
-
-text-align:center;
-
-font-size:13px;
-
-color:#666;
-
-box-shadow:0 2px 8px #ddd;
-
-}
-
-
-
-@media(max-width:600px){
-
-
-.header h1{
-
-font-size:20px;
-
-}
-
-
-.container{
-
-padding:10px;
-
-}
-
-
-.credential-card{
-
-padding:15px;
-
-}
-
-
-
-}
-
-
-</style>
-
-
-
-
-
 <script>
-
 
 
 function newCard(){
@@ -1489,9 +1556,8 @@ behavior:"smooth"
 
 
 
-
-
 </script>
+
 
 
 
@@ -1507,44 +1573,102 @@ onclick="newCard()">
 
 
 
+
 <div class="github-info">
 
 
 <b>
+
 IT Credential Card Generator
+
 </b>
 
 
+
 <br>
+
 
 
 Version 1.2 Production Release
 
 
+
 <br><br>
+
 
 
 ✔ معالجة محلية داخل المتصفح
 
 
+
 <br>
+
 
 
 ✔ لا يتم تخزين بيانات الدخول
 
 
+
 <br>
+
 
 
 ✔ جاهز للنشر الداخلي عبر GitHub Pages
 
 
+
 <br><br>
+
 
 
 قسم تقنية المعلومات
 
+
+
 </div>
+
+
+
+
+
+<script>
+
+
+// إخفاء شاشة البداية بعد اكتمال تحميل النظام
+
+window.addEventListener("load",function(){
+
+
+let splash=document.getElementById("splashScreen");
+
+
+
+setTimeout(function(){
+
+
+splash.style.opacity="0";
+
+
+
+setTimeout(function(){
+
+
+splash.style.display="none";
+
+
+},600);
+
+
+
+},1500);
+
+
+
+});
+
+
+
+</script>
 
 
 
@@ -1554,4 +1678,5 @@ Version 1.2 Production Release
 
 </html>
 
-<!-- نهاية ملف IT Credential Card Generator V1.2 -->
+
+<!-- نهاية ملف cc_genirator V1.2 Production -->
