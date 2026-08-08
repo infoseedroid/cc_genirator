@@ -10,13 +10,10 @@
 <title>Iftaa Users Accounts Generator</title>
 
 
-<!-- QR Code Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-<!-- HTML To Image -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-<!-- PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 
@@ -694,7 +691,7 @@ line-height:15px;
 
 
 /* =====================================================
-   MODAL OVERLAY
+   MODAL
 ===================================================== */
 
 .card-modal{
@@ -730,11 +727,6 @@ display:flex;
 
 }
 
-
-
-/* =====================================================
-   MODAL BOX
-===================================================== */
 
 .card-modal-box{
 
@@ -778,11 +770,6 @@ transform:scale(1);
 }
 
 
-
-/* =====================================================
-   MODAL HEADER
-===================================================== */
-
 .card-modal-header{
 
 text-align:center;
@@ -813,11 +800,6 @@ font-size:13px;
 
 }
 
-
-
-/* =====================================================
-   MODAL OPTIONS
-===================================================== */
 
 .card-modal-option{
 
@@ -928,11 +910,6 @@ font-size:12px;
 }
 
 
-
-/* =====================================================
-   MODAL CLOSE
-===================================================== */
-
 .card-modal-close{
 
 width:100%;
@@ -963,8 +940,68 @@ color:#0b6b4a;
 
 
 /* =====================================================
-   MOBILE
+   SUCCESS TOAST
 ===================================================== */
+
+#successToast{
+
+position:fixed;
+
+left:50%;
+
+bottom:30px;
+
+transform:translateX(-50%) translateY(30px);
+
+background:#0b6b4a;
+
+color:white;
+
+padding:14px 22px;
+
+border-radius:12px;
+
+font-size:14px;
+
+font-weight:500;
+
+box-shadow:
+
+0 6px 20px rgba(0,0,0,.25);
+
+opacity:0;
+
+visibility:hidden;
+
+transition:
+
+opacity .3s ease,
+
+transform .3s ease,
+
+visibility .3s ease;
+
+z-index:1000000;
+
+text-align:center;
+
+min-width:260px;
+
+max-width:90%;
+
+}
+
+
+#successToast.show{
+
+opacity:1;
+
+visibility:visible;
+
+transform:translateX(-50%) translateY(0);
+
+}
+
 
 @media(max-width:600px){
 
@@ -1066,10 +1103,22 @@ padding:14px;
 
 }
 
+
+#successToast{
+
+bottom:20px;
+
+font-size:13px;
+
+padding:13px 18px;
+
+min-width:240px;
+
+}
+
 }
 
 </style>
-
 
 </head>
 
@@ -1141,10 +1190,6 @@ Create User Account Card
 </h2>
 
 
-
-<!-- =================================================
-     USER INPUT FORM
-================================================= -->
 
 <div class="form-group">
 
@@ -1293,10 +1338,6 @@ placeholder="Enter notes"
 
 
 
-<!-- =================================================
-     BUTTONS
-================================================= -->
-
 <button
 class="create-btn"
 onclick="generateCard()"
@@ -1319,9 +1360,9 @@ Search / Query
 
 
 
-<!-- =================================================
+<!-- =====================================================
      GENERATED CARD
-================================================= -->
+===================================================== -->
 
 <div
 id="generatedCardArea"
@@ -1330,10 +1371,6 @@ class="generated-card-area"
 
 <div id="generatedCard"></div>
 
-
-<!-- =================================================
-     MORE BUTTON
-================================================= -->
 
 <div class="card-actions">
 
@@ -1355,7 +1392,6 @@ More
 
 </div>
 
-
 </div>
 
 
@@ -1375,9 +1411,8 @@ class="card-modal"
 onclick="handleModalBackgroundClick(event)"
 >
 
-<div
-class="card-modal-box"
->
+<div class="card-modal-box">
+
 
 <div class="card-modal-header">
 
@@ -1392,8 +1427,6 @@ Choose an action for this account card
 </div>
 
 
-
-<!-- SAVE IMAGE -->
 
 <button
 type="button"
@@ -1421,8 +1454,6 @@ Save the card as a PNG image
 
 
 
-<!-- SAVE PDF -->
-
 <button
 type="button"
 class="card-modal-option"
@@ -1448,8 +1479,6 @@ Create and save a PDF file
 </button>
 
 
-
-<!-- WHATSAPP -->
 
 <button
 type="button"
@@ -1493,6 +1522,14 @@ Cancel
 
 
 
+<!-- =====================================================
+     SUCCESS TOAST
+===================================================== -->
+
+<div id="successToast"></div>
+
+
+
 <script>
 
 /* =====================================================
@@ -1501,10 +1538,12 @@ Cancel
 
 let selectedEnvironment = "";
 
+let toastTimer;
+
 
 
 /* =====================================================
-   SPLASH CONTROL
+   SPLASH
 ===================================================== */
 
 window.addEventListener("load", function(){
@@ -1532,7 +1571,7 @@ splash.style.display="none";
 
 
 /* =====================================================
-   ENVIRONMENT SELECT
+   ENVIRONMENT
 ===================================================== */
 
 function changeEnvironment(){
@@ -1617,10 +1656,6 @@ document
 
 
 
-/* =================================================
-   VALIDATION
-================================================= */
-
 if(
 
 employee === "" ||
@@ -1663,10 +1698,6 @@ return;
 
 
 
-/* =================================================
-   CARD ID
-================================================= */
-
 let cardID =
 
 "IFT-" +
@@ -1681,20 +1712,12 @@ Math.random()*90000+10000
 
 
 
-/* =================================================
-   CREATED DATE
-================================================= */
-
 let created =
 
 new Date()
 .toLocaleDateString("en-US");
 
 
-
-/* =================================================
-   STORE DATA
-================================================= */
 
 window.currentCardData = {
 
@@ -1719,10 +1742,6 @@ created:created
 };
 
 
-
-/* =================================================
-   GENERATE CARD
-================================================= */
 
 document
 .getElementById("generatedCard")
@@ -1917,19 +1936,11 @@ ${escapeHTML(created)}
 
 
 
-/* =================================================
-   SHOW CARD
-================================================= */
-
 document
 .getElementById("generatedCardArea")
 .classList.add("show");
 
 
-
-/* =================================================
-   QR CODE
-================================================= */
 
 if(selectedEnvironment === "Web"){
 
@@ -1952,10 +1963,6 @@ height:140
 }
 
 
-
-/* =================================================
-   SCROLL TO CARD
-================================================= */
 
 setTimeout(function(){
 
@@ -1998,40 +2005,26 @@ return String(value)
 
 
 /* =====================================================
-   OPEN MODAL
+   MODAL
 ===================================================== */
 
 function openCardModal(){
 
-let modal =
-document.getElementById("cardModal");
-
-
-modal.classList.add("show");
+document
+.getElementById("cardModal")
+.classList.add("show");
 
 }
 
-
-
-/* =====================================================
-   CLOSE MODAL
-===================================================== */
 
 function closeCardModal(){
 
-let modal =
-document.getElementById("cardModal");
-
-
-modal.classList.remove("show");
+document
+.getElementById("cardModal")
+.classList.remove("show");
 
 }
 
-
-
-/* =====================================================
-   CLOSE WHEN CLICKING BACKGROUND
-===================================================== */
 
 function handleModalBackgroundClick(event){
 
@@ -2049,7 +2042,39 @@ closeCardModal();
 
 
 /* =====================================================
-   SAVE CARD AS IMAGE
+   SUCCESS TOAST
+===================================================== */
+
+function showSuccessToast(message){
+
+let toast =
+document.getElementById("successToast");
+
+
+clearTimeout(toastTimer);
+
+
+toast.innerHTML =
+"✅ " + message;
+
+
+toast.classList.add("show");
+
+
+toastTimer =
+
+setTimeout(function(){
+
+toast.classList.remove("show");
+
+},3500);
+
+}
+
+
+
+/* =====================================================
+   SAVE IMAGE
 ===================================================== */
 
 async function saveCardAsImage(){
@@ -2120,6 +2145,15 @@ canvas.toDataURL("image/png");
 
 link.click();
 
+
+
+/* SUCCESS MESSAGE */
+
+showSuccessToast(
+"Card image saved successfully."
+);
+
+
 }
 
 catch(error){
@@ -2138,7 +2172,7 @@ alert(
 
 
 /* =====================================================
-   SAVE CARD AS PDF
+   SAVE PDF
 ===================================================== */
 
 async function saveCardAsPDF(){
@@ -2293,6 +2327,15 @@ cardID + ".pdf"
 
 );
 
+
+
+/* SUCCESS MESSAGE */
+
+showSuccessToast(
+"PDF file saved successfully."
+);
+
+
 }
 
 catch(error){
@@ -2311,7 +2354,7 @@ alert(
 
 
 /* =====================================================
-   SHARE VIA WHATSAPP
+   WHATSAPP
 ===================================================== */
 
 function shareCardWhatsApp(){
@@ -2418,12 +2461,20 @@ whatsappURL,
 
 );
 
+
+
+/* SUCCESS MESSAGE */
+
+showSuccessToast(
+"WhatsApp sharing window opened."
+);
+
 }
 
 
 
 /* =====================================================
-   SEARCH - TEMPORARY
+   SEARCH
 ===================================================== */
 
 function showSearch(){
