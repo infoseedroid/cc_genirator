@@ -495,11 +495,7 @@ border-top:2px solid #e5ebe8;
 display:block;
 
 }
-<!-- =====================================================
-     MAIN BODY
-===================================================== -->
-
-</style>
+   </style>
 
 </head>
 
@@ -745,7 +741,7 @@ display:block;
 
 
         <!-- =================================================
-             GENERATED CARD
+             GENERATED CARD AREA
         ================================================= -->
 
         <div
@@ -755,13 +751,101 @@ display:block;
 
             <div id="generatedCard"></div>
 
+
+            <!-- =================================================
+                 THREE DOTS MENU
+            ================================================= -->
+
+            <div
+                id="cardActions"
+                class="card-actions"
+            >
+
+                <button
+                    type="button"
+                    class="more-btn"
+                    onclick="toggleCardMenu()"
+                >
+
+                    <span class="more-dots">
+                        ⋮
+                    </span>
+
+                    <span>
+                        More
+                    </span>
+
+                </button>
+
+
+
+                <div
+                    id="cardMenu"
+                    class="card-menu"
+                >
+
+                    <button
+                        type="button"
+                        onclick="saveCardAsImage()"
+                    >
+
+                        🖼️
+
+                        <span>
+                            Save as Image
+                        </span>
+
+                    </button>
+
+
+
+                    <button
+                        type="button"
+                        onclick="saveCardAsPDF()"
+                    >
+
+                        📄
+
+                        <span>
+                            Save as PDF
+                        </span>
+
+                    </button>
+
+
+
+                    <button
+                        type="button"
+                        onclick="shareCardWhatsApp()"
+                    >
+
+                        💬
+
+                        <span>
+                            Share via WhatsApp
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
 
 
     </div>
 
 </div>
+
+
+
+<!-- =====================================================
+     CARD / MENU CSS
+===================================================== -->
+
 <style>
+
 
 /* =====================================================
    GENERATED CARD
@@ -887,6 +971,149 @@ font-size:13px;
 
 
 /* =====================================================
+   THREE DOTS / ACTIONS
+===================================================== */
+
+.card-actions{
+
+position:relative;
+
+width:100%;
+
+max-width:650px;
+
+margin:15px auto 0;
+
+text-align:center;
+
+}
+
+
+.more-btn{
+
+border:none;
+
+background:#555;
+
+color:white;
+
+padding:10px 22px;
+
+border-radius:10px;
+
+font-size:15px;
+
+cursor:pointer;
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:8px;
+
+}
+
+
+.more-btn:hover{
+
+background:#444;
+
+}
+
+
+.more-dots{
+
+font-size:22px;
+
+font-weight:bold;
+
+line-height:15px;
+
+}
+
+
+.card-menu{
+
+display:none;
+
+position:absolute;
+
+top:52px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:280px;
+
+background:white;
+
+border-radius:12px;
+
+box-shadow:
+0 8px 25px rgba(0,0,0,.20);
+
+border:1px solid #e0e5e3;
+
+overflow:hidden;
+
+z-index:1000;
+
+}
+
+
+.card-menu.show{
+
+display:block;
+
+}
+
+
+.card-menu button{
+
+width:100%;
+
+border:none;
+
+background:white;
+
+padding:15px;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-size:15px;
+
+text-align:left;
+
+cursor:pointer;
+
+color:#333;
+
+}
+
+
+.card-menu button:hover{
+
+background:#f1f5f3;
+
+}
+
+
+.card-menu button span{
+
+flex:1;
+
+}
+
+
+
+/* =====================================================
    MOBILE
 ===================================================== */
 
@@ -965,10 +1192,16 @@ font-size:14px;
 
 }
 
+
+.card-menu{
+
+width:260px;
+
 }
 
-</style>
 
+}
+</style>
 
 
 <script>
@@ -1129,6 +1362,44 @@ function generateCard(){
 
 
     /* =================================================
+       STORE CARD DATA
+    ================================================= */
+
+    window.currentCardData = {
+
+        cardID:cardID,
+
+        employee:employee,
+
+        system:system,
+
+        username:username,
+
+        password:password,
+
+        environment:selectedEnvironment,
+
+        url:url,
+
+        notes:notes,
+
+        created:created
+
+    };
+
+
+
+    /* =================================================
+       CLOSE MENU IF OPEN
+    ================================================= */
+
+    document
+        .getElementById("cardMenu")
+        .classList.remove("show");
+
+
+
+    /* =================================================
        CLEAR PREVIOUS CARD
     ================================================= */
 
@@ -1177,7 +1448,7 @@ function generateCard(){
 
             <br>
 
-            ${cardID}
+            ${escapeHTML(cardID)}
 
         </div>
 
@@ -1191,7 +1462,7 @@ function generateCard(){
 
             <br>
 
-            ${employee}
+            ${escapeHTML(employee)}
 
         </div>
 
@@ -1205,7 +1476,7 @@ function generateCard(){
 
             <br>
 
-            ${system}
+            ${escapeHTML(system)}
 
         </div>
 
@@ -1219,7 +1490,7 @@ function generateCard(){
 
             <br>
 
-            ${selectedEnvironment}
+            ${escapeHTML(selectedEnvironment)}
 
         </div>
 
@@ -1240,7 +1511,7 @@ function generateCard(){
 
                 <br>
 
-                ${url}
+                ${escapeHTML(url)}
 
             </div>
 
@@ -1262,7 +1533,7 @@ function generateCard(){
 
             <br>
 
-            ${username}
+            ${escapeHTML(username)}
 
         </div>
 
@@ -1276,7 +1547,7 @@ function generateCard(){
 
             <br>
 
-            ${password}
+            ${escapeHTML(password)}
 
         </div>
 
@@ -1297,7 +1568,7 @@ function generateCard(){
 
                 <br>
 
-                ${notes}
+                ${escapeHTML(notes)}
 
             </div>
 
@@ -1314,7 +1585,7 @@ function generateCard(){
         <div class="card-footer">
 
             Created Date:
-            ${created}
+            ${escapeHTML(created)}
 
         </div>
 
@@ -1326,7 +1597,7 @@ function generateCard(){
 
 
     /* =================================================
-       SHOW CARD
+       SHOW CARD AREA
     ================================================= */
 
     document
@@ -1384,7 +1655,395 @@ function generateCard(){
 
 
 /* =====================================================
-   TEMP SEARCH FUNCTION
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+
+        .replace(/&/g,"&amp;")
+
+        .replace(/</g,"&lt;")
+
+        .replace(/>/g,"&gt;")
+
+        .replace(/"/g,"&quot;")
+
+        .replace(/'/g,"&#039;");
+
+}
+
+
+
+/* =====================================================
+   THREE DOTS MENU
+===================================================== */
+
+function toggleCardMenu(){
+
+    let menu =
+        document.getElementById("cardMenu");
+
+    menu.classList.toggle("show");
+
+}
+
+
+
+/* =====================================================
+   CLOSE MENU WHEN CLICKING OUTSIDE
+===================================================== */
+
+document.addEventListener("click", function(event){
+
+    let menu =
+        document.getElementById("cardMenu");
+
+    let button =
+        document.querySelector(".more-btn");
+
+
+    if(
+        menu &&
+        button &&
+        !menu.contains(event.target) &&
+        !button.contains(event.target)
+    ){
+
+        menu.classList.remove("show");
+
+    }
+
+});
+
+
+
+/* =====================================================
+   SAVE CARD AS IMAGE
+===================================================== */
+
+async function saveCardAsImage(){
+
+    let card =
+        document.querySelector(".generated-card");
+
+
+    if(!card){
+
+        alert("Please create an account card first.");
+
+        return;
+
+    }
+
+
+    let menu =
+        document.getElementById("cardMenu");
+
+    menu.classList.remove("show");
+
+
+    try{
+
+        let canvas =
+            await html2canvas(card, {
+
+                scale:2,
+
+                useCORS:true,
+
+                backgroundColor:"#ffffff"
+
+            });
+
+
+        let link =
+            document.createElement("a");
+
+
+        let cardID =
+            window.currentCardData
+            ? window.currentCardData.cardID
+            : "Iftaa-Account-Card";
+
+
+        link.download =
+            cardID + ".png";
+
+
+        link.href =
+            canvas.toDataURL("image/png");
+
+
+        link.click();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to save the card as an image."
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   SAVE CARD AS PDF
+===================================================== */
+
+async function saveCardAsPDF(){
+
+    let card =
+        document.querySelector(".generated-card");
+
+
+    if(!card){
+
+        alert("Please create an account card first.");
+
+        return;
+
+    }
+
+
+    let menu =
+        document.getElementById("cardMenu");
+
+    menu.classList.remove("show");
+
+
+    try{
+
+        let canvas =
+            await html2canvas(card, {
+
+                scale:2,
+
+                useCORS:true,
+
+                backgroundColor:"#ffffff"
+
+            });
+
+
+        let imageData =
+            canvas.toDataURL("image/png");
+
+
+        const { jsPDF } =
+            window.jspdf;
+
+
+        let pdf =
+            new jsPDF({
+
+                orientation:"portrait",
+
+                unit:"mm",
+
+                format:"a4"
+
+            });
+
+
+        let pageWidth =
+            pdf.internal.pageSize.getWidth();
+
+
+        let pageHeight =
+            pdf.internal.pageSize.getHeight();
+
+
+        let margin = 15;
+
+
+        let imageWidth =
+            pageWidth - (margin * 2);
+
+
+        let imageHeight =
+            (canvas.height * imageWidth)
+            / canvas.width;
+
+
+        if(imageHeight > pageHeight - (margin * 2)){
+
+            imageHeight =
+                pageHeight - (margin * 2);
+
+            imageWidth =
+                (canvas.width * imageHeight)
+                / canvas.height;
+
+        }
+
+
+        let x =
+            (pageWidth - imageWidth) / 2;
+
+
+        let y =
+            margin;
+
+
+        pdf.addImage(
+
+            imageData,
+
+            "PNG",
+
+            x,
+
+            y,
+
+            imageWidth,
+
+            imageHeight
+
+        );
+
+
+        let cardID =
+            window.currentCardData
+            ? window.currentCardData.cardID
+            : "Iftaa-Account-Card";
+
+
+        pdf.save(
+            cardID + ".pdf"
+        );
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to create the PDF file."
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   SHARE VIA WHATSAPP
+===================================================== */
+
+function shareCardWhatsApp(){
+
+    if(!window.currentCardData){
+
+        alert(
+            "Please create an account card first."
+        );
+
+        return;
+
+    }
+
+
+    let menu =
+        document.getElementById("cardMenu");
+
+    menu.classList.remove("show");
+
+
+
+    let data =
+        window.currentCardData;
+
+
+
+    let message =
+
+        "Iftaa User Account Credentials\n\n" +
+
+        "Card ID: " +
+        data.cardID +
+        "\n\n" +
+
+        "Employee: " +
+        data.employee +
+        "\n\n" +
+
+        "System: " +
+        data.system +
+        "\n\n" +
+
+        "Environment: " +
+        data.environment +
+        "\n\n" +
+
+        "Username: " +
+        data.username +
+        "\n\n" +
+
+        "Password: " +
+        data.password;
+
+
+
+    if(
+        data.environment === "Web" &&
+        data.url
+    ){
+
+        message +=
+
+            "\n\nSystem URL: " +
+            data.url;
+
+    }
+
+
+
+    if(data.notes){
+
+        message +=
+
+            "\n\nNotes: " +
+            data.notes;
+
+    }
+
+
+
+    message +=
+
+        "\n\nCreated Date: " +
+        data.created;
+
+
+
+    let whatsappURL =
+
+        "https://wa.me/?text=" +
+        encodeURIComponent(message);
+
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+}
+
+
+
+/* =====================================================
+   SEARCH - TEMPORARY
 ===================================================== */
 
 function showSearch(){
