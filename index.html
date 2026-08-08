@@ -7,11 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-<title>
-Iftaa Users Accounts Generator
-</title>
-
+<title>Iftaa Users Accounts Generator</title>
 
 
 <!-- QR Code Library -->
@@ -19,11 +15,9 @@ Iftaa Users Accounts Generator
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 
-
 <!-- HTML To Image -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
 
 
 <!-- PDF -->
@@ -32,14 +26,11 @@ Iftaa Users Accounts Generator
 
 
 
-
 <style>
-
 
 /* =====================================================
    GLOBAL STYLE
 ===================================================== */
-
 
 *{
 
@@ -53,7 +44,6 @@ Arial,
 sans-serif;
 
 }
-
 
 
 body{
@@ -72,9 +62,7 @@ color:#222;
    SPLASH SCREEN
 ===================================================== */
 
-
 #splashScreen{
-
 
 position:fixed;
 
@@ -86,9 +74,7 @@ width:100%;
 
 height:100%;
 
-
 background:#ffffff;
-
 
 display:flex;
 
@@ -96,110 +82,77 @@ justify-content:center;
 
 align-items:center;
 
-
 z-index:99999;
 
-
 transition:opacity .6s ease;
-
 
 }
 
 
-
 .splash-content{
-
 
 text-align:center;
 
 padding:25px;
 
-
 }
 
 
-
 .splash-logo{
-
 
 width:150px;
 
 height:150px;
 
-
 object-fit:contain;
-
 
 margin-bottom:20px;
 
-
 animation:pulse 2s infinite;
 
-
 }
-
 
 
 .splash-content h1{
 
-
 color:#0b6b4a;
-
 
 font-size:26px;
 
-
 margin:10px;
 
-
 }
-
 
 
 .splash-content p{
 
-
 color:#555;
-
 
 font-size:16px;
 
-
 }
-
 
 
 .spinner{
 
-
 width:50px;
-
 
 height:50px;
 
-
 border-radius:50%;
-
 
 border:5px solid #ddd;
 
-
 border-top-color:#0b6b4a;
-
 
 margin:25px auto;
 
-
 animation:spin 1s linear infinite;
-
 
 }
 
 
-
-
 @keyframes spin{
-
 
 from{
 
@@ -213,20 +166,16 @@ transform:rotate(360deg);
 
 }
 
-
 }
 
 
-
 @keyframes pulse{
-
 
 50%{
 
 transform:scale(1.08);
 
 }
-
 
 }
 
@@ -236,77 +185,52 @@ transform:scale(1.08);
    HEADER
 ===================================================== */
 
-
 .header{
-
 
 background:#0b6b4a;
 
-
 color:white;
-
 
 text-align:center;
 
-
 padding:25px;
 
-
 }
-
-
 
 
 .header img{
 
-
 width:90px;
-
 
 height:90px;
 
-
 border-radius:50%;
-
 
 background:white;
 
-
 padding:5px;
-
 
 object-fit:contain;
 
-
 }
-
 
 
 .header h1{
 
-
 margin:15px 0 5px;
-
 
 font-size:28px;
 
-
 }
-
 
 
 .header p{
 
-
 margin:0;
-
 
 font-size:15px;
 
-
 }
-
-
 
 
 
@@ -314,60 +238,45 @@ font-size:15px;
    CONTAINER
 ===================================================== */
 
-
 .container{
-
 
 max-width:900px;
 
-
 margin:auto;
 
-
 padding:20px;
-
 
 }
 
 
-
 .box{
-
 
 background:white;
 
-
 padding:25px;
 
-
 border-radius:18px;
-
 
 box-shadow:
 
 0 5px 15px rgba(0,0,0,.15);
 
-
 }
-
 
 
 .section-title{
 
-
 text-align:center;
-
 
 color:#0b6b4a;
 
-
 font-size:22px;
-
 
 margin-bottom:20px;
 
-
 }
+
+
 select{
 
 width:100%;
@@ -388,18 +297,17 @@ cursor:pointer;
 
 }
 
+
 select:focus{
 
 border-color:#0b6b4a;
 
 box-shadow:
+
 0 0 5px rgba(11,107,74,.3);
 
 }
-
-
 </style>
-
 
 </head>
 
@@ -407,53 +315,30 @@ box-shadow:
 <body>
 
 
-
-
-
 <!-- =====================================================
      SPLASH SCREEN
 ===================================================== -->
 
-
 <div id="splashScreen">
 
+    <div class="splash-content">
 
-<div class="splash-content">
+        <img src="logo.png"
+             class="splash-logo">
 
+        <h1>
+            Iftaa Users Accounts Generator
+        </h1>
 
-<img src="logo.png"
-class="splash-logo">
+        <p>
+            Loading System...
+        </p>
 
+        <div class="spinner"></div>
 
-
-<h1>
-
-Iftaa Users Accounts Generator
-
-</h1>
-
-
-
-<p>
-
-Loading System...
-
-</p>
-
-
-
-<div class="spinner"></div>
-
-
+    </div>
 
 </div>
-
-
-</div>
-
-
-
-
 
 
 
@@ -461,35 +346,19 @@ Loading System...
      MAIN HEADER
 ===================================================== -->
 
-
 <div class="header">
 
+    <img src="logo.png">
 
-<img src="logo.png">
+    <h1>
+        Iftaa Users Accounts Generator
+    </h1>
 
-
-
-<h1>
-
-Iftaa Users Accounts Generator
-
-</h1>
-
-
-
-<p>
-
-Users Credentials Management Tool
-
-</p>
-
-
+    <p>
+        Users Credentials Management Tool
+    </p>
 
 </div>
-
-
-
-
 
 
 
@@ -497,500 +366,353 @@ Users Credentials Management Tool
      MAIN CONTENT
 ===================================================== -->
 
-
 <div class="container">
 
-
-<div class="box">
-
-
-<h2 class="section-title">
-
-Create User Account Card
-
-</h2>
+    <div class="box">
 
 
-<!-- =====================================================
-     USER INPUT FORM
-===================================================== -->
+        <h2 class="section-title">
+            Create User Account Card
+        </h2>
 
 
-<div class="form-group">
+
+        <!-- =====================================================
+             USER INPUT FORM
+        ===================================================== -->
 
 
-<label>
+        <div class="form-group">
 
-Employee Name
+            <label>
+                Employee Name
+            </label>
 
-</label>
+            <input
+                type="text"
+                id="employeeName"
+                placeholder="Enter employee name">
+
+        </div>
 
 
-<input
 
-type="text"
+        <div class="form-group">
 
-id="employeeName"
+            <label>
+                System Name
+            </label>
 
-placeholder="Enter employee name">
+            <input
+                type="text"
+                id="systemName"
+                placeholder="Enter system name">
 
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username">
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Password
+            </label>
+
+            <div class="password-wrapper">
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password">
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    onclick="togglePassword()"
+                    aria-label="Show password">
+
+                    👁
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                System Environment
+            </label>
+
+
+            <select
+                id="environment"
+                onchange="changeEnvironment()">
+
+                <option value="">
+                    Select system environment
+                </option>
+
+                <option value="Operating System">
+                    Operating System
+                </option>
+
+                <option value="Desktop">
+                    Desktop App
+                </option>
+
+                <option value="Web">
+                    Web App
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <div
+            class="form-group"
+            id="urlSection"
+            style="display:none;">
+
+            <label>
+                System URL
+            </label>
+
+            <input
+                type="text"
+                id="systemUrl"
+                placeholder="Paste web system URL here">
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Notes
+            </label>
+
+            <textarea
+                id="notes"
+                placeholder="Enter notes"></textarea>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             ACTION BUTTONS
+        ===================================================== -->
+
+
+        <button
+            class="create-btn"
+            onclick="generateCard()">
+
+            Create Account Card
+
+        </button>
+
+
+
+        <button
+            class="search-btn"
+            onclick="showSearch()">
+
+            Search / Query
+
+        </button>
+
+
+
+        <!-- =====================================================
+             GENERATED CARD AREA
+        ===================================================== -->
+
+        <div
+            id="generatedCardArea"
+            class="generated-card-area">
+
+            <div id="generatedCard"></div>
+
+        </div>
+
+
+    </div>
 
 </div>
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-
-System Name
-
-</label>
-
-
-<input
-
-type="text"
-
-id="systemName"
-
-placeholder="Enter system name">
-
-
-</div>
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-
-Username
-
-</label>
-
-
-<input
-
-type="text"
-
-id="username"
-
-placeholder="Enter username">
-
-
-</div>
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<div class="password-wrapper">
-
-<input
-type="password"
-id="password"
-placeholder="Enter password">
-
-<button
-type="button"
-class="password-toggle"
-onclick="togglePassword()"
-aria-label="Show password">
-
-👁
-
-</button>
-
-</div>
-</div>
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-
-System Environment
-
-</label>
-
-
-
-
-<select id="environment" onchange="changeEnvironment()">
-
-<option value="">
-Select system environment
-</option>
-
-<option value="Operating System">
-Operating System
-</option>
-
-<option value="Desktop">
-Desktop App
-</option>
-
-<option value="Web">
-Web App
-</option>
-
-</select>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="form-group"
-
-id="urlSection"
-
-style="display:none;">
-
-
-
-<label>
-
-System URL
-
-</label>
-
-
-
-<input
-
-type="text"
-
-id="systemUrl"
-
-placeholder="Paste web system URL here">
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-
-Notes
-
-</label>
-
-
-
-<textarea
-
-id="notes"
-
-placeholder="Enter notes"></textarea>
-
-
-</div>
-
-
-
-
-
-
-
-
-<button
-
-class="create-btn"
-
-onclick="generateCard()">
-
-
-
-Create Account Card
-
-
-
-</button>
-
-
-
-
-
-
-
-<button
-
-class="search-btn"
-
-onclick="showSearch()">
-
-
-
-Search / Query
-
-
-
-</button>
-
-
-
-
-
-
-
-</div>
-
-</div>
-
-
-
-
-
-
 
 
 
 <!-- =====================================================
-     ADDITIONAL CSS FOR FORM
+     ADDITIONAL CSS
 ===================================================== -->
-
 
 <style>
 
 
 .form-group{
 
-
 margin-top:18px;
 
-
 }
-
 
 
 .form-group label{
 
-
 display:block;
-
 
 font-weight:600;
 
-
 margin-bottom:8px;
-
 
 color:#333;
 
-
 }
-
 
 
 input,
 textarea{
 
-
 width:100%;
-
 
 padding:13px;
 
-
 border-radius:10px;
-
 
 border:1px solid #ccc;
 
-
 font-size:15px;
-
 
 outline:none;
 
-
 }
-
 
 
 input:focus,
 textarea:focus{
 
-
 border-color:#0b6b4a;
-
 
 box-shadow:
 
 0 0 5px rgba(11,107,74,.3);
 
-
 }
-
 
 
 textarea{
 
-
 height:90px;
-
 
 resize:none;
 
-
 }
 
 
 
-
-
-.radio-container{
-
-
-display:flex;
-
-
-gap:20px;
-
-
-flex-wrap:wrap;
-
-
-background:#f6f8f7;
-
-
-padding:15px;
-
-
-border-radius:12px;
-
-
-}
-
-
-
-.radio-container label{
-
-
-font-weight:normal;
-
-
-cursor:pointer;
-
-
-}
-
-
-
-
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .create-btn,
 .search-btn{
 
-
 width:100%;
-
 
 padding:15px;
 
-
 border:none;
-
 
 border-radius:12px;
 
-
 margin-top:20px;
-
 
 font-size:16px;
 
-
 cursor:pointer;
 
-
 }
-
 
 
 .create-btn{
 
-
 background:#0b6b4a;
-
 
 color:white;
 
-
 }
-
-
 
 
 .search-btn{
 
-
 background:#555;
-
 
 color:white;
 
-
 }
+
+
+
+/* =====================================================
+   PASSWORD TOGGLE
+===================================================== */
 
 .password-wrapper{
+
 position:relative;
+
 }
+
 
 .password-wrapper input{
+
 padding-right:50px;
+
 }
 
+
 .password-toggle{
+
 position:absolute;
+
 right:8px;
+
 top:50%;
+
 transform:translateY(-50%);
 
 width:38px;
+
 height:38px;
 
 margin:0;
+
 padding:0;
 
 background:transparent;
+
 color:#0b6b4a;
 
 border:none;
@@ -1000,619 +722,788 @@ font-size:20px;
 cursor:pointer;
 
 box-shadow:none;
+
 }
 
+
 .password-toggle:hover{
+
 background:#f1f5f4;
+
+}
+
+
+
+/* =====================================================
+   GENERATED CARD AREA
+===================================================== */
+
+.generated-card-area{
+
+margin-top:35px;
+
+padding-top:25px;
+
+border-top:2px solid #e5ebe8;
+
+display:none;
+
+}
+
+
+.generated-card-area.show{
+
+display:block;
+
 }
 
 </style>
-
 <script>
 
-
-// =====================================================
-// GLOBAL VARIABLES
-// =====================================================
-
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
 
 let selectedEnvironment = "";
 
 
+/* =====================================================
+   SPLASH CONTROL
+===================================================== */
 
+window.addEventListener("load", function(){
 
-// =====================================================
-// SPLASH CONTROL
-// =====================================================
+    let splash =
+        document.getElementById("splashScreen");
 
+    setTimeout(function(){
 
-window.addEventListener("load",function(){
+        splash.style.opacity = "0";
 
+        setTimeout(function(){
 
-let splash =
-document.getElementById("splashScreen");
+            splash.style.display = "none";
 
+        }, 600);
 
-
-setTimeout(function(){
-
-
-splash.style.opacity="0";
-
-
-
-setTimeout(function(){
-
-
-splash.style.display="none";
-
-
-},600);
-
-
-
-},5000);
-
-
+    }, 5000);
 
 });
 
 
 
-
-
-
-
-
-// =====================================================
-// ENVIRONMENT SELECT
-// =====================================================
-
+/* =====================================================
+   ENVIRONMENT SELECT
+===================================================== */
 
 function changeEnvironment(){
 
-let selected =
-document.getElementById("environment");
+    let selected =
+        document.getElementById("environment");
 
-selectedEnvironment =
-selected.value;
+    selectedEnvironment =
+        selected.value;
 
-let urlSection =
-document.getElementById("urlSection");
+    let urlSection =
+        document.getElementById("urlSection");
 
-if(selectedEnvironment === "Web"){
 
-urlSection.style.display = "block";
+    if(selectedEnvironment === "Web"){
+
+        urlSection.style.display = "block";
+
+    }
+
+    else{
+
+        urlSection.style.display = "none";
+
+        document.getElementById("systemUrl").value = "";
+
+    }
 
 }
 
-else{
-
-urlSection.style.display = "none";
-
-document.getElementById("systemUrl").value = "";
-
-}
-
-}
 
 
-
-
-
-
-
-
-
-// =====================================================
-// GENERATE CARD
-// =====================================================
-
+/* =====================================================
+   GENERATE CARD
+===================================================== */
 
 function generateCard(){
 
 
-
-let employee =
-document.getElementById("employeeName").value.trim();
-
+    let employee =
+        document.getElementById("employeeName").value.trim();
 
 
-let system =
-document.getElementById("systemName").value.trim();
+    let system =
+        document.getElementById("systemName").value.trim();
 
 
-
-let username =
-document.getElementById("username").value.trim();
-
+    let username =
+        document.getElementById("username").value.trim();
 
 
-let password =
-document.getElementById("password").value.trim();
+    let password =
+        document.getElementById("password").value.trim();
 
 
-
-let url =
-document.getElementById("systemUrl").value.trim();
-
+    let url =
+        document.getElementById("systemUrl").value.trim();
 
 
-let notes =
-document.getElementById("notes").value.trim();
+    let notes =
+        document.getElementById("notes").value.trim();
 
 
 
+    /* =================================================
+       VALIDATION
+    ================================================= */
+
+    if(
+        employee === "" ||
+        system === "" ||
+        username === "" ||
+        password === "" ||
+        selectedEnvironment === ""
+    ){
+
+        alert("Please complete required fields");
+
+        return;
+
+    }
 
 
 
+    if(
+        selectedEnvironment === "Web" &&
+        url === ""
+    ){
 
-if(
-employee==="" ||
-system==="" ||
-username==="" ||
-password==="" ||
-selectedEnvironment===""
+        alert("Please enter system URL");
 
-){
+        return;
 
-
-alert("Please complete required fields");
+    }
 
 
-return;
 
+    /* =================================================
+       GENERATE CARD ID
+    ================================================= */
+
+    let cardID =
+
+        "IFT-" +
+        new Date().getFullYear() +
+        "-" +
+        Math.floor(Math.random() * 90000 + 10000);
+
+
+
+    /* =================================================
+       CREATED DATE
+    ================================================= */
+
+    let created =
+
+        new Date().toLocaleDateString("en-US");
+
+
+
+    /* =================================================
+       GENERATE CARD
+    ================================================= */
+
+    document.getElementById("generatedCard").innerHTML =
+
+    `
+
+    <div class="generated-card">
+
+
+        <div class="card-logo">
+
+            <img src="logo.png">
+
+        </div>
+
+
+
+        <h2>
+
+            User Account Credentials
+
+        </h2>
+
+
+
+        <div class="qr-area">
+
+            <div id="qrCode"></div>
+
+        </div>
+
+
+
+        <div class="info-row">
+
+            <b>
+                Card ID
+            </b>
+
+            <br>
+
+            ${cardID}
+
+        </div>
+
+
+
+        <div class="info-row">
+
+            <b>
+                Employee
+            </b>
+
+            <br>
+
+            ${employee}
+
+        </div>
+
+
+
+        <div class="info-row">
+
+            <b>
+                System
+            </b>
+
+            <br>
+
+            ${system}
+
+        </div>
+
+
+
+        <div class="info-row">
+
+            <b>
+                Environment
+            </b>
+
+            <br>
+
+            ${selectedEnvironment}
+
+        </div>
+
+
+
+        ${
+            selectedEnvironment === "Web"
+
+            ?
+
+            `
+
+            <div class="info-row">
+
+                <b>
+                    System URL
+                </b>
+
+                <br>
+
+                ${url}
+
+            </div>
+
+            `
+
+            :
+
+            ""
+
+        }
+
+
+
+        <div class="info-row">
+
+            <b>
+                Username
+            </b>
+
+            <br>
+
+            ${username}
+
+        </div>
+
+
+
+        <div class="info-row">
+
+            <b>
+                Password
+            </b>
+
+            <br>
+
+            ${password}
+
+        </div>
+
+
+
+        ${
+            notes
+
+            ?
+
+            `
+
+            <div class="info-row">
+
+                <b>
+                    Notes
+                </b>
+
+                <br>
+
+                ${notes}
+
+            </div>
+
+            `
+
+            :
+
+            ""
+
+        }
+
+
+
+        <div class="card-footer">
+
+            Created Date:
+
+            ${created}
+
+        </div>
+
+
+    </div>
+
+    `;
+
+
+
+    /* =================================================
+       SHOW GENERATED CARD AREA
+    ================================================= */
+
+    document
+        .getElementById("generatedCardArea")
+        .classList.add("show");
+
+
+
+    /* =================================================
+       QR CODE
+    ================================================= */
+
+    if(selectedEnvironment === "Web"){
+
+        new QRCode(
+
+            document.getElementById("qrCode"),
+
+            {
+
+                text: url,
+
+                width: 140,
+
+                height: 140
+
+            }
+
+        );
+
+    }
+
+
+
+    /* =================================================
+       SCROLL TO GENERATED CARD
+    ================================================= */
+
+    setTimeout(function(){
+
+        document
+            .getElementById("generatedCardArea")
+            .scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "start"
+
+            });
+
+    }, 100);
 
 }
 
 
 
-
-
-
-
-if(
-selectedEnvironment==="Web"
-&&
-url===""
-
-){
-
-
-alert("Please enter system URL");
-
-
-return;
-
-
-}
-
-
-
-
-
-
-
-
-let cardID =
-
-"IFT-"
-
-+
-
-new Date().getFullYear()
-
-+
-
-"-"
-
-+
-
-Math.floor(Math.random()*90000+10000);
-
-
-
-
-
-
-
-
-let created =
-
-new Date().toLocaleDateString("en-US");
-
-
-
-
-
-
-
-
-
-document.querySelector(".box").innerHTML =
-
-
-
-`
-
-
-
-<div class="generated-card">
-
-
-
-<div class="card-logo">
-
-<img src="logo.png">
-
-</div>
-
-
-
-
-
-
-<h2>
-
-User Account Credentials
-
-</h2>
-
-
-
-
-
-
-<div class="qr-area">
-
-
-<div id="qrCode"></div>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="info-row">
-
-<b>
-
-Card ID
-
-</b>
-
-<br>
-
-${cardID}
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="info-row">
-
-<b>
-
-Employee
-
-</b>
-
-<br>
-
-${employee}
-
-</div>
-
-
-
-
-
-
-
-
-<div class="info-row">
-
-<b>
-
-System
-
-</b>
-
-<br>
-
-${system}
-
-</div>
-
-
-
-
-
-
-
-
-<div class="info-row">
-
-<b>
-
-Environment
-
-</b>
-
-<br>
-
-${selectedEnvironment}
-
-</div>
-
-
-
-
-
-
-
-${
-
-selectedEnvironment==="Web"
-
-?
-
-`
-
-<div class="info-row">
-
-<b>
-
-System URL
-
-</b>
-
-<br>
-
-${url}
-
-</div>
-
-
-`
-
-:
-
-""
-
-}
-
-
-
-
-
-
-
-
-<div class="info-row">
-
-<b>
-
-Username
-
-</b>
-
-<br>
-
-${username}
-
-</div>
-
-
-
-
-
-
-
-<div class="info-row">
-
-<b>
-
-Password
-
-</b>
-
-<br>
-
-${password}
-
-</div>
-
-
-
-
-
-
-
-${
-
-notes
-
-?
-
-`
-
-<div class="info-row">
-
-<b>
-
-Notes
-
-</b>
-
-<br>
-
-${notes}
-
-</div>
-
-
-`
-
-:
-
-""
-
-}
-
-
-
-
-
-
-
-
-<div class="card-footer">
-
-
-Created Date:
-
-${created}
-
-
-</div>
-
-
-
-
-
-
-</div>
-
-
-
-
-
-`;
-
-
-
-
-
-
-
-
-
-// QR فقط للويب
-
-
-if(selectedEnvironment==="Web"){
-
-
-
-new QRCode(
-
-
-document.getElementById("qrCode"),
-
-
-{
-
-
-text:url,
-
-
-width:140,
-
-
-height:140
-
-
-}
-
-
-);
-
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-// =====================================================
-// TEMP SEARCH FUNCTION
-// سيتم تطويرها لاحقا
-// =====================================================
-
+/* =====================================================
+   TEMP SEARCH FUNCTION
+===================================================== */
 
 function showSearch(){
 
-
-alert(
-
-"Search module will be added in the next version"
-
-);
-
+    alert(
+        "Search module will be added in the next version"
+    );
 
 }
+
+
+
+/* =====================================================
+   PASSWORD SHOW / HIDE
+===================================================== */
 
 function togglePassword(){
 
-const password =
-document.getElementById("password");
+    const password =
+        document.getElementById("password");
 
-const button =
-document.querySelector(".password-toggle");
 
-if(password.type === "password"){
+    const button =
+        document.querySelector(".password-toggle");
 
-password.type = "text";
 
-button.innerHTML = "🙈";
+    if(password.type === "password"){
 
-button.setAttribute(
-"aria-label",
-"Hide password"
-);
+        password.type = "text";
 
-}
-else{
+        button.innerHTML = "🙈";
 
-password.type = "password";
+        button.setAttribute(
+            "aria-label",
+            "Hide password"
+        );
 
-button.innerHTML = "👁";
+    }
 
-button.setAttribute(
-"aria-label",
-"Show password"
-);
+    else{
 
-}
+        password.type = "password";
+
+        button.innerHTML = "👁";
+
+        button.setAttribute(
+            "aria-label",
+            "Show password"
+        );
+
+    }
 
 }
 
 </script>
+/* =====================================================
+   GENERATED CARD
+===================================================== */
+
+.generated-card{
+
+    width:100%;
+
+    max-width:650px;
+
+    margin:0 auto;
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.15);
+
+    border:1px solid #e1e8e5;
+
+    text-align:center;
+
+}
+
+
+.card-logo{
+
+    margin-bottom:15px;
+
+}
+
+
+.card-logo img{
+
+    width:75px;
+
+    height:75px;
+
+    object-fit:contain;
+
+}
+
+
+.generated-card h2{
+
+    color:#0b6b4a;
+
+    margin:10px 0 25px;
+
+    font-size:22px;
+
+}
+
+
+.qr-area{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:15px 0 25px;
+
+}
+
+
+#qrCode{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+.info-row{
+
+    text-align:left;
+
+    background:#f6f8f7;
+
+    border-radius:10px;
+
+    padding:12px 15px;
+
+    margin-top:10px;
+
+    line-height:1.6;
+
+    word-break:break-word;
+
+}
+
+
+.info-row b{
+
+    color:#0b6b4a;
+
+}
+
+
+.card-footer{
+
+    margin-top:20px;
+
+    padding-top:15px;
+
+    border-top:1px solid #ddd;
+
+    color:#666;
+
+    font-size:13px;
+
+}
 
 
 
+/* =====================================================
+   MOBILE RESPONSIVE
+===================================================== */
 
+@media(max-width:600px){
+
+    .container{
+
+        padding:12px;
+
+    }
+
+
+    .box{
+
+        padding:18px;
+
+        border-radius:15px;
+
+    }
+
+
+    .header{
+
+        padding:20px 15px;
+
+    }
+
+
+    .header img{
+
+        width:75px;
+
+        height:75px;
+
+    }
+
+
+    .header h1{
+
+        font-size:22px;
+
+    }
+
+
+    .header p{
+
+        font-size:13px;
+
+    }
+
+
+    .section-title{
+
+        font-size:20px;
+
+    }
+
+
+    .generated-card{
+
+        padding:18px;
+
+    }
+
+
+    .generated-card h2{
+
+        font-size:20px;
+
+    }
+
+
+    .info-row{
+
+        font-size:14px;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   PRINT FRIENDLY
+===================================================== */
+
+@media print{
+
+    body{
+
+        background:white;
+
+    }
+
+
+    .header,
+    #splashScreen{
+
+        display:none !important;
+
+    }
+
+
+    .container{
+
+        max-width:none;
+
+        padding:0;
+
+    }
+
+
+    .box{
+
+        box-shadow:none;
+
+        padding:0;
+
+    }
+
+
+    .section-title,
+    .form-group,
+    .create-btn,
+    .search-btn{
+
+        display:none !important;
+
+    }
+
+
+    .generated-card-area{
+
+        display:block !important;
+
+        margin:0;
+
+        padding:0;
+
+        border:none;
+
+    }
+
+
+    .generated-card{
+
+        box-shadow:none;
+
+        border:1px solid #ccc;
+
+        max-width:700px;
+
+        margin:0 auto;
+
+    }
+
+}
+   </style>
 
 </body>
-
 
 </html>
