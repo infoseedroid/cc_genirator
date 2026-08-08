@@ -600,22 +600,24 @@ placeholder="Enter username">
 <div class="form-group">
 
 
-<label>
-
-Password
-
-</label>
-
+<div class="password-wrapper">
 
 <input
-
 type="password"
-
 id="password"
-
 placeholder="Enter password">
 
+<button
+type="button"
+class="password-toggle"
+onclick="togglePassword()"
+aria-label="Show password">
 
+👁
+
+</button>
+
+</div>
 </div>
 
 
@@ -968,7 +970,41 @@ color:white;
 
 }
 
+.password-wrapper{
+position:relative;
+}
 
+.password-wrapper input{
+padding-right:50px;
+}
+
+.password-toggle{
+position:absolute;
+right:8px;
+top:50%;
+transform:translateY(-50%);
+
+width:38px;
+height:38px;
+
+margin:0;
+padding:0;
+
+background:transparent;
+color:#0b6b4a;
+
+border:none;
+
+font-size:20px;
+
+cursor:pointer;
+
+box-shadow:none;
+}
+
+.password-toggle:hover{
+background:#f1f5f4;
+}
 
 </style>
 
@@ -1535,7 +1571,40 @@ alert(
 
 }
 
+function togglePassword(){
 
+const password =
+document.getElementById("password");
+
+const button =
+document.querySelector(".password-toggle");
+
+if(password.type === "password"){
+
+password.type = "text";
+
+button.innerHTML = "🙈";
+
+button.setAttribute(
+"aria-label",
+"Hide password"
+);
+
+}
+else{
+
+password.type = "password";
+
+button.innerHTML = "👁";
+
+button.setAttribute(
+"aria-label",
+"Show password"
+);
+
+}
+
+}
 
 </script>
 
