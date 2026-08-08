@@ -37,7 +37,6 @@
 box-sizing:border-box;
 
 font-family:
-
 "Segoe UI",
 Tahoma,
 Arial,
@@ -303,274 +302,15 @@ select:focus{
 border-color:#0b6b4a;
 
 box-shadow:
-
 0 0 5px rgba(11,107,74,.3);
 
 }
-</style>
 
-</head>
 
 
-<body>
-
-
-<!-- =====================================================
-     SPLASH SCREEN
-===================================================== -->
-
-<div id="splashScreen">
-
-    <div class="splash-content">
-
-        <img src="logo.png"
-             class="splash-logo">
-
-        <h1>
-            Iftaa Users Accounts Generator
-        </h1>
-
-        <p>
-            Loading System...
-        </p>
-
-        <div class="spinner"></div>
-
-    </div>
-
-</div>
-
-
-
-<!-- =====================================================
-     MAIN HEADER
-===================================================== -->
-
-<div class="header">
-
-    <img src="logo.png">
-
-    <h1>
-        Iftaa Users Accounts Generator
-    </h1>
-
-    <p>
-        Users Credentials Management Tool
-    </p>
-
-</div>
-
-
-
-<!-- =====================================================
-     MAIN CONTENT
-===================================================== -->
-
-<div class="container">
-
-    <div class="box">
-
-
-        <h2 class="section-title">
-            Create User Account Card
-        </h2>
-
-
-
-        <!-- =====================================================
-             USER INPUT FORM
-        ===================================================== -->
-
-
-        <div class="form-group">
-
-            <label>
-                Employee Name
-            </label>
-
-            <input
-                type="text"
-                id="employeeName"
-                placeholder="Enter employee name">
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                System Name
-            </label>
-
-            <input
-                type="text"
-                id="systemName"
-                placeholder="Enter system name">
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Username
-            </label>
-
-            <input
-                type="text"
-                id="username"
-                placeholder="Enter username">
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Password
-            </label>
-
-            <div class="password-wrapper">
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter password">
-
-                <button
-                    type="button"
-                    class="password-toggle"
-                    onclick="togglePassword()"
-                    aria-label="Show password">
-
-                    👁
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                System Environment
-            </label>
-
-
-            <select
-                id="environment"
-                onchange="changeEnvironment()">
-
-                <option value="">
-                    Select system environment
-                </option>
-
-                <option value="Operating System">
-                    Operating System
-                </option>
-
-                <option value="Desktop">
-                    Desktop App
-                </option>
-
-                <option value="Web">
-                    Web App
-                </option>
-
-            </select>
-
-        </div>
-
-
-
-        <div
-            class="form-group"
-            id="urlSection"
-            style="display:none;">
-
-            <label>
-                System URL
-            </label>
-
-            <input
-                type="text"
-                id="systemUrl"
-                placeholder="Paste web system URL here">
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Notes
-            </label>
-
-            <textarea
-                id="notes"
-                placeholder="Enter notes"></textarea>
-
-        </div>
-
-
-
-        <!-- =====================================================
-             ACTION BUTTONS
-        ===================================================== -->
-
-
-        <button
-            class="create-btn"
-            onclick="generateCard()">
-
-            Create Account Card
-
-        </button>
-
-
-
-        <button
-            class="search-btn"
-            onclick="showSearch()">
-
-            Search / Query
-
-        </button>
-
-
-
-        <!-- =====================================================
-             GENERATED CARD AREA
-        ===================================================== -->
-
-        <div
-            id="generatedCardArea"
-            class="generated-card-area">
-
-            <div id="generatedCard"></div>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-
-<!-- =====================================================
-     ADDITIONAL CSS
-===================================================== -->
-
-<style>
-
+/* =====================================================
+   FORM
+===================================================== */
 
 .form-group{
 
@@ -616,7 +356,6 @@ textarea:focus{
 border-color:#0b6b4a;
 
 box-shadow:
-
 0 0 5px rgba(11,107,74,.3);
 
 }
@@ -676,7 +415,7 @@ color:white;
 
 
 /* =====================================================
-   PASSWORD TOGGLE
+   PASSWORD
 ===================================================== */
 
 .password-wrapper{
@@ -740,13 +479,13 @@ background:#f1f5f4;
 
 .generated-card-area{
 
+display:none;
+
 margin-top:35px;
 
-padding-top:25px;
+padding-top:30px;
 
 border-top:2px solid #e5ebe8;
-
-display:none;
 
 }
 
@@ -756,8 +495,482 @@ display:none;
 display:block;
 
 }
+<!-- =====================================================
+     MAIN BODY
+===================================================== -->
 
 </style>
+
+</head>
+
+
+<body>
+
+
+
+<!-- =====================================================
+     SPLASH SCREEN
+===================================================== -->
+
+<div id="splashScreen">
+
+    <div class="splash-content">
+
+        <img
+            src="logo.png"
+            class="splash-logo"
+        >
+
+        <h1>
+            Iftaa Users Accounts Generator
+        </h1>
+
+        <p>
+            Loading System...
+        </p>
+
+        <div class="spinner"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN HEADER
+===================================================== -->
+
+<div class="header">
+
+    <img src="logo.png">
+
+    <h1>
+        Iftaa Users Accounts Generator
+    </h1>
+
+    <p>
+        Users Credentials Management Tool
+    </p>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<div class="container">
+
+    <div class="box">
+
+
+        <h2 class="section-title">
+            Create User Account Card
+        </h2>
+
+
+
+        <!-- =================================================
+             USER INPUT FORM
+        ================================================= -->
+
+
+        <div class="form-group">
+
+            <label>
+                Employee Name
+            </label>
+
+            <input
+                type="text"
+                id="employeeName"
+                placeholder="Enter employee name"
+            >
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                System Name
+            </label>
+
+            <input
+                type="text"
+                id="systemName"
+                placeholder="Enter system name"
+            >
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+            >
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Password
+            </label>
+
+            <div class="password-wrapper">
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                >
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    onclick="togglePassword()"
+                    aria-label="Show password"
+                >
+                    👁
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                System Environment
+            </label>
+
+            <select
+                id="environment"
+                onchange="changeEnvironment()"
+            >
+
+                <option value="">
+                    Select system environment
+                </option>
+
+                <option value="Operating System">
+                    Operating System
+                </option>
+
+                <option value="Desktop">
+                    Desktop App
+                </option>
+
+                <option value="Web">
+                    Web App
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <div
+            class="form-group"
+            id="urlSection"
+            style="display:none;"
+        >
+
+            <label>
+                System URL
+            </label>
+
+            <input
+                type="text"
+                id="systemUrl"
+                placeholder="Paste web system URL here"
+            >
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Notes
+            </label>
+
+            <textarea
+                id="notes"
+                placeholder="Enter notes"
+            ></textarea>
+
+        </div>
+
+
+
+        <!-- =================================================
+             BUTTONS
+        ================================================= -->
+
+        <button
+            class="create-btn"
+            onclick="generateCard()"
+        >
+            Create Account Card
+        </button>
+
+
+
+        <button
+            class="search-btn"
+            onclick="showSearch()"
+        >
+            Search / Query
+        </button>
+
+
+
+        <!-- =================================================
+             GENERATED CARD
+        ================================================= -->
+
+        <div
+            id="generatedCardArea"
+            class="generated-card-area"
+        >
+
+            <div id="generatedCard"></div>
+
+        </div>
+
+
+    </div>
+
+</div>
+<style>
+
+/* =====================================================
+   GENERATED CARD
+===================================================== */
+
+.generated-card{
+
+width:100%;
+
+max-width:650px;
+
+margin:0 auto;
+
+background:#ffffff;
+
+border-radius:18px;
+
+padding:25px;
+
+box-shadow:
+0 5px 18px rgba(0,0,0,.15);
+
+border:1px solid #e1e8e5;
+
+text-align:center;
+
+}
+
+
+.card-logo{
+
+margin-bottom:15px;
+
+}
+
+
+.card-logo img{
+
+width:75px;
+
+height:75px;
+
+object-fit:contain;
+
+}
+
+
+.generated-card h2{
+
+color:#0b6b4a;
+
+margin:10px 0 25px;
+
+font-size:22px;
+
+}
+
+
+.qr-area{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+margin:15px 0 25px;
+
+}
+
+
+#qrCode{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+
+.info-row{
+
+text-align:left;
+
+background:#f6f8f7;
+
+border-radius:10px;
+
+padding:12px 15px;
+
+margin-top:10px;
+
+line-height:1.6;
+
+word-break:break-word;
+
+}
+
+
+.info-row b{
+
+color:#0b6b4a;
+
+}
+
+
+.card-footer{
+
+margin-top:20px;
+
+padding-top:15px;
+
+border-top:1px solid #ddd;
+
+color:#666;
+
+font-size:13px;
+
+}
+
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+.container{
+
+padding:12px;
+
+}
+
+
+.box{
+
+padding:18px;
+
+border-radius:15px;
+
+}
+
+
+.header{
+
+padding:20px 15px;
+
+}
+
+
+.header img{
+
+width:75px;
+
+height:75px;
+
+}
+
+
+.header h1{
+
+font-size:22px;
+
+}
+
+
+.header p{
+
+font-size:13px;
+
+}
+
+
+.section-title{
+
+font-size:20px;
+
+}
+
+
+.generated-card{
+
+padding:18px;
+
+}
+
+
+.generated-card h2{
+
+font-size:20px;
+
+}
+
+
+.info-row{
+
+font-size:14px;
+
+}
+
+}
+
+</style>
+
+
+
 <script>
 
 /* =====================================================
@@ -765,6 +978,7 @@ display:block;
 ===================================================== */
 
 let selectedEnvironment = "";
+
 
 
 /* =====================================================
@@ -892,7 +1106,7 @@ function generateCard(){
 
 
     /* =================================================
-       GENERATE CARD ID
+       CARD ID
     ================================================= */
 
     let cardID =
@@ -911,6 +1125,14 @@ function generateCard(){
     let created =
 
         new Date().toLocaleDateString("en-US");
+
+
+
+    /* =================================================
+       CLEAR PREVIOUS CARD
+    ================================================= */
+
+    document.getElementById("generatedCard").innerHTML = "";
 
 
 
@@ -934,9 +1156,7 @@ function generateCard(){
 
 
         <h2>
-
             User Account Credentials
-
         </h2>
 
 
@@ -1094,7 +1314,6 @@ function generateCard(){
         <div class="card-footer">
 
             Created Date:
-
             ${created}
 
         </div>
@@ -1107,7 +1326,7 @@ function generateCard(){
 
 
     /* =================================================
-       SHOW GENERATED CARD AREA
+       SHOW CARD
     ================================================= */
 
     document
@@ -1128,11 +1347,11 @@ function generateCard(){
 
             {
 
-                text: url,
+                text:url,
 
-                width: 140,
+                width:140,
 
-                height: 140
+                height:140
 
             }
 
@@ -1143,7 +1362,7 @@ function generateCard(){
 
 
     /* =================================================
-       SCROLL TO GENERATED CARD
+       SCROLL TO CARD
     ================================================= */
 
     setTimeout(function(){
@@ -1152,13 +1371,13 @@ function generateCard(){
             .getElementById("generatedCardArea")
             .scrollIntoView({
 
-                behavior: "smooth",
+                behavior:"smooth",
 
-                block: "start"
+                block:"start"
 
             });
 
-    }, 100);
+    },100);
 
 }
 
@@ -1179,7 +1398,7 @@ function showSearch(){
 
 
 /* =====================================================
-   PASSWORD SHOW / HIDE
+   PASSWORD TOGGLE
 ===================================================== */
 
 function togglePassword(){
@@ -1221,288 +1440,8 @@ function togglePassword(){
 }
 
 </script>
-/* =====================================================
-   GENERATED CARD
-===================================================== */
 
-.generated-card{
 
-    width:100%;
-
-    max-width:650px;
-
-    margin:0 auto;
-
-    background:#ffffff;
-
-    border-radius:18px;
-
-    padding:25px;
-
-    box-shadow:
-        0 5px 18px rgba(0,0,0,.15);
-
-    border:1px solid #e1e8e5;
-
-    text-align:center;
-
-}
-
-
-.card-logo{
-
-    margin-bottom:15px;
-
-}
-
-
-.card-logo img{
-
-    width:75px;
-
-    height:75px;
-
-    object-fit:contain;
-
-}
-
-
-.generated-card h2{
-
-    color:#0b6b4a;
-
-    margin:10px 0 25px;
-
-    font-size:22px;
-
-}
-
-
-.qr-area{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    margin:15px 0 25px;
-
-}
-
-
-#qrCode{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-}
-
-
-.info-row{
-
-    text-align:left;
-
-    background:#f6f8f7;
-
-    border-radius:10px;
-
-    padding:12px 15px;
-
-    margin-top:10px;
-
-    line-height:1.6;
-
-    word-break:break-word;
-
-}
-
-
-.info-row b{
-
-    color:#0b6b4a;
-
-}
-
-
-.card-footer{
-
-    margin-top:20px;
-
-    padding-top:15px;
-
-    border-top:1px solid #ddd;
-
-    color:#666;
-
-    font-size:13px;
-
-}
-
-
-
-/* =====================================================
-   MOBILE RESPONSIVE
-===================================================== */
-
-@media(max-width:600px){
-
-    .container{
-
-        padding:12px;
-
-    }
-
-
-    .box{
-
-        padding:18px;
-
-        border-radius:15px;
-
-    }
-
-
-    .header{
-
-        padding:20px 15px;
-
-    }
-
-
-    .header img{
-
-        width:75px;
-
-        height:75px;
-
-    }
-
-
-    .header h1{
-
-        font-size:22px;
-
-    }
-
-
-    .header p{
-
-        font-size:13px;
-
-    }
-
-
-    .section-title{
-
-        font-size:20px;
-
-    }
-
-
-    .generated-card{
-
-        padding:18px;
-
-    }
-
-
-    .generated-card h2{
-
-        font-size:20px;
-
-    }
-
-
-    .info-row{
-
-        font-size:14px;
-
-    }
-
-}
-
-
-
-/* =====================================================
-   PRINT FRIENDLY
-===================================================== */
-
-@media print{
-
-    body{
-
-        background:white;
-
-    }
-
-
-    .header,
-    #splashScreen{
-
-        display:none !important;
-
-    }
-
-
-    .container{
-
-        max-width:none;
-
-        padding:0;
-
-    }
-
-
-    .box{
-
-        box-shadow:none;
-
-        padding:0;
-
-    }
-
-
-    .section-title,
-    .form-group,
-    .create-btn,
-    .search-btn{
-
-        display:none !important;
-
-    }
-
-
-    .generated-card-area{
-
-        display:block !important;
-
-        margin:0;
-
-        padding:0;
-
-        border:none;
-
-    }
-
-
-    .generated-card{
-
-        box-shadow:none;
-
-        border:1px solid #ccc;
-
-        max-width:700px;
-
-        margin:0 auto;
-
-    }
-
-}
-   </style>
 
 </body>
 
