@@ -10,12 +10,14 @@
 <title>Iftaa Users Accounts Generator</title>
 
 
+<!-- QR Code Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
+<!-- HTML To Image -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
+<!-- PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 
 
 <style>
@@ -46,7 +48,6 @@ background:#eef3f1;
 color:#222;
 
 }
-
 
 
 /* =====================================================
@@ -171,7 +172,6 @@ transform:scale(1.08);
 }
 
 
-
 /* =====================================================
    HEADER
 ===================================================== */
@@ -224,7 +224,6 @@ font-size:15px;
 }
 
 
-
 /* =====================================================
    CONTAINER
 ===================================================== */
@@ -266,39 +265,6 @@ font-size:22px;
 margin-bottom:20px;
 
 }
-
-
-select{
-
-width:100%;
-
-padding:13px;
-
-border-radius:10px;
-
-border:1px solid #ccc;
-
-font-size:15px;
-
-background:white;
-
-outline:none;
-
-cursor:pointer;
-
-}
-
-
-select:focus{
-
-border-color:#0b6b4a;
-
-box-shadow:
-
-0 0 5px rgba(11,107,74,.3);
-
-}
-
 
 
 /* =====================================================
@@ -364,48 +330,36 @@ resize:none;
 }
 
 
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
-.create-btn,
-.search-btn{
+select{
 
 width:100%;
 
-padding:15px;
+padding:13px;
 
-border:none;
+border-radius:10px;
 
-border-radius:12px;
+border:1px solid #ccc;
 
-margin-top:20px;
+font-size:15px;
 
-font-size:16px;
+background:white;
+
+outline:none;
 
 cursor:pointer;
 
 }
 
 
-.create-btn{
+select:focus{
 
-background:#0b6b4a;
+border-color:#0b6b4a;
 
-color:white;
+box-shadow:
 
-}
-
-
-.search-btn{
-
-background:#555;
-
-color:white;
+0 0 5px rgba(11,107,74,.3);
 
 }
-
 
 
 /* =====================================================
@@ -466,6 +420,61 @@ background:#f1f5f4;
 }
 
 
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.create-btn,
+.search-btn{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:12px;
+
+margin-top:20px;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+
+.create-btn{
+
+background:#0b6b4a;
+
+color:white;
+
+}
+
+
+.search-btn{
+
+background:#555;
+
+color:white;
+
+}
+
+
+.create-btn:hover{
+
+background:#095a3e;
+
+}
+
+
+.search-btn:hover{
+
+background:#444;
+
+}
+
 
 /* =====================================================
    GENERATED CARD AREA
@@ -489,7 +498,6 @@ border-top:2px solid #e5ebe8;
 display:block;
 
 }
-
 
 
 /* =====================================================
@@ -521,13 +529,15 @@ text-align:center;
 }
 
 
+/* =====================================================
+   CARD LOGO
+===================================================== */
+
 .card-logo{
 
 width:100%;
 
-height:20%;
-
-min-height:120px;
+height:130px;
 
 display:flex;
 
@@ -555,6 +565,10 @@ display:block;
 }
 
 
+/* =====================================================
+   CARD TITLE
+===================================================== */
+
 .generated-card h2{
 
 color:#0b6b4a;
@@ -565,6 +579,10 @@ font-size:22px;
 
 }
 
+
+/* =====================================================
+   QR
+===================================================== */
 
 .qr-area{
 
@@ -589,6 +607,10 @@ align-items:center;
 
 }
 
+
+/* =====================================================
+   INFORMATION ROWS
+===================================================== */
 
 .info-row{
 
@@ -616,6 +638,78 @@ color:#0b6b4a;
 }
 
 
+/* =====================================================
+   SECURITY NOTICE
+===================================================== */
+
+.security-notice{
+
+margin-top:18px;
+
+padding:15px;
+
+background:#fff8e6;
+
+border:1px solid #ead9a6;
+
+border-radius:12px;
+
+text-align:left;
+
+}
+
+
+.security-notice-title{
+
+font-weight:700;
+
+color:#8a6500;
+
+font-size:15px;
+
+margin-bottom:10px;
+
+}
+
+
+.security-notice ul{
+
+margin:0;
+
+padding-left:20px;
+
+color:#555;
+
+font-size:12px;
+
+line-height:1.8;
+
+}
+
+
+.security-warning{
+
+margin-top:12px;
+
+padding-top:10px;
+
+border-top:1px solid #ead9a6;
+
+font-size:12px;
+
+line-height:1.6;
+
+color:#6b5500;
+
+font-weight:600;
+
+}
+
+
+/* =====================================================
+   CARD FOOTER
+===================================================== */
+
 .card-footer{
 
 margin-top:20px;
@@ -629,7 +723,6 @@ color:#666;
 font-size:13px;
 
 }
-
 
 
 /* =====================================================
@@ -703,7 +796,6 @@ font-weight:bold;
 line-height:15px;
 
 }
-
 
 
 /* =====================================================
@@ -954,7 +1046,6 @@ color:#0b6b4a;
 }
 
 
-
 /* =====================================================
    SUCCESS TOAST
 ===================================================== */
@@ -1018,6 +1109,10 @@ transform:translateX(-50%) translateY(0);
 
 }
 
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:600px){
 
@@ -1088,9 +1183,39 @@ font-size:20px;
 }
 
 
+.card-logo{
+
+height:110px;
+
+}
+
+
 .info-row{
 
 font-size:14px;
+
+}
+
+
+.security-notice{
+
+padding:13px;
+
+}
+
+
+.security-notice ul{
+
+font-size:11px;
+
+line-height:1.7;
+
+}
+
+
+.security-warning{
+
+font-size:11px;
 
 }
 
@@ -1142,7 +1267,6 @@ min-width:240px;
 <body>
 
 
-
 <!-- =====================================================
      SPLASH SCREEN
 ===================================================== -->
@@ -1171,7 +1295,6 @@ Loading System...
 </div>
 
 
-
 <!-- =====================================================
      MAIN HEADER
 ===================================================== -->
@@ -1187,16 +1310,8 @@ Iftaa Users Accounts Generator
 <p>
 Users Credentials Management Tool
 </p>
-   <p>
-   Iftaa Dept | IT | Programming & Dev   
-   </p>
-   <p>
-      By: Aladdin Yonis
-   </p>
-   
 
 </div>
-
 
 
 <!-- =====================================================
@@ -1213,6 +1328,7 @@ Create User Account Card
 </h2>
 
 
+<!-- EMPLOYEE -->
 
 <div class="form-group">
 
@@ -1229,6 +1345,7 @@ placeholder="Enter employee name"
 </div>
 
 
+<!-- SYSTEM -->
 
 <div class="form-group">
 
@@ -1245,6 +1362,7 @@ placeholder="Enter system name"
 </div>
 
 
+<!-- USERNAME -->
 
 <div class="form-group">
 
@@ -1261,6 +1379,7 @@ placeholder="Enter username"
 </div>
 
 
+<!-- PASSWORD -->
 
 <div class="form-group">
 
@@ -1292,6 +1411,7 @@ aria-label="Show password"
 </div>
 
 
+<!-- ENVIRONMENT -->
 
 <div class="form-group">
 
@@ -1325,6 +1445,7 @@ Web App
 </div>
 
 
+<!-- URL -->
 
 <div
 class="form-group"
@@ -1345,6 +1466,7 @@ placeholder="Paste web system URL here"
 </div>
 
 
+<!-- NOTES -->
 
 <div class="form-group">
 
@@ -1360,6 +1482,7 @@ placeholder="Enter notes"
 </div>
 
 
+<!-- CREATE -->
 
 <button
 class="create-btn"
@@ -1371,6 +1494,7 @@ Create Account Card
 </button>
 
 
+<!-- SEARCH -->
 
 <button
 class="search-btn"
@@ -1380,7 +1504,6 @@ onclick="showSearch()"
 Search / Query
 
 </button>
-
 
 
 <!-- =====================================================
@@ -1423,7 +1546,6 @@ More
 </div>
 
 
-
 <!-- =====================================================
      CARD OPTIONS MODAL
 ===================================================== -->
@@ -1450,6 +1572,7 @@ Choose an action for this account card
 </div>
 
 
+<!-- SAVE IMAGE -->
 
 <button
 type="button"
@@ -1476,6 +1599,7 @@ Save the card as a PNG image
 </button>
 
 
+<!-- SAVE PDF -->
 
 <button
 type="button"
@@ -1502,6 +1626,7 @@ Create and save a PDF file
 </button>
 
 
+<!-- WHATSAPP -->
 
 <button
 type="button"
@@ -1528,6 +1653,7 @@ Send the credentials through WhatsApp
 </button>
 
 
+<!-- CLOSE -->
 
 <button
 type="button"
@@ -1544,13 +1670,11 @@ Cancel
 </div>
 
 
-
 <!-- =====================================================
      SUCCESS TOAST
 ===================================================== -->
 
 <div id="successToast"></div>
-
 
 
 <script>
@@ -1563,6 +1687,7 @@ let selectedEnvironment = "";
 
 let toastTimer;
 
+let currentCardData = null;
 
 
 /* =====================================================
@@ -1590,7 +1715,6 @@ splash.style.display="none";
 },5000);
 
 });
-
 
 
 /* =====================================================
@@ -1626,7 +1750,6 @@ document.getElementById("systemUrl").value="";
 }
 
 }
-
 
 
 /* =====================================================
@@ -1678,6 +1801,7 @@ document
 .trim();
 
 
+/* REQUIRED FIELDS */
 
 if(
 
@@ -1702,6 +1826,7 @@ return;
 }
 
 
+/* WEB URL */
 
 if(
 
@@ -1720,6 +1845,7 @@ return;
 }
 
 
+/* CARD ID */
 
 let cardID =
 
@@ -1734,6 +1860,7 @@ Math.random()*90000+10000
 );
 
 
+/* DATE */
 
 let created =
 
@@ -1741,8 +1868,9 @@ new Date()
 .toLocaleDateString("en-US");
 
 
+/* STORE DATA */
 
-window.currentCardData = {
+currentCardData = {
 
 cardID:cardID,
 
@@ -1761,10 +1889,11 @@ url:url,
 notes:notes,
 
 created:created
-   
+
 };
 
 
+/* CREATE CARD */
 
 document
 .getElementById("generatedCard")
@@ -1776,6 +1905,8 @@ document
 <div class="generated-card">
 
 
+<!-- CARD LOGO -->
+
 <div class="card-logo">
 
 <img src="card-logo.png">
@@ -1783,6 +1914,7 @@ document
 </div>
 
 
+<!-- TITLE -->
 
 <h2>
 
@@ -1791,6 +1923,7 @@ User Account Credentials
 </h2>
 
 
+<!-- QR -->
 
 <div class="qr-area">
 
@@ -1799,6 +1932,7 @@ User Account Credentials
 </div>
 
 
+<!-- CARD ID -->
 
 <div class="info-row">
 
@@ -1813,6 +1947,7 @@ ${escapeHTML(cardID)}
 </div>
 
 
+<!-- EMPLOYEE -->
 
 <div class="info-row">
 
@@ -1827,6 +1962,7 @@ ${escapeHTML(employee)}
 </div>
 
 
+<!-- SYSTEM -->
 
 <div class="info-row">
 
@@ -1841,6 +1977,7 @@ ${escapeHTML(system)}
 </div>
 
 
+<!-- ENVIRONMENT -->
 
 <div class="info-row">
 
@@ -1855,6 +1992,7 @@ ${escapeHTML(selectedEnvironment)}
 </div>
 
 
+<!-- WEB URL -->
 
 ${
 
@@ -1885,6 +2023,7 @@ ${escapeHTML(url)}
 }
 
 
+<!-- USERNAME -->
 
 <div class="info-row">
 
@@ -1899,6 +2038,7 @@ ${escapeHTML(username)}
 </div>
 
 
+<!-- PASSWORD -->
 
 <div class="info-row">
 
@@ -1913,6 +2053,7 @@ ${escapeHTML(password)}
 </div>
 
 
+<!-- NOTES -->
 
 ${
 
@@ -1943,6 +2084,58 @@ ${escapeHTML(notes)}
 }
 
 
+<!-- =====================================================
+     SECURITY NOTICE
+===================================================== -->
+
+<div class="security-notice">
+
+<div class="security-notice-title">
+
+🔐 تعليمات أمنية مهمة
+
+</div>
+
+
+<ul>
+
+<li>
+هذه البيانات مخصصة للمستخدم المحدد فقط.
+</li>
+
+<li>
+يُمنع مشاركة اسم المستخدم أو كلمة المرور مع أي شخص آخر.
+</li>
+
+<li>
+يتحمل المستخدم مسؤولية المحافظة على سرية بيانات الدخول.
+</li>
+
+<li>
+لا تحفظ كلمة المرور على أجهزة عامة أو مشتركة.
+</li>
+
+<li>
+في حال الاشتباه بتسرب أو استخدام غير مصرح به للحساب، يجب إبلاغ قسم الدعم الفني فورًا.
+</li>
+
+<li>
+يمنع استخدام حساب مستخدم آخر أو مشاركة الحساب مع الآخرين.
+</li>
+
+</ul>
+
+
+<div class="security-warning">
+
+تنبيه: استلام هذه البطاقة يعني أن المستخدم مسؤول عن المحافظة على سرية بيانات الدخول وعدم مشاركتها أو تمكين الآخرين من استخدامها.
+
+</div>
+
+</div>
+
+
+<!-- FOOTER -->
 
 <div class="card-footer">
 
@@ -1958,12 +2151,14 @@ ${escapeHTML(created)}
 `;
 
 
+/* SHOW CARD */
 
 document
 .getElementById("generatedCardArea")
 .classList.add("show");
 
 
+/* QR ONLY FOR WEB */
 
 if(selectedEnvironment === "Web"){
 
@@ -1986,6 +2181,7 @@ height:140
 }
 
 
+/* SCROLL */
 
 setTimeout(function(){
 
@@ -2002,7 +2198,6 @@ block:"start"
 },100);
 
 }
-
 
 
 /* =====================================================
@@ -2024,7 +2219,6 @@ return String(value)
 .replace(/'/g,"&#039;");
 
 }
-
 
 
 /* =====================================================
@@ -2052,8 +2246,10 @@ document
 function handleModalBackgroundClick(event){
 
 if(
+
 event.target ===
 document.getElementById("cardModal")
+
 ){
 
 closeCardModal();
@@ -2061,7 +2257,6 @@ closeCardModal();
 }
 
 }
-
 
 
 /* =====================================================
@@ -2093,7 +2288,6 @@ toast.classList.remove("show");
 },3500);
 
 }
-
 
 
 /* =====================================================
@@ -2147,11 +2341,11 @@ document.createElement("a");
 
 let cardID =
 
-window.currentCardData
+currentCardData
 
 ?
 
-window.currentCardData.cardID
+currentCardData.cardID
 
 :
 
@@ -2168,9 +2362,6 @@ canvas.toDataURL("image/png");
 
 link.click();
 
-
-
-/* SUCCESS MESSAGE */
 
 showSuccessToast(
 "Card image saved successfully."
@@ -2191,7 +2382,6 @@ alert(
 }
 
 }
-
 
 
 /* =====================================================
@@ -2333,11 +2523,11 @@ imageHeight
 
 let cardID =
 
-window.currentCardData
+currentCardData
 
 ?
 
-window.currentCardData.cardID
+currentCardData.cardID
 
 :
 
@@ -2350,9 +2540,6 @@ cardID + ".pdf"
 
 );
 
-
-
-/* SUCCESS MESSAGE */
 
 showSuccessToast(
 "PDF file saved successfully."
@@ -2375,14 +2562,13 @@ alert(
 }
 
 
-
 /* =====================================================
    WHATSAPP
 ===================================================== */
 
 function shareCardWhatsApp(){
 
-if(!window.currentCardData){
+if(!currentCardData){
 
 alert(
 "Please create an account card first."
@@ -2397,7 +2583,7 @@ closeCardModal();
 
 
 let data =
-window.currentCardData;
+currentCardData;
 
 
 let message =
@@ -2433,6 +2619,7 @@ data.username +
 data.password;
 
 
+/* WEB URL */
 
 if(
 
@@ -2450,6 +2637,7 @@ data.url;
 }
 
 
+/* NOTES */
 
 if(data.notes){
 
@@ -2461,6 +2649,7 @@ data.notes;
 }
 
 
+/* DATE */
 
 message +=
 
@@ -2468,6 +2657,30 @@ message +=
 data.created;
 
 
+/* =====================================================
+   SECURITY INSTRUCTIONS
+===================================================== */
+
+message +=
+
+"\n\n🔐 تعليمات أمنية مهمة\n\n" +
+
+"• هذه البيانات مخصصة للمستخدم المحدد فقط.\n" +
+
+"• يُمنع مشاركة اسم المستخدم أو كلمة المرور مع أي شخص آخر.\n" +
+
+"• يتحمل المستخدم مسؤولية المحافظة على سرية بيانات الدخول.\n" +
+
+"• لا تحفظ كلمة المرور على أجهزة عامة أو مشتركة.\n" +
+
+"• في حال الاشتباه بتسرب أو استخدام غير مصرح به للحساب، يجب إبلاغ قسم الدعم الفني فورًا.\n" +
+
+"• يمنع استخدام حساب مستخدم آخر أو مشاركة الحساب مع الآخرين.\n\n" +
+
+"⚠️ تنبيه: استلام هذه البطاقة يعني أن المستخدم مسؤول عن المحافظة على سرية بيانات الدخول وعدم مشاركتها أو تمكين الآخرين من استخدامها.";
+
+
+/* OPEN WHATSAPP */
 
 let whatsappURL =
 
@@ -2485,9 +2698,6 @@ whatsappURL,
 );
 
 
-
-/* SUCCESS MESSAGE */
-
 showSuccessToast(
 "WhatsApp sharing window opened."
 );
@@ -2495,9 +2705,8 @@ showSuccessToast(
 }
 
 
-
 /* =====================================================
-   SEARCH
+   SEARCH PLACEHOLDER
 ===================================================== */
 
 function showSearch(){
@@ -2509,7 +2718,6 @@ alert(
 );
 
 }
-
 
 
 /* =====================================================
