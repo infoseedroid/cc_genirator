@@ -11,17 +11,12 @@
 
 
 <!-- QR Code Library -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-
 <!-- HTML To Image -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-
 <!-- PDF -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 
@@ -302,6 +297,7 @@ select:focus{
 border-color:#0b6b4a;
 
 box-shadow:
+
 0 0 5px rgba(11,107,74,.3);
 
 }
@@ -356,6 +352,7 @@ textarea:focus{
 border-color:#0b6b4a;
 
 box-shadow:
+
 0 0 5px rgba(11,107,74,.3);
 
 }
@@ -495,356 +492,7 @@ border-top:2px solid #e5ebe8;
 display:block;
 
 }
-   </style>
 
-</head>
-
-
-<body>
-
-
-
-<!-- =====================================================
-     SPLASH SCREEN
-===================================================== -->
-
-<div id="splashScreen">
-
-    <div class="splash-content">
-
-        <img
-            src="logo.png"
-            class="splash-logo"
-        >
-
-        <h1>
-            Iftaa Users Accounts Generator
-        </h1>
-
-        <p>
-            Loading System...
-        </p>
-
-        <div class="spinner"></div>
-
-    </div>
-
-</div>
-
-
-
-<!-- =====================================================
-     MAIN HEADER
-===================================================== -->
-
-<div class="header">
-
-    <img src="logo.png">
-
-    <h1>
-        Iftaa Users Accounts Generator
-    </h1>
-
-    <p>
-        Users Credentials Management Tool
-    </p>
-
-</div>
-
-
-
-<!-- =====================================================
-     MAIN CONTENT
-===================================================== -->
-
-<div class="container">
-
-    <div class="box">
-
-
-        <h2 class="section-title">
-            Create User Account Card
-        </h2>
-
-
-
-        <!-- =================================================
-             USER INPUT FORM
-        ================================================= -->
-
-
-        <div class="form-group">
-
-            <label>
-                Employee Name
-            </label>
-
-            <input
-                type="text"
-                id="employeeName"
-                placeholder="Enter employee name"
-            >
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                System Name
-            </label>
-
-            <input
-                type="text"
-                id="systemName"
-                placeholder="Enter system name"
-            >
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Username
-            </label>
-
-            <input
-                type="text"
-                id="username"
-                placeholder="Enter username"
-            >
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Password
-            </label>
-
-            <div class="password-wrapper">
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter password"
-                >
-
-                <button
-                    type="button"
-                    class="password-toggle"
-                    onclick="togglePassword()"
-                    aria-label="Show password"
-                >
-                    👁
-                </button>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                System Environment
-            </label>
-
-            <select
-                id="environment"
-                onchange="changeEnvironment()"
-            >
-
-                <option value="">
-                    Select system environment
-                </option>
-
-                <option value="Operating System">
-                    Operating System
-                </option>
-
-                <option value="Desktop">
-                    Desktop App
-                </option>
-
-                <option value="Web">
-                    Web App
-                </option>
-
-            </select>
-
-        </div>
-
-
-
-        <div
-            class="form-group"
-            id="urlSection"
-            style="display:none;"
-        >
-
-            <label>
-                System URL
-            </label>
-
-            <input
-                type="text"
-                id="systemUrl"
-                placeholder="Paste web system URL here"
-            >
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Notes
-            </label>
-
-            <textarea
-                id="notes"
-                placeholder="Enter notes"
-            ></textarea>
-
-        </div>
-
-
-
-        <!-- =================================================
-             BUTTONS
-        ================================================= -->
-
-        <button
-            class="create-btn"
-            onclick="generateCard()"
-        >
-            Create Account Card
-        </button>
-
-
-
-        <button
-            class="search-btn"
-            onclick="showSearch()"
-        >
-            Search / Query
-        </button>
-
-
-
-        <!-- =================================================
-             GENERATED CARD AREA
-        ================================================= -->
-
-        <div
-            id="generatedCardArea"
-            class="generated-card-area"
-        >
-
-            <div id="generatedCard"></div>
-
-
-            <!-- =================================================
-                 THREE DOTS MENU
-            ================================================= -->
-
-            <div
-                id="cardActions"
-                class="card-actions"
-            >
-
-                <button
-                    type="button"
-                    class="more-btn"
-                    onclick="toggleCardMenu()"
-                >
-
-                    <span class="more-dots">
-                        ⋮
-                    </span>
-
-                    <span>
-                        More
-                    </span>
-
-                </button>
-
-
-
-                <div
-                    id="cardMenu"
-                    class="card-menu"
-                >
-
-                    <button
-                        type="button"
-                        onclick="saveCardAsImage()"
-                    >
-
-                        🖼️
-
-                        <span>
-                            Save as Image
-                        </span>
-
-                    </button>
-
-
-
-                    <button
-                        type="button"
-                        onclick="saveCardAsPDF()"
-                    >
-
-                        📄
-
-                        <span>
-                            Save as PDF
-                        </span>
-
-                    </button>
-
-
-
-                    <button
-                        type="button"
-                        onclick="shareCardWhatsApp()"
-                    >
-
-                        💬
-
-                        <span>
-                            Share via WhatsApp
-                        </span>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-
-<!-- =====================================================
-     CARD / MENU CSS
-===================================================== -->
-
-<style>
 
 
 /* =====================================================
@@ -866,6 +514,7 @@ border-radius:18px;
 padding:25px;
 
 box-shadow:
+
 0 5px 18px rgba(0,0,0,.15);
 
 border:1px solid #e1e8e5;
@@ -971,7 +620,7 @@ font-size:13px;
 
 
 /* =====================================================
-   THREE DOTS / ACTIONS
+   MORE BUTTON
 ===================================================== */
 
 .card-actions{
@@ -1013,12 +662,21 @@ justify-content:center;
 
 gap:8px;
 
+transition:.2s ease;
+
 }
 
 
 .more-btn:hover{
 
 background:#444;
+
+}
+
+
+.more-btn:active{
+
+transform:scale(.97);
 
 }
 
@@ -1034,58 +692,152 @@ line-height:15px;
 }
 
 
-.card-menu{
+
+/* =====================================================
+   MODAL OVERLAY
+===================================================== */
+
+.card-modal{
 
 display:none;
 
-position:absolute;
+position:fixed;
 
-top:52px;
+top:0;
 
-left:50%;
+left:0;
 
-transform:translateX(-50%);
+width:100%;
 
-width:280px;
+height:100%;
+
+background:rgba(0,0,0,.55);
+
+z-index:999999;
+
+align-items:center;
+
+justify-content:center;
+
+padding:20px;
+
+}
+
+
+.card-modal.show{
+
+display:flex;
+
+}
+
+
+
+/* =====================================================
+   MODAL BOX
+===================================================== */
+
+.card-modal-box{
+
+width:100%;
+
+max-width:390px;
 
 background:white;
 
-border-radius:12px;
+border-radius:20px;
+
+padding:25px;
 
 box-shadow:
-0 8px 25px rgba(0,0,0,.20);
 
-border:1px solid #e0e5e3;
+0 15px 45px rgba(0,0,0,.30);
 
-overflow:hidden;
-
-z-index:1000;
+animation:modalAppear .25s ease;
 
 }
 
 
-.card-menu.show{
+@keyframes modalAppear{
 
-display:block;
+from{
+
+opacity:0;
+
+transform:scale(.90);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
 
 }
 
 
-.card-menu button{
+
+/* =====================================================
+   MODAL HEADER
+===================================================== */
+
+.card-modal-header{
+
+text-align:center;
+
+margin-bottom:20px;
+
+}
+
+
+.card-modal-header h3{
+
+margin:0;
+
+color:#0b6b4a;
+
+font-size:21px;
+
+}
+
+
+.card-modal-header p{
+
+margin:7px 0 0;
+
+color:#777;
+
+font-size:13px;
+
+}
+
+
+
+/* =====================================================
+   MODAL OPTIONS
+===================================================== */
+
+.card-modal-option{
 
 width:100%;
 
 border:none;
 
-background:white;
+background:#f6f8f7;
 
-padding:15px;
+border-radius:12px;
+
+padding:14px;
+
+margin-top:10px;
 
 display:flex;
 
 align-items:center;
 
-gap:12px;
+gap:14px;
 
 font-size:15px;
 
@@ -1093,21 +845,118 @@ text-align:left;
 
 cursor:pointer;
 
-color:#333;
+transition:
+
+background .2s ease,
+
+transform .15s ease;
 
 }
 
 
-.card-menu button:hover{
+.card-modal-option:hover{
 
-background:#f1f5f3;
+background:#eaf1ee;
+
+transform:translateY(-1px);
 
 }
 
 
-.card-menu button span{
+.card-modal-option:active{
+
+transform:scale(.98);
+
+}
+
+
+.card-modal-icon{
+
+width:44px;
+
+height:44px;
+
+border-radius:11px;
+
+background:white;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:22px;
+
+box-shadow:
+
+0 2px 6px rgba(0,0,0,.08);
+
+flex-shrink:0;
+
+}
+
+
+.card-modal-text{
 
 flex:1;
+
+}
+
+
+.card-modal-text strong{
+
+display:block;
+
+color:#222;
+
+font-size:15px;
+
+}
+
+
+.card-modal-text small{
+
+display:block;
+
+color:#777;
+
+margin-top:3px;
+
+font-size:12px;
+
+}
+
+
+
+/* =====================================================
+   MODAL CLOSE
+===================================================== */
+
+.card-modal-close{
+
+width:100%;
+
+border:none;
+
+background:transparent;
+
+color:#666;
+
+padding:12px;
+
+margin-top:10px;
+
+font-size:14px;
+
+cursor:pointer;
+
+}
+
+
+.card-modal-close:hover{
+
+color:#0b6b4a;
 
 }
 
@@ -1193,15 +1042,455 @@ font-size:14px;
 }
 
 
-.card-menu{
+.card-modal{
 
-width:260px;
+padding:15px;
+
+}
+
+
+.card-modal-box{
+
+max-width:100%;
+
+border-radius:18px;
+
+padding:20px;
 
 }
 
 
+.card-modal-option{
+
+padding:14px;
+
 }
+
+}
+
 </style>
+
+
+</head>
+
+
+<body>
+
+
+
+<!-- =====================================================
+     SPLASH SCREEN
+===================================================== -->
+
+<div id="splashScreen">
+
+<div class="splash-content">
+
+<img
+src="logo.png"
+class="splash-logo"
+>
+
+<h1>
+Iftaa Users Accounts Generator
+</h1>
+
+<p>
+Loading System...
+</p>
+
+<div class="spinner"></div>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN HEADER
+===================================================== -->
+
+<div class="header">
+
+<img src="logo.png">
+
+<h1>
+Iftaa Users Accounts Generator
+</h1>
+
+<p>
+Users Credentials Management Tool
+</p>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<div class="container">
+
+<div class="box">
+
+
+<h2 class="section-title">
+Create User Account Card
+</h2>
+
+
+
+<!-- =================================================
+     USER INPUT FORM
+================================================= -->
+
+<div class="form-group">
+
+<label>
+Employee Name
+</label>
+
+<input
+type="text"
+id="employeeName"
+placeholder="Enter employee name"
+>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+System Name
+</label>
+
+<input
+type="text"
+id="systemName"
+placeholder="Enter system name"
+>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+Username
+</label>
+
+<input
+type="text"
+id="username"
+placeholder="Enter username"
+>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+Password
+</label>
+
+<div class="password-wrapper">
+
+<input
+type="password"
+id="password"
+placeholder="Enter password"
+>
+
+<button
+type="button"
+class="password-toggle"
+onclick="togglePassword()"
+aria-label="Show password"
+>
+
+👁
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+System Environment
+</label>
+
+<select
+id="environment"
+onchange="changeEnvironment()"
+>
+
+<option value="">
+Select system environment
+</option>
+
+<option value="Operating System">
+Operating System
+</option>
+
+<option value="Desktop">
+Desktop App
+</option>
+
+<option value="Web">
+Web App
+</option>
+
+</select>
+
+</div>
+
+
+
+<div
+class="form-group"
+id="urlSection"
+style="display:none;"
+>
+
+<label>
+System URL
+</label>
+
+<input
+type="text"
+id="systemUrl"
+placeholder="Paste web system URL here"
+>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+Notes
+</label>
+
+<textarea
+id="notes"
+placeholder="Enter notes"
+></textarea>
+
+</div>
+
+
+
+<!-- =================================================
+     BUTTONS
+================================================= -->
+
+<button
+class="create-btn"
+onclick="generateCard()"
+>
+
+Create Account Card
+
+</button>
+
+
+
+<button
+class="search-btn"
+onclick="showSearch()"
+>
+
+Search / Query
+
+</button>
+
+
+
+<!-- =================================================
+     GENERATED CARD
+================================================= -->
+
+<div
+id="generatedCardArea"
+class="generated-card-area"
+>
+
+<div id="generatedCard"></div>
+
+
+<!-- =================================================
+     MORE BUTTON
+================================================= -->
+
+<div class="card-actions">
+
+<button
+type="button"
+class="more-btn"
+onclick="openCardModal()"
+>
+
+<span class="more-dots">
+⋮
+</span>
+
+<span>
+More
+</span>
+
+</button>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     CARD OPTIONS MODAL
+===================================================== -->
+
+<div
+id="cardModal"
+class="card-modal"
+onclick="handleModalBackgroundClick(event)"
+>
+
+<div
+class="card-modal-box"
+>
+
+<div class="card-modal-header">
+
+<h3>
+Card Options
+</h3>
+
+<p>
+Choose an action for this account card
+</p>
+
+</div>
+
+
+
+<!-- SAVE IMAGE -->
+
+<button
+type="button"
+class="card-modal-option"
+onclick="saveCardAsImage()"
+>
+
+<div class="card-modal-icon">
+🖼️
+</div>
+
+<div class="card-modal-text">
+
+<strong>
+Save as Image
+</strong>
+
+<small>
+Save the card as a PNG image
+</small>
+
+</div>
+
+</button>
+
+
+
+<!-- SAVE PDF -->
+
+<button
+type="button"
+class="card-modal-option"
+onclick="saveCardAsPDF()"
+>
+
+<div class="card-modal-icon">
+📄
+</div>
+
+<div class="card-modal-text">
+
+<strong>
+Save as PDF
+</strong>
+
+<small>
+Create and save a PDF file
+</small>
+
+</div>
+
+</button>
+
+
+
+<!-- WHATSAPP -->
+
+<button
+type="button"
+class="card-modal-option"
+onclick="shareCardWhatsApp()"
+>
+
+<div class="card-modal-icon">
+💬
+</div>
+
+<div class="card-modal-text">
+
+<strong>
+Share via WhatsApp
+</strong>
+
+<small>
+Send the credentials through WhatsApp
+</small>
+
+</div>
+
+</button>
+
+
+
+<button
+type="button"
+class="card-modal-close"
+onclick="closeCardModal()"
+>
+
+Cancel
+
+</button>
+
+</div>
+
+</div>
+
 
 
 <script>
@@ -1220,20 +1509,23 @@ let selectedEnvironment = "";
 
 window.addEventListener("load", function(){
 
-    let splash =
-        document.getElementById("splashScreen");
+let splash =
+document.getElementById("splashScreen");
 
-    setTimeout(function(){
 
-        splash.style.opacity = "0";
+setTimeout(function(){
 
-        setTimeout(function(){
+splash.style.opacity="0";
 
-            splash.style.display = "none";
 
-        }, 600);
+setTimeout(function(){
 
-    }, 5000);
+splash.style.display="none";
+
+},600);
+
+
+},5000);
 
 });
 
@@ -1245,29 +1537,31 @@ window.addEventListener("load", function(){
 
 function changeEnvironment(){
 
-    let selected =
-        document.getElementById("environment");
-
-    selectedEnvironment =
-        selected.value;
-
-    let urlSection =
-        document.getElementById("urlSection");
+let selected =
+document.getElementById("environment");
 
 
-    if(selectedEnvironment === "Web"){
+selectedEnvironment =
+selected.value;
 
-        urlSection.style.display = "block";
 
-    }
+let urlSection =
+document.getElementById("urlSection");
 
-    else{
 
-        urlSection.style.display = "none";
+if(selectedEnvironment === "Web"){
 
-        document.getElementById("systemUrl").value = "";
+urlSection.style.display="block";
 
-    }
+}
+
+else{
+
+urlSection.style.display="none";
+
+document.getElementById("systemUrl").value="";
+
+}
 
 }
 
@@ -1280,375 +1574,402 @@ function changeEnvironment(){
 function generateCard(){
 
 
-    let employee =
-        document.getElementById("employeeName").value.trim();
+let employee =
+document
+.getElementById("employeeName")
+.value
+.trim();
 
 
-    let system =
-        document.getElementById("systemName").value.trim();
+let system =
+document
+.getElementById("systemName")
+.value
+.trim();
 
 
-    let username =
-        document.getElementById("username").value.trim();
+let username =
+document
+.getElementById("username")
+.value
+.trim();
 
 
-    let password =
-        document.getElementById("password").value.trim();
+let password =
+document
+.getElementById("password")
+.value
+.trim();
 
 
-    let url =
-        document.getElementById("systemUrl").value.trim();
+let url =
+document
+.getElementById("systemUrl")
+.value
+.trim();
 
 
-    let notes =
-        document.getElementById("notes").value.trim();
+let notes =
+document
+.getElementById("notes")
+.value
+.trim();
 
 
 
-    /* =================================================
-       VALIDATION
-    ================================================= */
+/* =================================================
+   VALIDATION
+================================================= */
 
-    if(
-        employee === "" ||
-        system === "" ||
-        username === "" ||
-        password === "" ||
-        selectedEnvironment === ""
-    ){
+if(
 
-        alert("Please complete required fields");
+employee === "" ||
 
-        return;
+system === "" ||
 
-    }
+username === "" ||
 
+password === "" ||
 
+selectedEnvironment === ""
 
-    if(
-        selectedEnvironment === "Web" &&
-        url === ""
-    ){
+){
 
-        alert("Please enter system URL");
+alert(
+"Please complete required fields"
+);
 
-        return;
+return;
 
-    }
+}
 
 
 
-    /* =================================================
-       CARD ID
-    ================================================= */
+if(
 
-    let cardID =
+selectedEnvironment === "Web" &&
 
-        "IFT-" +
-        new Date().getFullYear() +
-        "-" +
-        Math.floor(Math.random() * 90000 + 10000);
+url === ""
 
+){
 
+alert(
+"Please enter system URL"
+);
 
-    /* =================================================
-       CREATED DATE
-    ================================================= */
+return;
 
-    let created =
+}
 
-        new Date().toLocaleDateString("en-US");
 
 
+/* =================================================
+   CARD ID
+================================================= */
 
-    /* =================================================
-       STORE CARD DATA
-    ================================================= */
+let cardID =
 
-    window.currentCardData = {
+"IFT-" +
 
-        cardID:cardID,
+new Date().getFullYear() +
 
-        employee:employee,
+"-" +
 
-        system:system,
+Math.floor(
+Math.random()*90000+10000
+);
 
-        username:username,
 
-        password:password,
 
-        environment:selectedEnvironment,
+/* =================================================
+   CREATED DATE
+================================================= */
 
-        url:url,
+let created =
 
-        notes:notes,
+new Date()
+.toLocaleDateString("en-US");
 
-        created:created
 
-    };
 
+/* =================================================
+   STORE DATA
+================================================= */
 
+window.currentCardData = {
 
-    /* =================================================
-       CLOSE MENU IF OPEN
-    ================================================= */
+cardID:cardID,
 
-    document
-        .getElementById("cardMenu")
-        .classList.remove("show");
+employee:employee,
 
+system:system,
 
+username:username,
 
-    /* =================================================
-       CLEAR PREVIOUS CARD
-    ================================================= */
+password:password,
 
-    document.getElementById("generatedCard").innerHTML = "";
+environment:selectedEnvironment,
 
+url:url,
 
+notes:notes,
 
-    /* =================================================
-       GENERATE CARD
-    ================================================= */
+created:created
 
-    document.getElementById("generatedCard").innerHTML =
+};
 
-    `
 
-    <div class="generated-card">
 
+/* =================================================
+   GENERATE CARD
+================================================= */
 
-        <div class="card-logo">
+document
+.getElementById("generatedCard")
+.innerHTML =
 
-            <img src="logo.png">
 
-        </div>
+`
 
+<div class="generated-card">
 
 
-        <h2>
-            User Account Credentials
-        </h2>
+<div class="card-logo">
 
+<img src="logo.png">
 
+</div>
 
-        <div class="qr-area">
 
-            <div id="qrCode"></div>
 
-        </div>
+<h2>
 
+User Account Credentials
 
+</h2>
 
-        <div class="info-row">
 
-            <b>
-                Card ID
-            </b>
 
-            <br>
+<div class="qr-area">
 
-            ${escapeHTML(cardID)}
+<div id="qrCode"></div>
 
-        </div>
+</div>
 
 
 
-        <div class="info-row">
+<div class="info-row">
 
-            <b>
-                Employee
-            </b>
+<b>
+Card ID
+</b>
 
-            <br>
+<br>
 
-            ${escapeHTML(employee)}
+${escapeHTML(cardID)}
 
-        </div>
+</div>
 
 
 
-        <div class="info-row">
+<div class="info-row">
 
-            <b>
-                System
-            </b>
+<b>
+Employee
+</b>
 
-            <br>
+<br>
 
-            ${escapeHTML(system)}
+${escapeHTML(employee)}
 
-        </div>
+</div>
 
 
 
-        <div class="info-row">
+<div class="info-row">
 
-            <b>
-                Environment
-            </b>
+<b>
+System
+</b>
 
-            <br>
+<br>
 
-            ${escapeHTML(selectedEnvironment)}
+${escapeHTML(system)}
 
-        </div>
+</div>
 
 
 
-        ${
-            selectedEnvironment === "Web"
+<div class="info-row">
 
-            ?
+<b>
+Environment
+</b>
 
-            `
+<br>
 
-            <div class="info-row">
+${escapeHTML(selectedEnvironment)}
 
-                <b>
-                    System URL
-                </b>
+</div>
 
-                <br>
 
-                ${escapeHTML(url)}
 
-            </div>
+${
 
-            `
+selectedEnvironment === "Web"
 
-            :
+?
 
-            ""
+`
 
-        }
+<div class="info-row">
 
+<b>
+System URL
+</b>
 
+<br>
 
-        <div class="info-row">
+${escapeHTML(url)}
 
-            <b>
-                Username
-            </b>
+</div>
 
-            <br>
+`
 
-            ${escapeHTML(username)}
+:
 
-        </div>
+""
 
+}
 
 
-        <div class="info-row">
 
-            <b>
-                Password
-            </b>
+<div class="info-row">
 
-            <br>
+<b>
+Username
+</b>
 
-            ${escapeHTML(password)}
+<br>
 
-        </div>
+${escapeHTML(username)}
 
+</div>
 
 
-        ${
-            notes
 
-            ?
+<div class="info-row">
 
-            `
+<b>
+Password
+</b>
 
-            <div class="info-row">
+<br>
 
-                <b>
-                    Notes
-                </b>
+${escapeHTML(password)}
 
-                <br>
+</div>
 
-                ${escapeHTML(notes)}
 
-            </div>
 
-            `
+${
 
-            :
+notes
 
-            ""
+?
 
-        }
+`
 
+<div class="info-row">
 
+<b>
+Notes
+</b>
 
-        <div class="card-footer">
+<br>
 
-            Created Date:
-            ${escapeHTML(created)}
+${escapeHTML(notes)}
 
-        </div>
+</div>
 
+`
 
-    </div>
+:
 
-    `;
+""
 
+}
 
 
-    /* =================================================
-       SHOW CARD AREA
-    ================================================= */
 
-    document
-        .getElementById("generatedCardArea")
-        .classList.add("show");
+<div class="card-footer">
 
+Created Date:
 
+${escapeHTML(created)}
 
-    /* =================================================
-       QR CODE
-    ================================================= */
+</div>
 
-    if(selectedEnvironment === "Web"){
 
-        new QRCode(
+</div>
 
-            document.getElementById("qrCode"),
+`;
 
-            {
 
-                text:url,
 
-                width:140,
+/* =================================================
+   SHOW CARD
+================================================= */
 
-                height:140
+document
+.getElementById("generatedCardArea")
+.classList.add("show");
 
-            }
 
-        );
 
-    }
+/* =================================================
+   QR CODE
+================================================= */
 
+if(selectedEnvironment === "Web"){
 
+new QRCode(
 
-    /* =================================================
-       SCROLL TO CARD
-    ================================================= */
+document.getElementById("qrCode"),
 
-    setTimeout(function(){
+{
 
-        document
-            .getElementById("generatedCardArea")
-            .scrollIntoView({
+text:url,
 
-                behavior:"smooth",
+width:140,
 
-                block:"start"
+height:140
 
-            });
+}
 
-    },100);
+);
+
+}
+
+
+
+/* =================================================
+   SCROLL TO CARD
+================================================= */
+
+setTimeout(function(){
+
+document
+.getElementById("generatedCardArea")
+.scrollIntoView({
+
+behavior:"smooth",
+
+block:"start"
+
+});
+
+},100);
 
 }
 
@@ -1660,62 +1981,70 @@ function generateCard(){
 
 function escapeHTML(value){
 
-    return String(value)
+return String(value)
 
-        .replace(/&/g,"&amp;")
+.replace(/&/g,"&amp;")
 
-        .replace(/</g,"&lt;")
+.replace(/</g,"&lt;")
 
-        .replace(/>/g,"&gt;")
+.replace(/>/g,"&gt;")
 
-        .replace(/"/g,"&quot;")
+.replace(/"/g,"&quot;")
 
-        .replace(/'/g,"&#039;");
-
-}
-
-
-
-/* =====================================================
-   THREE DOTS MENU
-===================================================== */
-
-function toggleCardMenu(){
-
-    let menu =
-        document.getElementById("cardMenu");
-
-    menu.classList.toggle("show");
+.replace(/'/g,"&#039;");
 
 }
 
 
 
 /* =====================================================
-   CLOSE MENU WHEN CLICKING OUTSIDE
+   OPEN MODAL
 ===================================================== */
 
-document.addEventListener("click", function(event){
+function openCardModal(){
 
-    let menu =
-        document.getElementById("cardMenu");
-
-    let button =
-        document.querySelector(".more-btn");
+let modal =
+document.getElementById("cardModal");
 
 
-    if(
-        menu &&
-        button &&
-        !menu.contains(event.target) &&
-        !button.contains(event.target)
-    ){
+modal.classList.add("show");
 
-        menu.classList.remove("show");
+}
 
-    }
 
-});
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+function closeCardModal(){
+
+let modal =
+document.getElementById("cardModal");
+
+
+modal.classList.remove("show");
+
+}
+
+
+
+/* =====================================================
+   CLOSE WHEN CLICKING BACKGROUND
+===================================================== */
+
+function handleModalBackgroundClick(event){
+
+if(
+event.target ===
+document.getElementById("cardModal")
+){
+
+closeCardModal();
+
+}
+
+}
 
 
 
@@ -1725,70 +2054,84 @@ document.addEventListener("click", function(event){
 
 async function saveCardAsImage(){
 
-    let card =
-        document.querySelector(".generated-card");
+let card =
+document.querySelector(".generated-card");
 
 
-    if(!card){
+if(!card){
 
-        alert("Please create an account card first.");
+alert(
+"Please create an account card first."
+);
 
-        return;
+return;
 
-    }
-
-
-    let menu =
-        document.getElementById("cardMenu");
-
-    menu.classList.remove("show");
+}
 
 
-    try{
-
-        let canvas =
-            await html2canvas(card, {
-
-                scale:2,
-
-                useCORS:true,
-
-                backgroundColor:"#ffffff"
-
-            });
+closeCardModal();
 
 
-        let link =
-            document.createElement("a");
+try{
+
+let canvas =
+
+await html2canvas(
+
+card,
+
+{
+
+scale:2,
+
+useCORS:true,
+
+backgroundColor:"#ffffff"
+
+}
+
+);
 
 
-        let cardID =
-            window.currentCardData
-            ? window.currentCardData.cardID
-            : "Iftaa-Account-Card";
+let link =
+document.createElement("a");
 
 
-        link.download =
-            cardID + ".png";
+let cardID =
+
+window.currentCardData
+
+?
+
+window.currentCardData.cardID
+
+:
+
+"Iftaa-Account-Card";
 
 
-        link.href =
-            canvas.toDataURL("image/png");
+link.download =
+cardID + ".png";
 
 
-        link.click();
+link.href =
+canvas.toDataURL("image/png");
 
-    }
 
-    catch(error){
+link.click();
 
-        console.error(error);
+}
 
-        alert(
-            "Unable to save the card as an image."
-        );
+catch(error){
 
-    }
+console.error(error);
+
+
+alert(
+"Unable to save the card as an image."
+);
+
+}
 
 }
 
@@ -1800,137 +2143,168 @@ async function saveCardAsImage(){
 
 async function saveCardAsPDF(){
 
-    let card =
-        document.querySelector(".generated-card");
+let card =
+document.querySelector(".generated-card");
 
 
-    if(!card){
+if(!card){
 
-        alert("Please create an account card first.");
+alert(
+"Please create an account card first."
+);
 
-        return;
+return;
 
-    }
-
-
-    let menu =
-        document.getElementById("cardMenu");
-
-    menu.classList.remove("show");
+}
 
 
-    try{
-
-        let canvas =
-            await html2canvas(card, {
-
-                scale:2,
-
-                useCORS:true,
-
-                backgroundColor:"#ffffff"
-
-            });
+closeCardModal();
 
 
-        let imageData =
-            canvas.toDataURL("image/png");
+try{
+
+let canvas =
+
+await html2canvas(
+
+card,
+
+{
+
+scale:2,
+
+useCORS:true,
+
+backgroundColor:"#ffffff"
+
+}
+
+);
 
 
-        const { jsPDF } =
-            window.jspdf;
+let imageData =
+canvas.toDataURL("image/png");
 
 
-        let pdf =
-            new jsPDF({
-
-                orientation:"portrait",
-
-                unit:"mm",
-
-                format:"a4"
-
-            });
+const { jsPDF } =
+window.jspdf;
 
 
-        let pageWidth =
-            pdf.internal.pageSize.getWidth();
+let pdf =
+
+new jsPDF({
+
+orientation:"portrait",
+
+unit:"mm",
+
+format:"a4"
+
+});
 
 
-        let pageHeight =
-            pdf.internal.pageSize.getHeight();
+let pageWidth =
+pdf.internal.pageSize.getWidth();
 
 
-        let margin = 15;
+let pageHeight =
+pdf.internal.pageSize.getHeight();
 
 
-        let imageWidth =
-            pageWidth - (margin * 2);
+let margin = 15;
 
 
-        let imageHeight =
-            (canvas.height * imageWidth)
-            / canvas.width;
+let imageWidth =
+pageWidth - (margin*2);
 
 
-        if(imageHeight > pageHeight - (margin * 2)){
+let imageHeight =
 
-            imageHeight =
-                pageHeight - (margin * 2);
-
-            imageWidth =
-                (canvas.width * imageHeight)
-                / canvas.height;
-
-        }
+(canvas.height * imageWidth)
+/
+canvas.width;
 
 
-        let x =
-            (pageWidth - imageWidth) / 2;
+if(
+
+imageHeight >
+
+pageHeight - (margin*2)
+
+){
+
+imageHeight =
+
+pageHeight - (margin*2);
 
 
-        let y =
-            margin;
+imageWidth =
+
+(canvas.width * imageHeight)
+/
+canvas.height;
+
+}
 
 
-        pdf.addImage(
+let x =
 
-            imageData,
-
-            "PNG",
-
-            x,
-
-            y,
-
-            imageWidth,
-
-            imageHeight
-
-        );
+(pageWidth-imageWidth)/2;
 
 
-        let cardID =
-            window.currentCardData
-            ? window.currentCardData.cardID
-            : "Iftaa-Account-Card";
+let y =
+
+margin;
 
 
-        pdf.save(
-            cardID + ".pdf"
-        );
+pdf.addImage(
 
-    }
+imageData,
 
-    catch(error){
+"PNG",
 
-        console.error(error);
+x,
 
-        alert(
-            "Unable to create the PDF file."
-        );
+y,
 
-    }
+imageWidth,
+
+imageHeight
+
+);
+
+
+let cardID =
+
+window.currentCardData
+
+?
+
+window.currentCardData.cardID
+
+:
+
+"Iftaa-Account-Card";
+
+
+pdf.save(
+
+cardID + ".pdf"
+
+);
+
+}
+
+catch(error){
+
+console.error(error);
+
+
+alert(
+"Unable to create the PDF file."
+);
+
+}
 
 }
 
@@ -1942,101 +2316,107 @@ async function saveCardAsPDF(){
 
 function shareCardWhatsApp(){
 
-    if(!window.currentCardData){
+if(!window.currentCardData){
 
-        alert(
-            "Please create an account card first."
-        );
+alert(
+"Please create an account card first."
+);
 
-        return;
+return;
 
-    }
-
-
-    let menu =
-        document.getElementById("cardMenu");
-
-    menu.classList.remove("show");
+}
 
 
-
-    let data =
-        window.currentCardData;
+closeCardModal();
 
 
-
-    let message =
-
-        "Iftaa User Account Credentials\n\n" +
-
-        "Card ID: " +
-        data.cardID +
-        "\n\n" +
-
-        "Employee: " +
-        data.employee +
-        "\n\n" +
-
-        "System: " +
-        data.system +
-        "\n\n" +
-
-        "Environment: " +
-        data.environment +
-        "\n\n" +
-
-        "Username: " +
-        data.username +
-        "\n\n" +
-
-        "Password: " +
-        data.password;
+let data =
+window.currentCardData;
 
 
+let message =
 
-    if(
-        data.environment === "Web" &&
-        data.url
-    ){
+"Iftaa User Account Credentials\n\n" +
 
-        message +=
+"Card ID: " +
+data.cardID +
 
-            "\n\nSystem URL: " +
-            data.url;
+"\n\n" +
 
-    }
+"Employee: " +
+data.employee +
+
+"\n\n" +
+
+"System: " +
+data.system +
+
+"\n\n" +
+
+"Environment: " +
+data.environment +
+
+"\n\n" +
+
+"Username: " +
+data.username +
+
+"\n\n" +
+
+"Password: " +
+data.password;
 
 
 
-    if(data.notes){
+if(
 
-        message +=
+data.environment === "Web" &&
 
-            "\n\nNotes: " +
-            data.notes;
+data.url
 
-    }
+){
 
+message +=
 
+"\n\nSystem URL: " +
+data.url;
 
-    message +=
-
-        "\n\nCreated Date: " +
-        data.created;
-
-
-
-    let whatsappURL =
-
-        "https://wa.me/?text=" +
-        encodeURIComponent(message);
+}
 
 
 
-    window.open(
-        whatsappURL,
-        "_blank"
-    );
+if(data.notes){
+
+message +=
+
+"\n\nNotes: " +
+data.notes;
+
+}
+
+
+
+message +=
+
+"\n\nCreated Date: " +
+data.created;
+
+
+
+let whatsappURL =
+
+"https://wa.me/?text=" +
+
+encodeURIComponent(message);
+
+
+window.open(
+
+whatsappURL,
+
+"_blank"
+
+);
 
 }
 
@@ -2048,9 +2428,11 @@ function shareCardWhatsApp(){
 
 function showSearch(){
 
-    alert(
-        "Search module will be added in the next version"
-    );
+alert(
+
+"Search module will be added in the next version"
+
+);
 
 }
 
@@ -2062,44 +2444,57 @@ function showSearch(){
 
 function togglePassword(){
 
-    const password =
-        document.getElementById("password");
+const password =
+
+document.getElementById("password");
 
 
-    const button =
-        document.querySelector(".password-toggle");
+const button =
+
+document.querySelector(
+".password-toggle"
+);
 
 
-    if(password.type === "password"){
+if(
 
-        password.type = "text";
+password.type === "password"
 
-        button.innerHTML = "🙈";
+){
 
-        button.setAttribute(
-            "aria-label",
-            "Hide password"
-        );
+password.type="text";
 
-    }
+button.innerHTML="🙈";
 
-    else{
+button.setAttribute(
 
-        password.type = "password";
+"aria-label",
 
-        button.innerHTML = "👁";
+"Hide password"
 
-        button.setAttribute(
-            "aria-label",
-            "Show password"
-        );
+);
 
-    }
+}
+
+else{
+
+password.type="password";
+
+button.innerHTML="👁";
+
+button.setAttribute(
+
+"aria-label",
+
+"Show password"
+
+);
+
+}
 
 }
 
 </script>
-
 
 
 </body>
