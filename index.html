@@ -368,7 +368,34 @@ margin-bottom:20px;
 
 
 }
+select{
 
+width:100%;
+
+padding:13px;
+
+border-radius:10px;
+
+border:1px solid #ccc;
+
+font-size:15px;
+
+background:white;
+
+outline:none;
+
+cursor:pointer;
+
+}
+
+select:focus{
+
+border-color:#0b6b4a;
+
+box-shadow:
+0 0 5px rgba(11,107,74,.3);
+
+}
 
 
 </style>
@@ -610,79 +637,25 @@ System Environment
 
 
 
-<div class="radio-container">
+<select id="environment" onchange="changeEnvironment()">
 
+<option value="">
+Select system environment
+</option>
 
-
-<label>
-
-<input
-
-type="radio"
-
-name="environment"
-
-value="Operating System"
-
-onchange="changeEnvironment()">
-
-
-
+<option value="Operating System">
 Operating System
+</option>
 
-
-</label>
-
-
-
-
-
-<label>
-
-<input
-
-type="radio"
-
-name="environment"
-
-value="Desktop"
-
-onchange="changeEnvironment()">
-
-
-
+<option value="Desktop">
 Desktop App
+</option>
 
-
-</label>
-
-
-
-
-
-<label>
-
-<input
-
-type="radio"
-
-name="environment"
-
-value="Web"
-
-onchange="changeEnvironment()">
-
-
-
+<option value="Web">
 Web App
+</option>
 
-
-</label>
-
-
-
-
-</div>
+</select>
 
 
 </div>
@@ -1062,49 +1035,28 @@ splash.style.display="none";
 
 function changeEnvironment(){
 
-
-
 let selected =
-document.querySelector(
-'input[name="environment"]:checked'
-);
-
-
+document.getElementById("environment");
 
 selectedEnvironment =
 selected.value;
 
-
-
-
-
 let urlSection =
 document.getElementById("urlSection");
 
+if(selectedEnvironment === "Web"){
 
-
-
-
-if(selectedEnvironment==="Web"){
-
-
-urlSection.style.display="block";
-
+urlSection.style.display = "block";
 
 }
 
 else{
 
+urlSection.style.display = "none";
 
-urlSection.style.display="none";
-
-
-document.getElementById("systemUrl").value="";
-
+document.getElementById("systemUrl").value = "";
 
 }
-
-
 
 }
 
