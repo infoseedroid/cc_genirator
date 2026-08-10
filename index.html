@@ -1770,19 +1770,17 @@ Cancel
 
 
 <script>
+<script>
 
 /* =====================================================
    GLOBAL
 ===================================================== */
 
 let selectedEnvironment = "";
-
 let toastTimer;
-
 let currentCardData = null;
 
 const STORAGE_KEY = "iftaaAccessCards";
-
 const LANGUAGE_KEY = "iftaaAccessLanguage";
 
 
@@ -1794,122 +1792,75 @@ const translations = {
 
     en: {
 
-        splashTitle:
-            "Iftaa Systems Access Card",
+        splashTitle: "Iftaa Systems Access Card",
+        splashLoading: "Loading System...",
 
-        splashLoading:
-            "Loading System...",
-
-        mainTitle:
-            "Iftaa Systems Access Card",
-
+        mainTitle: "Iftaa Systems Access Card",
         mainSubtitle:
             "Systems Access Authorization Management Tool",
 
-        languageButton:
-            "العربية",
+        languageButton: "العربية",
 
-        createTitle:
-            "Create Access Card",
+        createTitle: "Create Access Card",
 
-        employeeNumberLabel:
-            "Employee Number",
-
+        employeeNumberLabel: "Employee Number",
         employeeNumberPlaceholder:
             "Enter employee number",
 
-        employeeNameLabel:
-            "Employee Name",
-
+        employeeNameLabel: "Employee Name",
         employeeNamePlaceholder:
             "Enter employee name",
 
-        systemNameLabel:
-            "System Name",
-
+        systemNameLabel: "System Name",
         systemNamePlaceholder:
             "Enter system name",
 
-        environmentLabel:
-            "System Environment",
-
+        environmentLabel: "System Environment",
         environmentPlaceholder:
             "Select system environment",
 
-        environmentOS:
-            "Operating System",
+        environmentOS: "Operating System",
+        environmentDesktop: "Desktop App",
+        environmentWeb: "Web App",
 
-        environmentDesktop:
-            "Desktop App",
-
-        environmentWeb:
-            "Web App",
-
-        accessLevelLabel:
-            "Access Level",
-
+        accessLevelLabel: "Access Level",
         accessPlaceholder:
             "Select access level",
 
-        accessView:
-            "View Only",
+        accessView: "View Only",
+        accessStandard: "Standard User",
+        accessAdvanced: "Advanced User",
+        accessAdmin: "Administrator",
 
-        accessStandard:
-            "Standard User",
-
-        accessAdvanced:
-            "Advanced User",
-
-        accessAdmin:
-            "Administrator",
-
-        systemUrlLabel:
-            "System URL",
-
+        systemUrlLabel: "System URL",
         systemUrlPlaceholder:
             "Paste web system URL here",
 
-        notesLabel:
-            "Notes",
-
+        notesLabel: "Notes",
         notesPlaceholder:
             "Enter notes",
 
-        createButton:
-            "Create Access Card",
+        createButton: "Create Access Card",
+        searchButton: "Search / Query",
 
-        searchButton:
-            "Search / Query",
+        moreButtonText: "More",
 
-        moreButtonText:
-            "More",
-
-        modalTitle:
-            "Card Options",
-
+        modalTitle: "Card Options",
         modalSubtitle:
             "Choose an action for this access card",
 
-        saveImageTitle:
-            "Save as Image",
-
+        saveImageTitle: "Save as Image",
         saveImageDescription:
             "Save the access card as a PNG image",
 
-        savePDFTitle:
-            "Save as PDF",
-
+        savePDFTitle: "Save as PDF",
         savePDFDescription:
             "Create and save a PDF access card",
 
-        cancelButton:
-            "Cancel",
+        cancelButton: "Cancel",
 
-        refreshButton:
-            "Refresh",
-
-        deleteAllButton:
-            "Delete All",
+        refreshButton: "Refresh",
+        deleteAllButton: "Delete All",
 
         searchEmployeeLabel:
             "Search by Employee Number",
@@ -1917,8 +1868,7 @@ const translations = {
         searchEmployeePlaceholder:
             "Enter employee number",
 
-        searchNowButton:
-            "Search",
+        searchNowButton: "Search",
 
         cardSaved:
             "Access card saved successfully.",
@@ -1962,57 +1912,33 @@ const translations = {
         pdfError:
             "Unable to create the access card PDF.",
 
-        savedCards:
-            "Saved Cards",
+        savedCards: "Saved Cards",
 
-        view:
-            "View",
+        view: "View",
+        delete: "Delete",
 
-        delete:
-            "Delete",
+        accessCard: "Access Card",
 
-        accessCard:
-            "Access Card",
+        employee: "Employee",
+        employeeNumber: "Employee Number",
+        system: "System",
+        environment: "Environment",
+        accessLevel: "Access Level",
+        systemURL: "System URL",
+        notes: "Notes",
 
-        employee:
-            "Employee",
-
-        employeeNumber:
-            "Employee Number",
-
-        system:
-            "System",
-
-        environment:
-            "Environment",
-
-        accessLevel:
-            "Access Level",
-
-        systemURL:
-            "System URL",
-
-        notes:
-            "Notes",
-
-        authorized:
-            "✓ Authorized Access",
+        authorized: "✓ Authorized Access",
 
         securityTitle:
             "🔐 Security Notice",
 
         securityText:
-            "هذه البطاقة توثق صلاحية الوصول إلى النظام فقط، ولا تحتوي على اسم مستخدم أو كلمة مرور أو أي بيانات اعتماد سرية.",
+            "This card documents authorization to access the system only. It does not contain a username, password, or any confidential credentials.",
 
-        createdDate:
-            "Created Date:",
+        createdDate: "Created Date:",
 
-        cards:
-            "Cards",
-
-        card:
-            "Card"
-
+        cards: "Cards",
+        card: "Card"
     },
 
 
@@ -2236,9 +2162,7 @@ const translations = {
 
         card:
             "بطاقة"
-
     }
-
 };
 
 
@@ -2254,12 +2178,11 @@ let currentLanguage =
    TRANSLATION HELPER
 ===================================================== */
 
-function t(key){
+function t(key) {
 
     return translations[currentLanguage][key] ||
            translations.en[key] ||
            key;
-
 }
 
 
@@ -2267,15 +2190,15 @@ function t(key){
    APPLY LANGUAGE
 ===================================================== */
 
-function applyLanguage(){
+function applyLanguage() {
 
     document.documentElement.lang =
         currentLanguage;
 
     document.documentElement.dir =
         currentLanguage === "ar"
-        ? "rtl"
-        : "ltr";
+            ? "rtl"
+            : "ltr";
 
     document.body.classList.toggle(
         "rtl",
@@ -2287,47 +2210,60 @@ function applyLanguage(){
 
         "splashTitle",
         "splashLoading",
+
         "mainTitle",
         "mainSubtitle",
+
         "languageButton",
+
         "createTitle",
+
         "employeeNumberLabel",
         "employeeNameLabel",
         "systemNameLabel",
+
         "environmentLabel",
+
         "accessLevelLabel",
+
         "systemUrlLabel",
+
         "notesLabel",
+
         "createButton",
         "searchButton",
+
         "moreButtonText",
+
         "modalTitle",
         "modalSubtitle",
+
         "saveImageTitle",
         "saveImageDescription",
+
         "savePDFTitle",
         "savePDFDescription",
+
         "cancelButton",
+
         "refreshButton",
         "deleteAllButton",
+
         "searchEmployeeLabel",
         "searchNowButton"
-
     ];
 
 
-    ids.forEach(function(id){
+    ids.forEach(function(id) {
 
         const element =
             document.getElementById(id);
 
-        if(element){
+        if (element) {
 
             element.textContent =
                 t(id);
-
         }
-
     });
 
 
@@ -2350,75 +2286,121 @@ function applyLanguage(){
 
         searchEmployeeNumber:
             "searchEmployeePlaceholder"
-
     };
 
 
     Object.keys(placeholders)
-    .forEach(function(id){
+        .forEach(function(id) {
 
-        const element =
-            document.getElementById(id);
+            const element =
+                document.getElementById(id);
 
-        if(element){
+            if (element) {
 
-            element.placeholder =
-                t(placeholders[id]);
-
-        }
-
-    });
+                element.placeholder =
+                    t(placeholders[id]);
+            }
+        });
 
 
-    document.getElementById(
-        "environmentPlaceholder"
-    ).textContent =
-        t("environmentPlaceholder");
+    const optionMap = {
 
-    document.getElementById(
-        "environmentOS"
-    ).textContent =
-        t("environmentOS");
+        environmentPlaceholder:
+            "environmentPlaceholder",
 
-    document.getElementById(
-        "environmentDesktop"
-    ).textContent =
-        t("environmentDesktop");
+        environmentOS:
+            "environmentOS",
 
-    document.getElementById(
-        "environmentWeb"
-    ).textContent =
-        t("environmentWeb");
+        environmentDesktop:
+            "environmentDesktop",
+
+        environmentWeb:
+            "environmentWeb",
+
+        accessPlaceholder:
+            "accessPlaceholder",
+
+        accessView:
+            "accessView",
+
+        accessStandard:
+            "accessStandard",
+
+        accessAdvanced:
+            "accessAdvanced",
+
+        accessAdmin:
+            "accessAdmin"
+    };
 
 
-    document.getElementById(
-        "accessPlaceholder"
-    ).textContent =
-        t("accessPlaceholder");
+    Object.keys(optionMap)
+        .forEach(function(id) {
 
-    document.getElementById(
-        "accessView"
-    ).textContent =
-        t("accessView");
+            const element =
+                document.getElementById(id);
 
-    document.getElementById(
-        "accessStandard"
-    ).textContent =
-        t("accessStandard");
+            if (element) {
 
-    document.getElementById(
-        "accessAdvanced"
-    ).textContent =
-        t("accessAdvanced");
-
-    document.getElementById(
-        "accessAdmin"
-    ).textContent =
-        t("accessAdmin");
+                element.textContent =
+                    t(optionMap[id]);
+            }
+        });
 
 
     updateArchiveCount();
 
+
+    /*
+       IMPORTANT:
+       Re-render the currently displayed card
+       using the NEW language.
+       The stored data itself is NOT changed.
+    */
+
+    if (
+        currentCardData &&
+        document
+            .getElementById("generatedCardArea")
+            .classList.contains("show")
+    ) {
+
+        renderCard(currentCardData);
+    }
+
+
+    /*
+       Re-render search results without
+       modifying stored cards.
+    */
+
+    const searchPanel =
+        document.getElementById("searchPanel");
+
+    if (
+        searchPanel &&
+        searchPanel.classList.contains("show")
+    ) {
+
+        const searchInput =
+            document.getElementById(
+                "searchEmployeeNumber"
+            );
+
+        if (
+            searchInput &&
+            searchInput.value.trim() !== ""
+        ) {
+
+            searchCards();
+
+        } else {
+
+            renderSearchResults(
+                getStoredCards()
+            );
+        }
+    }
 }
 
 
@@ -2426,32 +2408,28 @@ function applyLanguage(){
    TOGGLE LANGUAGE
 ===================================================== */
 
-function toggleLanguage(){
+function toggleLanguage() {
 
     currentLanguage =
         currentLanguage === "en"
-        ? "ar"
-        : "en";
+            ? "ar"
+            : "en";
 
     localStorage.setItem(
         LANGUAGE_KEY,
         currentLanguage
     );
 
+
+    /*
+       LANGUAGE IS UI STATE ONLY.
+
+       No cards are deleted.
+       No card data is rewritten.
+       No archive reset occurs.
+    */
+
     applyLanguage();
-
-    if(
-        document
-        .getElementById("searchPanel")
-        .classList.contains("show")
-    ){
-
-        renderSearchResults(
-            getStoredCards()
-        );
-
-    }
-
 }
 
 
@@ -2461,24 +2439,26 @@ function toggleLanguage(){
 
 window.addEventListener(
     "load",
-    function(){
+    function() {
 
         applyLanguage();
 
         refreshArchive();
 
-        let splash =
+
+        const splash =
             document.getElementById(
                 "splashScreen"
             );
 
+
         setTimeout(
-            function(){
+            function() {
 
                 splash.style.opacity = "0";
 
                 setTimeout(
-                    function(){
+                    function() {
 
                         splash.style.display =
                             "none";
@@ -2490,7 +2470,6 @@ window.addEventListener(
             },
             5000
         );
-
     }
 );
 
@@ -2499,9 +2478,9 @@ window.addEventListener(
    ENVIRONMENT
 ===================================================== */
 
-function changeEnvironment(){
+function changeEnvironment() {
 
-    let selected =
+    const selected =
         document.getElementById(
             "environment"
         );
@@ -2509,22 +2488,21 @@ function changeEnvironment(){
     selectedEnvironment =
         selected.value;
 
-    let urlSection =
+
+    const urlSection =
         document.getElementById(
             "urlSection"
         );
 
 
-    if(
+    if (
         selectedEnvironment === "Web"
-    ){
+    ) {
 
         urlSection.style.display =
             "block";
 
-    }
-
-    else{
+    } else {
 
         urlSection.style.display =
             "none";
@@ -2532,9 +2510,7 @@ function changeEnvironment(){
         document.getElementById(
             "systemUrl"
         ).value = "";
-
     }
-
 }
 
 
@@ -2542,38 +2518,103 @@ function changeEnvironment(){
    GET STORED CARDS
 ===================================================== */
 
-function getStoredCards(){
+function getStoredCards() {
 
-    try{
+    try {
 
         const data =
             localStorage.getItem(
                 STORAGE_KEY
             );
 
-        if(!data){
+
+        if (!data) {
 
             return [];
-
         }
+
 
         const cards =
             JSON.parse(data);
 
-        return Array.isArray(cards)
-            ? cards
-            : [];
+
+        if (!Array.isArray(cards)) {
+
+            return [];
+        }
+
+
+        /*
+           Normalize old cards without
+           changing their actual information.
+        */
+
+        return cards.map(
+            function(card) {
+
+                return normalizeCard(card);
+            }
+        );
 
     }
-
-    catch(error){
+    catch (error) {
 
         console.error(error);
 
         return [];
-
     }
+}
 
+
+/* =====================================================
+   NORMALIZE CARD
+===================================================== */
+
+function normalizeCard(card) {
+
+    const normalized = {
+
+        cardID:
+            card.cardID || "",
+
+        employeeNumber:
+            card.employeeNumber || "",
+
+        employee:
+            card.employee || "",
+
+        system:
+            card.system || "",
+
+        environment:
+            card.environment || "",
+
+        accessLevel:
+            card.accessLevel || "",
+
+        url:
+            card.url || "",
+
+        notes:
+            card.notes || "",
+
+        created:
+            card.created || "",
+
+        createdAt:
+            card.createdAt || ""
+    };
+
+
+    /*
+       Older version stored only localized
+       "created" text.
+
+       We preserve it so old cards remain
+       fully compatible.
+    */
+
+    return normalized;
 }
 
 
@@ -2581,13 +2622,12 @@ function getStoredCards(){
    SAVE STORED CARDS
 ===================================================== */
 
-function saveStoredCards(cards){
+function saveStoredCards(cards) {
 
     localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify(cards)
     );
-
 }
 
 
@@ -2595,29 +2635,70 @@ function saveStoredCards(cards){
    UPDATE COUNT
 ===================================================== */
 
-function updateArchiveCount(){
+function updateArchiveCount() {
 
     const count =
         getStoredCards().length;
 
-    const text =
-        currentLanguage === "ar"
-        ? count + " " +
-          (count === 1
-            ? t("card")
-            : t("cards"))
-        : count + " " +
-          (count === 1
-            ? t("card")
-            : t("cards"));
 
-    document.getElementById(
-        "archiveCount"
-    ).textContent =
-        t("savedCards") +
-        ": " +
-        text;
+    const countText =
+        count +
+        " " +
+        (
+            count === 1
+                ? t("card")
+                : t("cards")
+        );
 
+
+    const element =
+        document.getElementById(
+            "archiveCount"
+        );
+
+
+    if (element) {
+
+        element.textContent =
+            t("savedCards") +
+            ": " +
+            countText;
+    }
+}
+
+
+/* =====================================================
+   FORMAT CREATED DATE
+===================================================== */
+
+function formatCreatedDate(card) {
+
+    /*
+       New cards use createdAt.
+    */
+
+    if (card.createdAt) {
+
+        const date =
+            new Date(card.createdAt);
+
+
+        if (!isNaN(date.getTime())) {
+
+            return date.toLocaleDateString(
+                currentLanguage === "ar"
+                    ? "ar-JO"
+                    : "en-US"
+            );
+        }
+    }
+
+
+    /*
+       Compatibility with old cards.
+    */
+
+    return card.created || "";
 }
 
 
@@ -2625,113 +2706,129 @@ function updateArchiveCount(){
    GENERATE CARD
 ===================================================== */
 
-function generateCard(){
+function generateCard() {
 
-    let employeeNumber =
+    const employeeNumber =
         document
-        .getElementById(
-            "employeeNumber"
-        )
-        .value
-        .trim();
+            .getElementById(
+                "employeeNumber"
+            )
+            .value
+            .trim();
 
-    let employee =
+
+    const employee =
         document
-        .getElementById(
-            "employeeName"
-        )
-        .value
-        .trim();
+            .getElementById(
+                "employeeName"
+            )
+            .value
+            .trim();
 
-    let system =
+
+    const system =
         document
-        .getElementById(
-            "systemName"
-        )
-        .value
-        .trim();
+            .getElementById(
+                "systemName"
+            )
+            .value
+            .trim();
 
-    let environment =
+
+    const environment =
         document
-        .getElementById(
-            "environment"
-        )
-        .value;
+            .getElementById(
+                "environment"
+            )
+            .value;
 
-    let accessLevel =
+
+    const accessLevel =
         document
-        .getElementById(
-            "accessLevel"
-        )
-        .value;
+            .getElementById(
+                "accessLevel"
+            )
+            .value;
 
-    let url =
+
+    const url =
         document
-        .getElementById(
-            "systemUrl"
-        )
-        .value
-        .trim();
+            .getElementById(
+                "systemUrl"
+            )
+            .value
+            .trim();
 
-    let notes =
+
+    const notes =
         document
-        .getElementById(
-            "notes"
-        )
-        .value
-        .trim();
+            .getElementById(
+                "notes"
+            )
+            .value
+            .trim();
 
 
-    if(
-
+    if (
         employeeNumber === "" ||
         employee === "" ||
         system === "" ||
         environment === "" ||
         accessLevel === ""
-
-    ){
+    ) {
 
         alert(
             t("requiredFields")
         );
 
         return;
-
     }
 
 
-    if(
-
+    if (
         environment === "Web" &&
         url === ""
-
-    ){
+    ) {
 
         alert(
             t("urlRequired")
         );
 
         return;
-
     }
 
 
-    let cardID =
+    const now =
+        new Date();
+
+
+    const cardID =
         "IFT-" +
-        new Date().getFullYear() +
+        now.getFullYear() +
         "-" +
         Math.floor(
             Math.random() * 90000 + 10000
         );
 
 
-    let created =
-        new Date()
-        .toLocaleDateString(
-            currentLanguage === "ar"
-            ? "ar-JO"
-            : "en-US"
+    /*
+       IMPORTANT:
+       Store a language-independent timestamp.
+    */
+
+    const createdAt =
+        now.toISOString();
+
+
+    /*
+       "created" remains as a compatibility
+       field for older versions.
+    */
+
+    const created =
+        formatDateForLanguage(
+            now,
+            currentLanguage
         );
 
 
@@ -2762,14 +2859,20 @@ function generateCard(){
             notes,
 
         created:
-            created
+            created,
 
+        createdAt:
+            createdAt
     };
 
 
-    /* SAVE TO LOCAL STORAGE */
+    /*
+       SAVE CARD.
 
-    let cards =
+       Language is NOT stored as card data.
+    */
+
+    const cards =
         getStoredCards();
 
 
@@ -2778,10 +2881,10 @@ function generateCard(){
     );
 
 
-    saveStoredCards(cards);
+    saveStoredCards(
+        cards
+    );
 
-
-    /* CREATE CARD */
 
     renderCard(
         currentCardData
@@ -2797,31 +2900,44 @@ function generateCard(){
 
 
     document
-    .getElementById(
-        "generatedCardArea"
-    )
-    .classList.add("show");
+        .getElementById(
+            "generatedCardArea"
+        )
+        .classList.add("show");
 
 
     setTimeout(
-        function(){
+        function() {
 
             document
-            .getElementById(
-                "generatedCardArea"
-            )
-            .scrollIntoView({
-
-                behavior:"smooth",
-
-                block:"start"
-
-            });
+                .getElementById(
+                    "generatedCardArea"
+                )
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
 
         },
         100
     );
+}
 
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDateForLanguage(
+    date,
+    language
+) {
+
+    return date.toLocaleDateString(
+        language === "ar"
+            ? "ar-JO"
+            : "en-US"
+    );
 }
 
 
@@ -2829,59 +2945,67 @@ function generateCard(){
    RENDER CARD
 ===================================================== */
 
-function renderCard(data){
+function renderCard(data) {
 
     currentCardData =
         data;
 
 
-    let employeeNumber =
+    const employeeNumber =
         escapeHTML(
             data.employeeNumber
         );
 
-    let employee =
+
+    const employee =
         escapeHTML(
             data.employee
         );
 
-    let system =
+
+    const system =
         escapeHTML(
             data.system
         );
 
-    let environment =
+
+    const environment =
         escapeHTML(
             translateEnvironment(
                 data.environment
             )
         );
 
-    let accessLevel =
+
+    const accessLevel =
         escapeHTML(
             translateAccessLevel(
                 data.accessLevel
             )
         );
 
-    let url =
+
+    const url =
         escapeHTML(
             data.url || ""
         );
 
-    let notes =
+
+    const notes =
         escapeHTML(
             data.notes || ""
         );
 
-    let cardID =
+
+    const cardID =
         escapeHTML(
             data.cardID
         );
 
-    let created =
+
+    const created =
         escapeHTML(
-            data.created
+            formatCreatedDate(data)
         );
 
 
@@ -2889,199 +3013,200 @@ function renderCard(data){
         "generatedCard"
     ).innerHTML = `
 
-    <div class="generated-card">
+        <div class="generated-card">
 
-        <div class="card-logo">
+            <div class="card-logo">
 
-            <img
-                src="card-logo.png"
-                alt="Card Logo"
-            >
-
-        </div>
-
-
-        <h2>
-            ${t("accessCard")}
-        </h2>
-
-
-        ${
-            data.environment === "Web"
-            ?
-            `
-            <div class="qr-area">
-
-                <div id="qrCode"></div>
+                <img
+                    src="card-logo.png"
+                    alt="Card Logo"
+                >
 
             </div>
-            `
-            :
-            ""
-        }
 
 
-        <div class="info-row">
-
-            <b>
-                ${t("employeeNumber")}
-            </b>
-
-            <br>
-
-            ${employeeNumber}
-
-        </div>
+            <h2>
+                ${t("accessCard")}
+            </h2>
 
 
-        <div class="info-row">
+            ${
+                data.environment === "Web"
+                ?
+                `
+                <div class="qr-area">
 
-            <b>
-                ${t("employee")}
-            </b>
+                    <div id="qrCode"></div>
 
-            <br>
-
-            ${employee}
-
-        </div>
-
-
-        <div class="info-row">
-
-            <b>
-                ${t("system")}
-            </b>
-
-            <br>
-
-            ${system}
-
-        </div>
+                </div>
+                `
+                :
+                ""
+            }
 
 
-        <div class="info-row">
-
-            <b>
-                ${t("environment")}
-            </b>
-
-            <br>
-
-            ${environment}
-
-        </div>
-
-
-        <div class="info-row">
-
-            <b>
-                ${t("accessLevel")}
-            </b>
-
-            <br>
-
-            ${accessLevel}
-
-        </div>
-
-
-        ${
-            data.environment === "Web"
-            ?
-            `
             <div class="info-row">
 
                 <b>
-                    ${t("systemURL")}
+                    ${t("employeeNumber")}
                 </b>
 
                 <br>
 
-                ${url}
+                ${employeeNumber}
 
             </div>
-            `
-            :
-            ""
-        }
 
 
-        ${
-            data.notes
-            ?
-            `
             <div class="info-row">
 
                 <b>
-                    ${t("notes")}
+                    ${t("employee")}
                 </b>
 
                 <br>
 
-                ${notes}
-
-            </div>
-            `
-            :
-            ""
-        }
-
-
-        <div class="access-status">
-
-            ${t("authorized")}
-
-        </div>
-
-
-        <div class="security-notice">
-
-            <div class="security-notice-title">
-
-                ${t("securityTitle")}
+                ${employee}
 
             </div>
 
-            <p>
 
-                ${t("securityText")}
+            <div class="info-row">
 
-            </p>
+                <b>
+                    ${t("system")}
+                </b>
+
+                <br>
+
+                ${system}
+
+            </div>
+
+
+            <div class="info-row">
+
+                <b>
+                    ${t("environment")}
+                </b>
+
+                <br>
+
+                ${environment}
+
+            </div>
+
+
+            <div class="info-row">
+
+                <b>
+                    ${t("accessLevel")}
+                </b>
+
+                <br>
+
+                ${accessLevel}
+
+            </div>
+
+
+            ${
+                data.environment === "Web"
+                ?
+                `
+                <div class="info-row">
+
+                    <b>
+                        ${t("systemURL")}
+                    </b>
+
+                    <br>
+
+                    ${url}
+
+                </div>
+                `
+                :
+                ""
+            }
+
+
+            ${
+                data.notes
+                ?
+                `
+                <div class="info-row">
+
+                    <b>
+                        ${t("notes")}
+                    </b>
+
+                    <br>
+
+                    ${notes}
+
+                </div>
+                `
+                :
+                ""
+            }
+
+
+            <div class="access-status">
+
+                ${t("authorized")}
+
+            </div>
+
+
+            <div class="security-notice">
+
+                <div class="security-notice-title">
+
+                    ${t("securityTitle")}
+
+                </div>
+
+
+                <p>
+
+                    ${t("securityText")}
+
+                </p>
+
+            </div>
+
+
+            <div class="card-footer">
+
+                ${t("createdDate")}
+                ${created}
+
+                <br>
+
+                ${cardID}
+
+            </div>
 
         </div>
-
-
-        <div class="card-footer">
-
-            ${t("createdDate")}
-
-            ${created}
-
-            <br>
-
-            ${cardID}
-
-        </div>
-
-    </div>
-
     `;
 
 
-    if(
+    /*
+       Generate QR again after every language
+       change because the card DOM was rebuilt.
+    */
+
+    if (
         data.environment === "Web" &&
         data.url
-    ){
+    ) {
 
         new QRCode(
-
             document.getElementById(
                 "qrCode"
             ),
-
             {
-
                 text:
                     data.url,
 
@@ -3090,13 +3215,9 @@ function renderCard(data){
 
                 height:
                     110
-
             }
-
         );
-
     }
-
 }
 
 
@@ -3104,33 +3225,32 @@ function renderCard(data){
    TRANSLATE ENVIRONMENT
 ===================================================== */
 
-function translateEnvironment(value){
-
-    if(
-        currentLanguage === "en"
-    ){
-
-        return value;
-
-    }
-
+function translateEnvironment(value) {
 
     const map = {
 
         "Operating System":
-            t("environmentOS"),
+            "environmentOS",
 
         "Desktop":
-            t("environmentDesktop"),
+            "environmentDesktop",
 
         "Web":
-            t("environmentWeb")
-
+            "environmentWeb"
     };
 
 
-    return map[value] || value;
+    if (
+        map[value]
+    ) {
 
+        return t(
+            map[value]
+        );
+    }
+
+
+    return value;
 }
 
 
@@ -3138,36 +3258,35 @@ function translateEnvironment(value){
    TRANSLATE ACCESS LEVEL
 ===================================================== */
 
-function translateAccessLevel(value){
-
-    if(
-        currentLanguage === "en"
-    ){
-
-        return value;
-
-    }
-
+function translateAccessLevel(value) {
 
     const map = {
 
         "View Only":
-            t("accessView"),
+            "accessView",
 
         "Standard User":
-            t("accessStandard"),
+            "accessStandard",
 
         "Advanced User":
-            t("accessAdvanced"),
+            "accessAdvanced",
 
         "Administrator":
-            t("accessAdmin")
-
+            "accessAdmin"
     };
 
 
-    return map[value] || value;
+    if (
+        map[value]
+    ) {
 
+        return t(
+            map[value]
+        );
+    }
+
+
+    return value;
 }
 
 
@@ -3175,35 +3294,29 @@ function translateAccessLevel(value){
    ESCAPE HTML
 ===================================================== */
 
-function escapeHTML(value){
+function escapeHTML(value) {
 
     return String(value)
-
         .replace(
             /&/g,
             "&amp;"
         )
-
         .replace(
             /</g,
             "&lt;"
         )
-
         .replace(
             />/g,
             "&gt;"
         )
-
         .replace(
             /"/g,
             "&quot;"
         )
-
         .replace(
             /'/g,
             "&#039;"
         );
-
 }
 
 
@@ -3211,41 +3324,40 @@ function escapeHTML(value){
    SEARCH PANEL
 ===================================================== */
 
-function showSearch(){
+function showSearch() {
 
     const panel =
         document.getElementById(
             "searchPanel"
         );
 
+
     panel.classList.toggle(
         "show"
     );
 
 
-    if(
-        panel.classList.contains("show")
-    ){
+    if (
+        panel.classList.contains(
+            "show"
+        )
+    ) {
 
         refreshArchive();
 
+
         setTimeout(
-            function(){
+            function() {
 
                 panel.scrollIntoView({
-
-                    behavior:"smooth",
-
-                    block:"start"
-
+                    behavior: "smooth",
+                    block: "start"
                 });
 
             },
             100
         );
-
     }
-
 }
 
 
@@ -3253,17 +3365,18 @@ function showSearch(){
    REFRESH ARCHIVE
 ===================================================== */
 
-function refreshArchive(){
+function refreshArchive() {
 
     updateArchiveCount();
+
 
     const cards =
         getStoredCards();
 
+
     renderSearchResults(
         cards
     );
-
 }
 
 
@@ -3271,16 +3384,14 @@ function refreshArchive(){
    SEARCH KEY
 ===================================================== */
 
-function handleSearchKey(event){
+function handleSearchKey(event) {
 
-    if(
+    if (
         event.key === "Enter"
-    ){
+    ) {
 
         searchCards();
-
     }
-
 }
 
 
@@ -3288,43 +3399,43 @@ function handleSearchKey(event){
    SEARCH CARDS
 ===================================================== */
 
-function searchCards(){
+function searchCards() {
 
     const number =
         document
-        .getElementById(
-            "searchEmployeeNumber"
-        )
-        .value
-        .trim()
-        .toLowerCase();
+            .getElementById(
+                "searchEmployeeNumber"
+            )
+            .value
+            .trim()
+            .toLowerCase();
 
 
     const cards =
         getStoredCards();
 
 
-    if(number === ""){
+    if (
+        number === ""
+    ) {
 
         renderSearchResults(
             cards
         );
 
         return;
-
     }
 
 
     const results =
         cards.filter(
-            function(card){
+            function(card) {
 
                 return String(
                     card.employeeNumber
                 )
-                .toLowerCase()
-                .includes(number);
-
+                    .toLowerCase()
+                    .includes(number);
             }
         );
 
@@ -3332,7 +3443,6 @@ function searchCards(){
     renderSearchResults(
         results
     );
-
 }
 
 
@@ -3340,7 +3450,7 @@ function searchCards(){
    RENDER SEARCH RESULTS
 ===================================================== */
 
-function renderSearchResults(cards){
+function renderSearchResults(cards) {
 
     const container =
         document.getElementById(
@@ -3348,7 +3458,9 @@ function renderSearchResults(cards){
         );
 
 
-    if(!cards.length){
+    if (
+        !cards.length
+    ) {
 
         container.innerHTML = `
 
@@ -3363,116 +3475,127 @@ function renderSearchResults(cards){
                 }
 
             </div>
-
         `;
 
         return;
-
     }
 
 
     container.innerHTML =
         cards.map(
+            function(card) {
 
-            function(card){
+                /*
+                   We use the raw cardID internally.
+                   It is escaped before inserting into
+                   HTML attribute context.
+                */
+
+                const safeID =
+                    escapeHTML(
+                        card.cardID
+                    );
+
 
                 return `
 
-                <div class="search-result">
+                    <div class="search-result">
 
-                    <div class="search-result-header">
+                        <div class="search-result-header">
 
-                        <div class="search-result-title">
+                            <div class="search-result-title">
+
+                                ${escapeHTML(
+                                    card.employee
+                                )}
+
+                            </div>
+
+
+                            <div class="search-result-id">
+
+                                ${safeID}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="search-result-info">
+
+                            <strong>
+                                ${t("employeeNumber")}:
+                            </strong>
 
                             ${escapeHTML(
-                                card.employee
+                                card.employeeNumber
+                            )}
+
+                            <br>
+
+
+                            <strong>
+                                ${t("system")}:
+                            </strong>
+
+                            ${escapeHTML(
+                                card.system
+                            )}
+
+                            <br>
+
+
+                            <strong>
+                                ${t("accessLevel")}:
+                            </strong>
+
+                            ${escapeHTML(
+                                translateAccessLevel(
+                                    card.accessLevel
+                                )
+                            )}
+
+                            <br>
+
+
+                            <strong>
+                                ${t("createdDate")}
+                            </strong>
+
+                            ${escapeHTML(
+                                formatCreatedDate(card)
                             )}
 
                         </div>
 
-                        <div class="search-result-id">
 
-                            ${escapeHTML(
-                                card.cardID
-                            )}
+                        <div class="search-result-buttons">
+
+                            <button
+                                class="result-btn view"
+                                onclick="viewStoredCard('${safeID}')"
+                            >
+
+                                ${t("view")}
+
+                            </button>
+
+
+                            <button
+                                class="result-btn delete"
+                                onclick="deleteCard('${safeID}')"
+                            >
+
+                                ${t("delete")}
+
+                            </button>
 
                         </div>
 
                     </div>
-
-
-                    <div class="search-result-info">
-
-                        <strong>
-                            ${t("employeeNumber")}:
-                        </strong>
-
-                        ${escapeHTML(
-                            card.employeeNumber
-                        )}
-
-                        <br>
-
-                        <strong>
-                            ${t("system")}:
-                        </strong>
-
-                        ${escapeHTML(
-                            card.system
-                        )}
-
-                        <br>
-
-                        <strong>
-                            ${t("accessLevel")}:
-                        </strong>
-
-                        ${escapeHTML(
-                            translateAccessLevel(
-                                card.accessLevel
-                            )
-                        )}
-
-                        <br>
-
-                        <strong>
-                            ${t("createdDate")}
-                        </strong>
-
-                        ${escapeHTML(
-                            card.created
-                        )}
-
-                    </div>
-
-
-                    <div class="search-result-buttons">
-
-                        <button
-                            class="result-btn view"
-                            onclick="viewStoredCard('${escapeHTML(card.cardID)}')"
-                        >
-                            ${t("view")}
-                        </button>
-
-
-                        <button
-                            class="result-btn delete"
-                            onclick="deleteCard('${escapeHTML(card.cardID)}')"
-                        >
-                            ${t("delete")}
-                        </button>
-
-                    </div>
-
-                </div>
-
                 `;
-
             }
-
         ).join("");
-
 }
 
 
@@ -3480,7 +3603,7 @@ function renderSearchResults(cards){
    VIEW STORED CARD
 ===================================================== */
 
-function viewStoredCard(cardID){
+function viewStoredCard(cardID) {
 
     const cards =
         getStoredCards();
@@ -3488,19 +3611,21 @@ function viewStoredCard(cardID){
 
     const card =
         cards.find(
-            function(item){
+            function(item) {
 
                 return item.cardID === cardID;
-
             }
         );
 
 
-    if(!card){
+    if (!card) {
 
         return;
-
     }
+
+
+    currentCardData =
+        card;
 
 
     renderCard(
@@ -3509,31 +3634,27 @@ function viewStoredCard(cardID){
 
 
     document
-    .getElementById(
-        "generatedCardArea"
-    )
-    .classList.add("show");
+        .getElementById(
+            "generatedCardArea"
+        )
+        .classList.add("show");
 
 
     setTimeout(
-        function(){
+        function() {
 
             document
-            .getElementById(
-                "generatedCardArea"
-            )
-            .scrollIntoView({
-
-                behavior:"smooth",
-
-                block:"start"
-
-            });
+                .getElementById(
+                    "generatedCardArea"
+                )
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
 
         },
         100
     );
-
 }
 
 
@@ -3541,16 +3662,15 @@ function viewStoredCard(cardID){
    DELETE CARD
 ===================================================== */
 
-function deleteCard(cardID){
+function deleteCard(cardID) {
 
-    if(
+    if (
         !confirm(
             t("deleteConfirm")
         )
-    ){
+    ) {
 
         return;
-
     }
 
 
@@ -3560,10 +3680,9 @@ function deleteCard(cardID){
 
     cards =
         cards.filter(
-            function(card){
+            function(card) {
 
                 return card.cardID !== cardID;
-
             }
         );
 
@@ -3575,37 +3694,39 @@ function deleteCard(cardID){
 
     updateArchiveCount();
 
+
     renderSearchResults(
         cards
     );
 
 
-    if(
+    if (
         currentCardData &&
         currentCardData.cardID === cardID
-    ){
+    ) {
 
-        currentCardData = null;
+        currentCardData =
+            null;
 
-        document
-        .getElementById(
-            "generatedCard"
-        )
-        .innerHTML = "";
 
         document
-        .getElementById(
-            "generatedCardArea"
-        )
-        .classList.remove("show");
+            .getElementById(
+                "generatedCard"
+            )
+            .innerHTML = "";
 
+
+        document
+            .getElementById(
+                "generatedCardArea"
+            )
+            .classList.remove("show");
     }
 
 
     showSuccessToast(
         t("cardDeleted")
     );
-
 }
 
 
@@ -3613,31 +3734,31 @@ function deleteCard(cardID){
    DELETE ALL
 ===================================================== */
 
-function deleteAllCards(){
+function deleteAllCards() {
 
     const cards =
         getStoredCards();
 
 
-    if(!cards.length){
+    if (
+        !cards.length
+    ) {
 
         alert(
             t("noCards")
         );
 
         return;
-
     }
 
 
-    if(
+    if (
         !confirm(
             t("deleteAllConfirm")
         )
-    ){
+    ) {
 
         return;
-
     }
 
 
@@ -3646,24 +3767,26 @@ function deleteAllCards(){
     );
 
 
-    currentCardData = null;
+    currentCardData =
+        null;
 
 
     document
-    .getElementById(
-        "generatedCard"
-    )
-    .innerHTML = "";
+        .getElementById(
+            "generatedCard"
+        )
+        .innerHTML = "";
 
 
     document
-    .getElementById(
-        "generatedCardArea"
-    )
-    .classList.remove("show");
+        .getElementById(
+            "generatedCardArea"
+        )
+        .classList.remove("show");
 
 
     updateArchiveCount();
+
 
     renderSearchResults(
         []
@@ -3673,7 +3796,6 @@ function deleteAllCards(){
     showSuccessToast(
         t("allCardsDeleted")
     );
-
 }
 
 
@@ -3681,43 +3803,39 @@ function deleteAllCards(){
    MODAL
 ===================================================== */
 
-function openCardModal(){
+function openCardModal() {
 
     document
-    .getElementById(
-        "cardModal"
-    )
-    .classList.add("show");
-
+        .getElementById(
+            "cardModal"
+        )
+        .classList.add("show");
 }
 
 
-function closeCardModal(){
+function closeCardModal() {
 
     document
-    .getElementById(
-        "cardModal"
-    )
-    .classList.remove("show");
-
+        .getElementById(
+            "cardModal"
+        )
+        .classList.remove("show");
 }
 
 
-function handleModalBackgroundClick(event){
+function handleModalBackgroundClick(
+    event
+) {
 
-    if(
-
+    if (
         event.target ===
         document.getElementById(
             "cardModal"
         )
-
-    ){
+    ) {
 
         closeCardModal();
-
     }
-
 }
 
 
@@ -3725,9 +3843,11 @@ function handleModalBackgroundClick(event){
    TOAST
 ===================================================== */
 
-function showSuccessToast(message){
+function showSuccessToast(
+    message
+) {
 
-    let toast =
+    const toast =
         document.getElementById(
             "successToast"
         );
@@ -3749,7 +3869,7 @@ function showSuccessToast(message){
 
     toastTimer =
         setTimeout(
-            function(){
+            function() {
 
                 toast.classList.remove(
                     "show"
@@ -3758,7 +3878,6 @@ function showSuccessToast(message){
             },
             3500
         );
-
 }
 
 
@@ -3766,66 +3885,58 @@ function showSuccessToast(message){
    SAVE IMAGE
 ===================================================== */
 
-async function saveCardAsImage(){
+async function saveCardAsImage() {
 
-    let card =
+    const card =
         document.querySelector(
             ".generated-card"
         );
 
 
-    if(!card){
+    if (!card) {
 
         alert(
             t("createFirst")
         );
 
         return;
-
     }
 
 
     closeCardModal();
 
 
-    try{
+    try {
 
-        let canvas =
+        const canvas =
             await html2canvas(
-
                 card,
-
                 {
+                    scale: 3,
 
-                    scale:3,
+                    useCORS: true,
 
-                    useCORS:true,
-
-                    allowTaint:false,
+                    allowTaint: false,
 
                     backgroundColor:
                         "#ffffff",
 
                     imageTimeout:
                         15000
-
                 }
-
             );
 
 
-        let link =
+        const link =
             document.createElement(
                 "a"
             );
 
 
-        let cardID =
+        const cardID =
             currentCardData
-            ?
-            currentCardData.cardID
-            :
-            "Iftaa-Access-Card";
+                ? currentCardData.cardID
+                : "Iftaa-Access-Card";
 
 
         link.download =
@@ -3846,19 +3957,14 @@ async function saveCardAsImage(){
         );
 
     }
+    catch (error) {
 
-    catch(error){
-
-        console.error(
-            error
-        );
+        console.error(error);
 
         alert(
             t("imageError")
         );
-
     }
-
 }
 
 
@@ -3866,55 +3972,49 @@ async function saveCardAsImage(){
    SAVE PDF
 ===================================================== */
 
-async function saveCardAsPDF(){
+async function saveCardAsPDF() {
 
-    let card =
+    const card =
         document.querySelector(
             ".generated-card"
         );
 
 
-    if(!card){
+    if (!card) {
 
         alert(
             t("createFirst")
         );
 
         return;
-
     }
 
 
     closeCardModal();
 
 
-    try{
+    try {
 
-        let canvas =
+        const canvas =
             await html2canvas(
-
                 card,
-
                 {
+                    scale: 3,
 
-                    scale:3,
+                    useCORS: true,
 
-                    useCORS:true,
-
-                    allowTaint:false,
+                    allowTaint: false,
 
                     backgroundColor:
                         "#ffffff",
 
                     imageTimeout:
                         15000
-
                 }
-
             );
 
 
-        let imageData =
+        const imageData =
             canvas.toDataURL(
                 "image/png"
             );
@@ -3926,61 +4026,60 @@ async function saveCardAsPDF(){
             window.jspdf;
 
 
-        let cardWidth =
+        const cardWidth =
             90;
 
-        let cardHeight =
+
+        const cardHeight =
             55;
 
 
-        let pdf =
+        const pdf =
             new jsPDF({
-
                 orientation:
                     "landscape",
 
                 unit:
                     "mm",
 
-                format:[
+                format: [
                     cardWidth,
                     cardHeight
                 ]
-
             });
 
 
-        let imageRatio =
+        const imageRatio =
             canvas.width /
             canvas.height;
 
 
-        let pdfRatio =
+        const pdfRatio =
             cardWidth /
             cardHeight;
 
 
         let imageWidth;
-
         let imageHeight;
-
         let x;
-
         let y;
 
 
-        if(
+        if (
             imageRatio > pdfRatio
-        ){
+        ) {
 
             imageWidth =
                 cardWidth;
+
 
             imageHeight =
                 cardWidth /
                 imageRatio;
 
+
             x = 0;
+
 
             y =
                 (
@@ -3989,15 +4088,16 @@ async function saveCardAsPDF(){
                 ) / 2;
 
         }
-
-        else{
+        else {
 
             imageHeight =
                 cardHeight;
 
+
             imageWidth =
                 cardHeight *
                 imageRatio;
+
 
             x =
                 (
@@ -4005,38 +4105,27 @@ async function saveCardAsPDF(){
                     imageWidth
                 ) / 2;
 
-            y = 0;
 
+            y = 0;
         }
 
 
         pdf.addImage(
-
             imageData,
-
             "PNG",
-
             x,
-
             y,
-
             imageWidth,
-
             imageHeight,
-
             undefined,
-
             "FAST"
-
         );
 
 
-        let cardID =
+        const cardID =
             currentCardData
-            ?
-            currentCardData.cardID
-            :
-            "Iftaa-Access-Card";
+                ? currentCardData.cardID
+                : "Iftaa-Access-Card";
 
 
         pdf.save(
@@ -4049,23 +4138,17 @@ async function saveCardAsPDF(){
         );
 
     }
+    catch (error) {
 
-    catch(error){
-
-        console.error(
-            error
-        );
+        console.error(error);
 
         alert(
             t("pdfError")
         );
-
     }
-
 }
 
 </script>
-
 </body>
 
 </html>
