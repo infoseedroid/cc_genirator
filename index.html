@@ -19,7 +19,6 @@
 <!-- PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-
 <style>
 
 /* =====================================================
@@ -29,10 +28,10 @@
 *{
     box-sizing:border-box;
     font-family:
-    "Segoe UI",
-    Tahoma,
-    Arial,
-    sans-serif;
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
 }
 
 body{
@@ -99,7 +98,17 @@ body.rtl .language-switcher{
     justify-content:center;
     align-items:center;
     z-index:99999;
-    transition:opacity .6s ease;
+    opacity:1;
+    visibility:visible;
+    transition:
+        opacity .6s ease,
+        visibility .6s ease;
+}
+
+#splashScreen.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
 }
 
 .splash-content{
@@ -137,23 +146,18 @@ body.rtl .language-switcher{
 }
 
 @keyframes spin{
-
     from{
         transform:rotate(0deg);
     }
-
     to{
         transform:rotate(360deg);
     }
-
 }
 
 @keyframes pulse{
-
     50%{
         transform:scale(1.08);
     }
-
 }
 
 
@@ -232,45 +236,30 @@ body.rtl .language-switcher{
 input,
 textarea,
 select{
-
     width:100%;
     padding:13px;
-
     border-radius:10px;
-
     border:1px solid #ccc;
-
     font-size:15px;
-
     outline:none;
-
 }
 
 input:focus,
 textarea:focus,
 select:focus{
-
     border-color:#0b6b4a;
-
     box-shadow:
-    0 0 5px rgba(11,107,74,.3);
-
+        0 0 5px rgba(11,107,74,.3);
 }
 
 textarea{
-
     height:90px;
-
     resize:none;
-
 }
 
 select{
-
     background:white;
-
     cursor:pointer;
-
 }
 
 
@@ -280,49 +269,31 @@ select{
 
 .create-btn,
 .search-btn{
-
     width:100%;
-
     padding:15px;
-
     border:none;
-
     border-radius:12px;
-
     margin-top:20px;
-
     font-size:16px;
-
     cursor:pointer;
-
 }
 
 .create-btn{
-
     background:#0b6b4a;
-
     color:white;
-
 }
 
 .search-btn{
-
     background:#555;
-
     color:white;
-
 }
 
 .create-btn:hover{
-
     background:#095a3e;
-
 }
 
 .search-btn:hover{
-
     background:#444;
-
 }
 
 
@@ -331,21 +302,14 @@ select{
 ===================================================== */
 
 .generated-card-area{
-
     display:none;
-
     margin-top:35px;
-
     padding-top:30px;
-
     border-top:2px solid #e5ebe8;
-
 }
 
 .generated-card-area.show{
-
     display:block;
-
 }
 
 
@@ -354,26 +318,16 @@ select{
 ===================================================== */
 
 .generated-card{
-
     width:100%;
-
     max-width:650px;
-
     margin:0 auto;
-
     background:#ffffff;
-
     border-radius:16px;
-
     padding:20px;
-
     box-shadow:
-    0 5px 18px rgba(0,0,0,.15);
-
+        0 5px 18px rgba(0,0,0,.15);
     border:1px solid #e1e8e5;
-
     text-align:center;
-
 }
 
 
@@ -382,35 +336,21 @@ select{
 ===================================================== */
 
 .card-logo{
-
     width:100%;
-
     height:90px;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     margin-bottom:12px;
-
     overflow:hidden;
-
 }
 
 .card-logo img{
-
     width:auto;
-
     height:100%;
-
     max-width:80%;
-
     object-fit:contain;
-
     display:block;
-
 }
 
 
@@ -419,13 +359,9 @@ select{
 ===================================================== */
 
 .generated-card h2{
-
     color:#0b6b4a;
-
     margin:8px 0 18px;
-
     font-size:21px;
-
 }
 
 
@@ -434,25 +370,16 @@ select{
 ===================================================== */
 
 .qr-area{
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     margin:10px 0 18px;
-
 }
 
 #qrCode{
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
 }
 
 
@@ -461,29 +388,18 @@ select{
 ===================================================== */
 
 .info-row{
-
     text-align:left;
-
     background:#f6f8f7;
-
     border-radius:9px;
-
     padding:9px 12px;
-
     margin-top:8px;
-
     line-height:1.45;
-
     word-break:break-word;
-
     font-size:13px;
-
 }
 
 .info-row b{
-
     color:#0b6b4a;
-
 }
 
 
@@ -492,23 +408,14 @@ select{
 ===================================================== */
 
 .access-status{
-
     margin-top:10px;
-
     padding:8px 12px;
-
     border-radius:9px;
-
     background:#eaf6ef;
-
     color:#0b6b4a;
-
     font-size:13px;
-
     font-weight:700;
-
     text-align:center;
-
 }
 
 
@@ -517,43 +424,26 @@ select{
 ===================================================== */
 
 .security-notice{
-
     margin-top:12px;
-
     padding:11px;
-
     background:#fff8e6;
-
     border:1px solid #ead9a6;
-
     border-radius:10px;
-
     text-align:left;
-
 }
 
 .security-notice-title{
-
     font-weight:700;
-
     color:#8a6500;
-
     font-size:13px;
-
     margin-bottom:6px;
-
 }
 
 .security-notice p{
-
     margin:0;
-
     color:#6b5500;
-
     font-size:11px;
-
     line-height:1.5;
-
 }
 
 
@@ -562,17 +452,11 @@ select{
 ===================================================== */
 
 .card-footer{
-
     margin-top:12px;
-
     padding-top:10px;
-
     border-top:1px solid #ddd;
-
     color:#666;
-
     font-size:11px;
-
 }
 
 
@@ -581,59 +465,35 @@ select{
 ===================================================== */
 
 .card-actions{
-
     position:relative;
-
     width:100%;
-
     max-width:650px;
-
     margin:15px auto 0;
-
     text-align:center;
-
 }
 
 .more-btn{
-
     border:none;
-
     background:#555;
-
     color:white;
-
     padding:10px 22px;
-
     border-radius:10px;
-
     font-size:15px;
-
     cursor:pointer;
-
     display:inline-flex;
-
     align-items:center;
-
     justify-content:center;
-
     gap:8px;
-
 }
 
 .more-btn:hover{
-
     background:#444;
-
 }
 
 .more-dots{
-
     font-size:22px;
-
     font-weight:bold;
-
     line-height:15px;
-
 }
 
 
@@ -642,187 +502,109 @@ select{
 ===================================================== */
 
 .card-modal{
-
     display:none;
-
     position:fixed;
-
     top:0;
-
     left:0;
-
     width:100%;
-
     height:100%;
-
     background:rgba(0,0,0,.55);
-
     z-index:999999;
-
     align-items:center;
-
     justify-content:center;
-
     padding:20px;
-
 }
 
 .card-modal.show{
-
     display:flex;
-
 }
 
 .card-modal-box{
-
     width:100%;
-
     max-width:390px;
-
     background:white;
-
     border-radius:20px;
-
     padding:25px;
-
     box-shadow:
-    0 15px 45px rgba(0,0,0,.30);
-
+        0 15px 45px rgba(0,0,0,.30);
 }
 
 .card-modal-header{
-
     text-align:center;
-
     margin-bottom:20px;
-
 }
 
 .card-modal-header h3{
-
     margin:0;
-
     color:#0b6b4a;
-
     font-size:21px;
-
 }
 
 .card-modal-header p{
-
     margin:7px 0 0;
-
     color:#777;
-
     font-size:13px;
-
 }
 
 .card-modal-option{
-
     width:100%;
-
     border:none;
-
     background:#f6f8f7;
-
     border-radius:12px;
-
     padding:14px;
-
     margin-top:10px;
-
     display:flex;
-
     align-items:center;
-
     gap:14px;
-
     font-size:15px;
-
     text-align:left;
-
     cursor:pointer;
-
 }
 
 body.rtl .card-modal-option{
-
     text-align:right;
-
 }
 
 .card-modal-icon{
-
     width:44px;
-
     height:44px;
-
     border-radius:11px;
-
     background:white;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     font-size:22px;
-
     box-shadow:
-    0 2px 6px rgba(0,0,0,.08);
-
+        0 2px 6px rgba(0,0,0,.08);
     flex-shrink:0;
-
 }
 
 .card-modal-text{
-
     flex:1;
-
 }
 
 .card-modal-text strong{
-
     display:block;
-
     color:#222;
-
     font-size:15px;
-
 }
 
 .card-modal-text small{
-
     display:block;
-
     color:#777;
-
     margin-top:3px;
-
     font-size:12px;
-
 }
 
 .card-modal-close{
-
     width:100%;
-
     border:none;
-
     background:transparent;
-
     color:#666;
-
     padding:12px;
-
     margin-top:10px;
-
     font-size:14px;
-
     cursor:pointer;
-
 }
 
 
@@ -831,227 +613,136 @@ body.rtl .card-modal-option{
 ===================================================== */
 
 .search-panel{
-
     display:none;
-
     margin-top:30px;
-
     padding-top:25px;
-
     border-top:2px solid #e5ebe8;
-
 }
 
 .search-panel.show{
-
     display:block;
-
 }
 
 .archive-header{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     gap:10px;
-
     flex-wrap:wrap;
-
     margin-bottom:15px;
-
 }
 
 .archive-count{
-
     background:#eaf6ef;
-
     color:#0b6b4a;
-
     padding:8px 14px;
-
     border-radius:20px;
-
     font-size:13px;
-
     font-weight:700;
-
 }
 
 .archive-actions{
-
     display:flex;
-
     gap:8px;
-
 }
 
 .archive-small-btn{
-
     border:none;
-
     padding:8px 12px;
-
     border-radius:8px;
-
     cursor:pointer;
-
     background:#555;
-
     color:white;
-
     font-size:12px;
-
 }
 
 .archive-small-btn.delete-all{
-
     background:#b42318;
-
 }
 
 .search-input-row{
-
     display:flex;
-
     gap:10px;
-
 }
 
 .search-input-row input{
-
     flex:1;
-
 }
 
 .search-input-row button{
-
     border:none;
-
     border-radius:10px;
-
     padding:0 20px;
-
     background:#0b6b4a;
-
     color:white;
-
     cursor:pointer;
-
 }
 
 .search-results{
-
     margin-top:20px;
-
 }
 
 .search-result{
-
     background:#f6f8f7;
-
     border:1px solid #e0e7e3;
-
     border-radius:12px;
-
     padding:14px;
-
     margin-top:10px;
-
 }
 
 .search-result-header{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     gap:10px;
-
 }
 
 .search-result-title{
-
     font-weight:700;
-
     color:#0b6b4a;
-
 }
 
 .search-result-id{
-
     font-size:11px;
-
     color:#777;
-
 }
 
 .search-result-info{
-
     margin-top:8px;
-
     font-size:13px;
-
     line-height:1.6;
-
 }
 
 .search-result-buttons{
-
     display:flex;
-
     gap:8px;
-
     margin-top:12px;
-
 }
 
 .result-btn{
-
     border:none;
-
     padding:8px 12px;
-
     border-radius:8px;
-
     cursor:pointer;
-
     font-size:12px;
-
 }
 
 .result-btn.view{
-
     background:#0b6b4a;
-
     color:white;
-
 }
 
 .result-btn.delete{
-
     background:#b42318;
-
     color:white;
-
 }
 
 .no-results{
-
     text-align:center;
-
     padding:20px;
-
     color:#777;
-
     background:#f8f8f8;
-
     border-radius:10px;
-
 }
 
 
@@ -1060,61 +751,38 @@ body.rtl .card-modal-option{
 ===================================================== */
 
 #successToast{
-
     position:fixed;
-
     left:50%;
-
     bottom:30px;
-
     transform:
-    translateX(-50%)
-    translateY(30px);
-
+        translateX(-50%)
+        translateY(30px);
     background:#0b6b4a;
-
     color:white;
-
     padding:14px 22px;
-
     border-radius:12px;
-
     font-size:14px;
-
     font-weight:500;
-
     box-shadow:
-    0 6px 20px rgba(0,0,0,.25);
-
+        0 6px 20px rgba(0,0,0,.25);
     opacity:0;
-
     visibility:hidden;
-
     transition:
-    opacity .3s ease,
-    transform .3s ease,
-    visibility .3s ease;
-
+        opacity .3s ease,
+        transform .3s ease,
+        visibility .3s ease;
     z-index:1000000;
-
     text-align:center;
-
     min-width:260px;
-
     max-width:90%;
-
 }
 
 #successToast.show{
-
     opacity:1;
-
     visibility:visible;
-
     transform:
-    translateX(-50%)
-    translateY(0);
-
+        translateX(-50%)
+        translateY(0);
 }
 
 
@@ -1125,135 +793,89 @@ body.rtl .card-modal-option{
 @media(max-width:600px){
 
     .container{
-
         padding:12px;
-
     }
 
     .box{
-
         padding:18px;
-
         border-radius:15px;
-
     }
 
     .header{
-
         padding:20px 15px;
-
     }
 
     .header img{
-
         width:75px;
-
         height:75px;
-
     }
 
     .header h1{
-
         font-size:22px;
-
     }
 
     .header p{
-
         font-size:13px;
-
     }
 
     .section-title{
-
         font-size:20px;
-
     }
 
     .generated-card{
-
         padding:15px;
-
         border-radius:14px;
-
     }
 
     .card-logo{
-
         height:80px;
-
     }
 
     .generated-card h2{
-
         font-size:19px;
-
     }
 
     .info-row{
-
         font-size:12px;
-
     }
 
     .security-notice{
-
         padding:9px;
-
     }
 
     .security-notice-title{
-
         font-size:12px;
-
     }
 
     .security-notice p{
-
         font-size:10px;
-
     }
 
     .card-footer{
-
         font-size:10px;
-
     }
 
     .search-input-row{
-
         flex-direction:column;
-
     }
 
     .search-input-row button{
-
         padding:13px;
-
     }
 
     .search-result-header{
-
         flex-direction:column;
-
         align-items:flex-start;
-
     }
 
     .language-switcher{
-
         top:12px;
-
         right:12px;
-
     }
 
     body.rtl .language-switcher{
-
         left:12px;
-
         right:auto;
-
     }
 
 }
@@ -1266,26 +888,18 @@ body.rtl .card-modal-option{
 @media print{
 
     body *{
-
         visibility:hidden;
-
     }
 
     .generated-card,
     .generated-card *{
-
         visibility:visible;
-
     }
 
     .generated-card{
-
         position:absolute;
-
         left:0;
-
         top:0;
-
     }
 
 }
@@ -1309,6 +923,7 @@ body.rtl .card-modal-option{
         <img
             src="logo.png"
             class="splash-logo"
+            alt="Iftaa Logo"
         >
 
         <h1 id="splashTitle">
@@ -1344,7 +959,10 @@ body.rtl .card-modal-option{
 
     </div>
 
-    <img src="logo.png">
+    <img
+        src="logo.png"
+        alt="Iftaa Logo"
+    >
 
     <h1 id="mainTitle">
         Iftaa Systems Access Card
@@ -1365,11 +983,12 @@ body.rtl .card-modal-option{
 
 <div class="box">
 
+
 <h2
     class="section-title"
     id="createTitle"
 >
-Create Access Card
+    Create Access Card
 </h2>
 
 
@@ -1378,7 +997,7 @@ Create Access Card
 <div class="form-group">
 
 <label id="employeeNumberLabel">
-Employee Number
+    Employee Number
 </label>
 
 <input
@@ -1395,7 +1014,7 @@ Employee Number
 <div class="form-group">
 
 <label id="employeeNameLabel">
-Employee Name
+    Employee Name
 </label>
 
 <input
@@ -1412,7 +1031,7 @@ Employee Name
 <div class="form-group">
 
 <label id="systemNameLabel">
-System Name
+    System Name
 </label>
 
 <input
@@ -1429,7 +1048,7 @@ System Name
 <div class="form-group">
 
 <label id="environmentLabel">
-System Environment
+    System Environment
 </label>
 
 <select
@@ -1437,20 +1056,32 @@ System Environment
     onchange="changeEnvironment()"
 >
 
-<option value="" id="environmentPlaceholder">
-Select system environment
+<option
+    value=""
+    id="environmentPlaceholder"
+>
+    Select system environment
 </option>
 
-<option value="Operating System" id="environmentOS">
-Operating System
+<option
+    value="Operating System"
+    id="environmentOS"
+>
+    Operating System
 </option>
 
-<option value="Desktop" id="environmentDesktop">
-Desktop App
+<option
+    value="Desktop"
+    id="environmentDesktop"
+>
+    Desktop App
 </option>
 
-<option value="Web" id="environmentWeb">
-Web App
+<option
+    value="Web"
+    id="environmentWeb"
+>
+    Web App
 </option>
 
 </select>
@@ -1463,29 +1094,44 @@ Web App
 <div class="form-group">
 
 <label id="accessLevelLabel">
-Access Level
+    Access Level
 </label>
 
 <select id="accessLevel">
 
-<option value="" id="accessPlaceholder">
-Select access level
+<option
+    value=""
+    id="accessPlaceholder"
+>
+    Select access level
 </option>
 
-<option value="View Only" id="accessView">
-View Only
+<option
+    value="View Only"
+    id="accessView"
+>
+    View Only
 </option>
 
-<option value="Standard User" id="accessStandard">
-Standard User
+<option
+    value="Standard User"
+    id="accessStandard"
+>
+    Standard User
 </option>
 
-<option value="Advanced User" id="accessAdvanced">
-Advanced User
+<option
+    value="Advanced User"
+    id="accessAdvanced"
+>
+    Advanced User
 </option>
 
-<option value="Administrator" id="accessAdmin">
-Administrator
+<option
+    value="Administrator"
+    id="accessAdmin"
+>
+    Administrator
 </option>
 
 </select>
@@ -1502,7 +1148,7 @@ Administrator
 >
 
 <label id="systemUrlLabel">
-System URL
+    System URL
 </label>
 
 <input
@@ -1519,7 +1165,7 @@ System URL
 <div class="form-group">
 
 <label id="notesLabel">
-Notes
+    Notes
 </label>
 
 <textarea
@@ -1537,7 +1183,7 @@ Notes
     onclick="generateCard()"
     id="createButton"
 >
-Create Access Card
+    Create Access Card
 </button>
 
 
@@ -1548,7 +1194,7 @@ Create Access Card
     onclick="showSearch()"
     id="searchButton"
 >
-Search / Query
+    Search / Query
 </button>
 
 
@@ -1601,7 +1247,7 @@ Search / Query
             class="archive-count"
             id="archiveCount"
         >
-            0 Cards Saved
+            Saved Cards: 0 Cards
         </div>
 
         <div class="archive-actions">
@@ -1679,14 +1325,15 @@ Search / Query
 
 <div class="card-modal-box">
 
+
 <div class="card-modal-header">
 
 <h3 id="modalTitle">
-Card Options
+    Card Options
 </h3>
 
 <p id="modalSubtitle">
-Choose an action for this access card
+    Choose an action for this access card
 </p>
 
 </div>
@@ -1701,17 +1348,17 @@ Choose an action for this access card
 >
 
 <div class="card-modal-icon">
-🖼️
+    🖼️
 </div>
 
 <div class="card-modal-text">
 
 <strong id="saveImageTitle">
-Save as Image
+    Save as Image
 </strong>
 
 <small id="saveImageDescription">
-Save the access card as a PNG image
+    Save the access card as a PNG image
 </small>
 
 </div>
@@ -1728,17 +1375,17 @@ Save the access card as a PNG image
 >
 
 <div class="card-modal-icon">
-📄
+    📄
 </div>
 
 <div class="card-modal-text">
 
 <strong id="savePDFTitle">
-Save as PDF
+    Save as PDF
 </strong>
 
 <small id="savePDFDescription">
-Create and save a PDF access card
+    Create and save a PDF access card
 </small>
 
 </div>
@@ -1754,8 +1401,9 @@ Create and save a PDF access card
     onclick="closeCardModal()"
     id="cancelButton"
 >
-Cancel
+    Cancel
 </button>
+
 
 </div>
 
@@ -1770,17 +1418,19 @@ Cancel
 
 
 <script>
-<script>
 
 /* =====================================================
    GLOBAL
 ===================================================== */
 
 let selectedEnvironment = "";
-let toastTimer;
+
+let toastTimer = null;
+
 let currentCardData = null;
 
 const STORAGE_KEY = "iftaaAccessCards";
+
 const LANGUAGE_KEY = "iftaaAccessLanguage";
 
 
@@ -1792,75 +1442,122 @@ const translations = {
 
     en: {
 
-        splashTitle: "Iftaa Systems Access Card",
-        splashLoading: "Loading System...",
+        splashTitle:
+            "Iftaa Systems Access Card",
 
-        mainTitle: "Iftaa Systems Access Card",
+        splashLoading:
+            "Loading System...",
+
+        mainTitle:
+            "Iftaa Systems Access Card",
+
         mainSubtitle:
             "Systems Access Authorization Management Tool",
 
-        languageButton: "العربية",
+        languageButton:
+            "العربية",
 
-        createTitle: "Create Access Card",
+        createTitle:
+            "Create Access Card",
 
-        employeeNumberLabel: "Employee Number",
+        employeeNumberLabel:
+            "Employee Number",
+
         employeeNumberPlaceholder:
             "Enter employee number",
 
-        employeeNameLabel: "Employee Name",
+        employeeNameLabel:
+            "Employee Name",
+
         employeeNamePlaceholder:
             "Enter employee name",
 
-        systemNameLabel: "System Name",
+        systemNameLabel:
+            "System Name",
+
         systemNamePlaceholder:
             "Enter system name",
 
-        environmentLabel: "System Environment",
+        environmentLabel:
+            "System Environment",
+
         environmentPlaceholder:
             "Select system environment",
 
-        environmentOS: "Operating System",
-        environmentDesktop: "Desktop App",
-        environmentWeb: "Web App",
+        environmentOS:
+            "Operating System",
 
-        accessLevelLabel: "Access Level",
+        environmentDesktop:
+            "Desktop App",
+
+        environmentWeb:
+            "Web App",
+
+        accessLevelLabel:
+            "Access Level",
+
         accessPlaceholder:
             "Select access level",
 
-        accessView: "View Only",
-        accessStandard: "Standard User",
-        accessAdvanced: "Advanced User",
-        accessAdmin: "Administrator",
+        accessView:
+            "View Only",
 
-        systemUrlLabel: "System URL",
+        accessStandard:
+            "Standard User",
+
+        accessAdvanced:
+            "Advanced User",
+
+        accessAdmin:
+            "Administrator",
+
+        systemUrlLabel:
+            "System URL",
+
         systemUrlPlaceholder:
             "Paste web system URL here",
 
-        notesLabel: "Notes",
+        notesLabel:
+            "Notes",
+
         notesPlaceholder:
             "Enter notes",
 
-        createButton: "Create Access Card",
-        searchButton: "Search / Query",
+        createButton:
+            "Create Access Card",
 
-        moreButtonText: "More",
+        searchButton:
+            "Search / Query",
 
-        modalTitle: "Card Options",
+        moreButtonText:
+            "More",
+
+        modalTitle:
+            "Card Options",
+
         modalSubtitle:
             "Choose an action for this access card",
 
-        saveImageTitle: "Save as Image",
+        saveImageTitle:
+            "Save as Image",
+
         saveImageDescription:
             "Save the access card as a PNG image",
 
-        savePDFTitle: "Save as PDF",
+        savePDFTitle:
+            "Save as PDF",
+
         savePDFDescription:
             "Create and save a PDF access card",
 
-        cancelButton: "Cancel",
+        cancelButton:
+            "Cancel",
 
-        refreshButton: "Refresh",
-        deleteAllButton: "Delete All",
+        refreshButton:
+            "Refresh",
+
+        deleteAllButton:
+            "Delete All",
 
         searchEmployeeLabel:
             "Search by Employee Number",
@@ -1868,7 +1565,8 @@ const translations = {
         searchEmployeePlaceholder:
             "Enter employee number",
 
-        searchNowButton: "Search",
+        searchNowButton:
+            "Search",
 
         cardSaved:
             "Access card saved successfully.",
@@ -1912,33 +1610,57 @@ const translations = {
         pdfError:
             "Unable to create the access card PDF.",
 
-        savedCards: "Saved Cards",
+        savedCards:
+            "Saved Cards",
 
-        view: "View",
-        delete: "Delete",
+        view:
+            "View",
 
-        accessCard: "Access Card",
+        delete:
+            "Delete",
 
-        employee: "Employee",
-        employeeNumber: "Employee Number",
-        system: "System",
-        environment: "Environment",
-        accessLevel: "Access Level",
-        systemURL: "System URL",
-        notes: "Notes",
+        accessCard:
+            "Access Card",
 
-        authorized: "✓ Authorized Access",
+        employee:
+            "Employee",
+
+        employeeNumber:
+            "Employee Number",
+
+        system:
+            "System",
+
+        environment:
+            "Environment",
+
+        accessLevel:
+            "Access Level",
+
+        systemURL:
+            "System URL",
+
+        notes:
+            "Notes",
+
+        authorized:
+            "✓ Authorized Access",
 
         securityTitle:
             "🔐 Security Notice",
 
         securityText:
-            "This card documents authorization to access the system only. It does not contain a username, password, or any confidential credentials.",
+            "This card documents system access authorization only. It does not contain a username, password, or any confidential credentials.",
 
-        createdDate: "Created Date:",
+        createdDate:
+            "Created Date:",
 
-        cards: "Cards",
-        card: "Card"
+        cards:
+            "Cards",
+
+        card:
+            "Card"
+
     },
 
 
@@ -2162,7 +1884,9 @@ const translations = {
 
         card:
             "بطاقة"
+
     }
+
 };
 
 
@@ -2178,11 +1902,67 @@ let currentLanguage =
    TRANSLATION HELPER
 ===================================================== */
 
-function t(key) {
+function t(key){
 
-    return translations[currentLanguage][key] ||
-           translations.en[key] ||
-           key;
+    return translations[currentLanguage][key]
+        || translations.en[key]
+        || key;
+
+}
+
+
+/* =====================================================
+   DATE FORMATTER
+===================================================== */
+
+function formatCardDate(card){
+
+    let dateValue = null;
+
+    if(card.createdAt){
+
+        dateValue =
+            new Date(card.createdAt);
+
+    }
+
+    else if(card.created){
+
+        /*
+         * Compatibility with old cards.
+         * Old cards remain untouched.
+         */
+        const parsed =
+            new Date(card.created);
+
+        if(!isNaN(parsed.getTime())){
+
+            dateValue = parsed;
+
+        }
+
+    }
+
+    if(
+        dateValue &&
+        !isNaN(dateValue.getTime())
+    ){
+
+        return dateValue.toLocaleDateString(
+            currentLanguage === "ar"
+                ? "ar-JO"
+                : "en-US",
+            {
+                year:"numeric",
+                month:"2-digit",
+                day:"2-digit"
+            }
+        );
+
+    }
+
+    return card.created || "";
+
 }
 
 
@@ -2190,7 +1970,7 @@ function t(key) {
    APPLY LANGUAGE
 ===================================================== */
 
-function applyLanguage() {
+function applyLanguage(){
 
     document.documentElement.lang =
         currentLanguage;
@@ -2210,60 +1990,47 @@ function applyLanguage() {
 
         "splashTitle",
         "splashLoading",
-
         "mainTitle",
         "mainSubtitle",
-
         "languageButton",
-
         "createTitle",
-
         "employeeNumberLabel",
         "employeeNameLabel",
         "systemNameLabel",
-
         "environmentLabel",
-
         "accessLevelLabel",
-
         "systemUrlLabel",
-
         "notesLabel",
-
         "createButton",
         "searchButton",
-
         "moreButtonText",
-
         "modalTitle",
         "modalSubtitle",
-
         "saveImageTitle",
         "saveImageDescription",
-
         "savePDFTitle",
         "savePDFDescription",
-
         "cancelButton",
-
         "refreshButton",
         "deleteAllButton",
-
         "searchEmployeeLabel",
         "searchNowButton"
+
     ];
 
 
-    ids.forEach(function(id) {
+    ids.forEach(function(id){
 
         const element =
             document.getElementById(id);
 
-        if (element) {
+        if(element){
 
             element.textContent =
                 t(id);
+
         }
+
     });
 
 
@@ -2286,121 +2053,142 @@ function applyLanguage() {
 
         searchEmployeeNumber:
             "searchEmployeePlaceholder"
+
     };
 
 
     Object.keys(placeholders)
-        .forEach(function(id) {
+        .forEach(function(id){
 
             const element =
                 document.getElementById(id);
 
-            if (element) {
+            if(element){
 
                 element.placeholder =
                     t(placeholders[id]);
+
             }
+
         });
 
 
-    const optionMap = {
+    document.getElementById(
+        "environmentPlaceholder"
+    ).textContent =
+        t("environmentPlaceholder");
 
-        environmentPlaceholder:
-            "environmentPlaceholder",
+    document.getElementById(
+        "environmentOS"
+    ).textContent =
+        t("environmentOS");
 
-        environmentOS:
-            "environmentOS",
+    document.getElementById(
+        "environmentDesktop"
+    ).textContent =
+        t("environmentDesktop");
 
-        environmentDesktop:
-            "environmentDesktop",
-
-        environmentWeb:
-            "environmentWeb",
-
-        accessPlaceholder:
-            "accessPlaceholder",
-
-        accessView:
-            "accessView",
-
-        accessStandard:
-            "accessStandard",
-
-        accessAdvanced:
-            "accessAdvanced",
-
-        accessAdmin:
-            "accessAdmin"
-    };
+    document.getElementById(
+        "environmentWeb"
+    ).textContent =
+        t("environmentWeb");
 
 
-    Object.keys(optionMap)
-        .forEach(function(id) {
+    document.getElementById(
+        "accessPlaceholder"
+    ).textContent =
+        t("accessPlaceholder");
 
-            const element =
-                document.getElementById(id);
+    document.getElementById(
+        "accessView"
+    ).textContent =
+        t("accessView");
 
-            if (element) {
+    document.getElementById(
+        "accessStandard"
+    ).textContent =
+        t("accessStandard");
 
-                element.textContent =
-                    t(optionMap[id]);
-            }
-        });
+    document.getElementById(
+        "accessAdvanced"
+    ).textContent =
+        t("accessAdvanced");
+
+    document.getElementById(
+        "accessAdmin"
+    ).textContent =
+        t("accessAdmin");
 
 
     updateArchiveCount();
 
 
     /*
-       IMPORTANT:
-       Re-render the currently displayed card
-       using the NEW language.
-       The stored data itself is NOT changed.
-    */
+     * IMPORTANT:
+     * Re-render the currently displayed card
+     * using the NEW language without changing
+     * the stored card itself.
+     */
 
-    if (
-        currentCardData &&
-        document
-            .getElementById("generatedCardArea")
-            .classList.contains("show")
-    ) {
+    if(currentCardData){
 
-        renderCard(currentCardData);
+        const generatedArea =
+            document.getElementById(
+                "generatedCardArea"
+            );
+
+        if(
+            generatedArea.classList.contains("show")
+        ){
+
+            renderCard(
+                currentCardData
+            );
+
+        }
+
     }
 
 
     /*
-       Re-render search results without
-       modifying stored cards.
-    */
+     * Also refresh search results
+     * without changing stored data.
+     */
 
     const searchPanel =
-        document.getElementById("searchPanel");
+        document.getElementById(
+            "searchPanel"
+        );
 
-    if (
+    if(
         searchPanel &&
         searchPanel.classList.contains("show")
-    ) {
+    ){
 
         const searchInput =
             document.getElementById(
                 "searchEmployeeNumber"
             );
 
-        if (
+        if(
             searchInput &&
             searchInput.value.trim() !== ""
-        ) {
+        ){
 
             searchCards();
 
-        } else {
+        }
+
+        else{
 
             renderSearchResults(
                 getStoredCards()
             );
+
         }
+
     }
+
 }
 
 
@@ -2408,7 +2196,7 @@ function applyLanguage() {
    TOGGLE LANGUAGE
 ===================================================== */
 
-function toggleLanguage() {
+function toggleLanguage(){
 
     currentLanguage =
         currentLanguage === "en"
@@ -2422,14 +2210,16 @@ function toggleLanguage() {
 
 
     /*
-       LANGUAGE IS UI STATE ONLY.
-
-       No cards are deleted.
-       No card data is rewritten.
-       No archive reset occurs.
-    */
+     * Language changes ONLY the presentation.
+     *
+     * It NEVER:
+     * - deletes cards
+     * - rewrites storage
+     * - creates a new card
+     */
 
     applyLanguage();
+
 }
 
 
@@ -2437,40 +2227,63 @@ function toggleLanguage() {
    SPLASH
 ===================================================== */
 
-window.addEventListener(
-    "load",
-    function() {
+/*
+ * We intentionally do NOT depend on window.load.
+ *
+ * External libraries or images may delay load events.
+ * The application itself must not remain trapped
+ * behind the splash screen.
+ */
+
+function hideSplash(){
+
+    const splash =
+        document.getElementById(
+            "splashScreen"
+        );
+
+    if(!splash){
+        return;
+    }
+
+    splash.classList.add("hide");
+
+}
+
+
+/*
+ * Start application immediately when DOM exists.
+ */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
 
         applyLanguage();
 
         refreshArchive();
 
-
-        const splash =
-            document.getElementById(
-                "splashScreen"
-            );
-
-
+        /*
+         * Always hide splash after 5 seconds.
+         */
         setTimeout(
-            function() {
-
-                splash.style.opacity = "0";
-
-                setTimeout(
-                    function() {
-
-                        splash.style.display =
-                            "none";
-
-                    },
-                    600
-                );
-
-            },
+            hideSplash,
             5000
         );
+
     }
+);
+
+
+/*
+ * Safety fallback:
+ * If something unusual happens during startup,
+ * the splash can never remain forever.
+ */
+
+setTimeout(
+    hideSplash,
+    6500
 );
 
 
@@ -2478,7 +2291,7 @@ window.addEventListener(
    ENVIRONMENT
 ===================================================== */
 
-function changeEnvironment() {
+function changeEnvironment(){
 
     const selected =
         document.getElementById(
@@ -2495,14 +2308,16 @@ function changeEnvironment() {
         );
 
 
-    if (
+    if(
         selectedEnvironment === "Web"
-    ) {
+    ){
 
         urlSection.style.display =
             "block";
 
-    } else {
+    }
+
+    else{
 
         urlSection.style.display =
             "none";
@@ -2510,7 +2325,9 @@ function changeEnvironment() {
         document.getElementById(
             "systemUrl"
         ).value = "";
+
     }
+
 }
 
 
@@ -2518,103 +2335,39 @@ function changeEnvironment() {
    GET STORED CARDS
 ===================================================== */
 
-function getStoredCards() {
+function getStoredCards(){
 
-    try {
+    try{
 
         const data =
             localStorage.getItem(
                 STORAGE_KEY
             );
 
-
-        if (!data) {
-
+        if(!data){
             return [];
         }
-
 
         const cards =
             JSON.parse(data);
 
+        return Array.isArray(cards)
+            ? cards
+            : [];
 
-        if (!Array.isArray(cards)) {
+    }
 
-            return [];
-        }
+    catch(error){
 
-
-        /*
-           Normalize old cards without
-           changing their actual information.
-        */
-
-        return cards.map(
-            function(card) {
-
-                return normalizeCard(card);
-            }
+        console.error(
+            "Storage read error:",
+            error
         );
 
-    }
-    catch (error) {
-
-        console.error(error);
-
         return [];
+
     }
-}
 
-
-/* =====================================================
-   NORMALIZE CARD
-===================================================== */
-
-function normalizeCard(card) {
-
-    const normalized = {
-
-        cardID:
-            card.cardID || "",
-
-        employeeNumber:
-            card.employeeNumber || "",
-
-        employee:
-            card.employee || "",
-
-        system:
-            card.system || "",
-
-        environment:
-            card.environment || "",
-
-        accessLevel:
-            card.accessLevel || "",
-
-        url:
-            card.url || "",
-
-        notes:
-            card.notes || "",
-
-        created:
-            card.created || "",
-
-        createdAt:
-            card.createdAt || ""
-    };
-
-
-    /*
-       Older version stored only localized
-       "created" text.
-
-       We preserve it so old cards remain
-       fully compatible.
-    */
-
-    return normalized;
 }
 
 
@@ -2622,12 +2375,36 @@ function normalizeCard(card) {
    SAVE STORED CARDS
 ===================================================== */
 
-function saveStoredCards(cards) {
+function saveStoredCards(cards){
 
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(cards)
-    );
+    try{
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(cards)
+        );
+
+        return true;
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Storage save error:",
+            error
+        );
+
+        alert(
+            currentLanguage === "ar"
+                ? "تعذر حفظ البيانات في التخزين المحلي."
+                : "Unable to save data to local storage."
+        );
+
+        return false;
+
+    }
+
 }
 
 
@@ -2635,20 +2412,16 @@ function saveStoredCards(cards) {
    UPDATE COUNT
 ===================================================== */
 
-function updateArchiveCount() {
+function updateArchiveCount(){
 
     const count =
         getStoredCards().length;
 
 
     const countText =
-        count +
-        " " +
-        (
-            count === 1
-                ? t("card")
-                : t("cards")
-        );
+        count === 1
+            ? count + " " + t("card")
+            : count + " " + t("cards");
 
 
     const element =
@@ -2657,48 +2430,15 @@ function updateArchiveCount() {
         );
 
 
-    if (element) {
+    if(element){
 
         element.textContent =
             t("savedCards") +
             ": " +
             countText;
-    }
-}
 
-
-/* =====================================================
-   FORMAT CREATED DATE
-===================================================== */
-
-function formatCreatedDate(card) {
-
-    /*
-       New cards use createdAt.
-    */
-
-    if (card.createdAt) {
-
-        const date =
-            new Date(card.createdAt);
-
-
-        if (!isNaN(date.getTime())) {
-
-            return date.toLocaleDateString(
-                currentLanguage === "ar"
-                    ? "ar-JO"
-                    : "en-US"
-            );
-        }
     }
 
-
-    /*
-       Compatibility with old cards.
-    */
-
-    return card.created || "";
 }
 
 
@@ -2706,105 +2446,103 @@ function formatCreatedDate(card) {
    GENERATE CARD
 ===================================================== */
 
-function generateCard() {
+function generateCard(){
 
     const employeeNumber =
         document
-            .getElementById(
-                "employeeNumber"
-            )
-            .value
-            .trim();
+        .getElementById(
+            "employeeNumber"
+        )
+        .value
+        .trim();
 
 
     const employee =
         document
-            .getElementById(
-                "employeeName"
-            )
-            .value
-            .trim();
+        .getElementById(
+            "employeeName"
+        )
+        .value
+        .trim();
 
 
     const system =
         document
-            .getElementById(
-                "systemName"
-            )
-            .value
-            .trim();
+        .getElementById(
+            "systemName"
+        )
+        .value
+        .trim();
 
 
     const environment =
         document
-            .getElementById(
-                "environment"
-            )
-            .value;
+        .getElementById(
+            "environment"
+        )
+        .value;
 
 
     const accessLevel =
         document
-            .getElementById(
-                "accessLevel"
-            )
-            .value;
+        .getElementById(
+            "accessLevel"
+        )
+        .value;
 
 
     const url =
         document
-            .getElementById(
-                "systemUrl"
-            )
-            .value
-            .trim();
+        .getElementById(
+            "systemUrl"
+        )
+        .value
+        .trim();
 
 
     const notes =
         document
-            .getElementById(
-                "notes"
-            )
-            .value
-            .trim();
+        .getElementById(
+            "notes"
+        )
+        .value
+        .trim();
 
 
-    if (
+    if(
         employeeNumber === "" ||
         employee === "" ||
         system === "" ||
         environment === "" ||
         accessLevel === ""
-    ) {
+    ){
 
         alert(
             t("requiredFields")
         );
 
         return;
+
     }
 
 
-    if (
+    if(
         environment === "Web" &&
         url === ""
-    ) {
+    ){
 
         alert(
             t("urlRequired")
         );
 
         return;
+
     }
-
-
-    const now =
-        new Date();
 
 
     const cardID =
         "IFT-" +
-        now.getFullYear() +
+        new Date().getFullYear() +
         "-" +
         Math.floor(
             Math.random() * 90000 + 10000
@@ -2812,24 +2550,13 @@ function generateCard() {
 
 
     /*
-       IMPORTANT:
-       Store a language-independent timestamp.
-    */
+     * IMPORTANT:
+     * Store the real date/time,
+     * not the translated display text.
+     */
 
     const createdAt =
-        now.toISOString();
-
-
-    /*
-       "created" remains as a compatibility
-       field for older versions.
-    */
-
-    const created =
-        formatDateForLanguage(
-            now,
-            currentLanguage
-        );
+        new Date().toISOString();
 
 
     currentCardData = {
@@ -2858,19 +2585,15 @@ function generateCard() {
         notes:
             notes,
 
-        created:
-            created,
-
         createdAt:
             createdAt
+
     };
 
 
     /*
-       SAVE CARD.
-
-       Language is NOT stored as card data.
-    */
+     * SAVE TO LOCAL STORAGE
+     */
 
     const cards =
         getStoredCards();
@@ -2881,10 +2604,18 @@ function generateCard() {
     );
 
 
-    saveStoredCards(
-        cards
-    );
+    if(
+        !saveStoredCards(cards)
+    ){
 
+        return;
+
+    }
+
+
+    /*
+     * CREATE / DISPLAY CARD
+     */
 
     renderCard(
         currentCardData
@@ -2900,44 +2631,28 @@ function generateCard() {
 
 
     document
-        .getElementById(
-            "generatedCardArea"
-        )
-        .classList.add("show");
+    .getElementById(
+        "generatedCardArea"
+    )
+    .classList.add("show");
 
 
     setTimeout(
-        function() {
+        function(){
 
             document
-                .getElementById(
-                    "generatedCardArea"
-                )
-                .scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+            .getElementById(
+                "generatedCardArea"
+            )
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
 
         },
         100
     );
-}
 
-
-/* =====================================================
-   FORMAT DATE
-===================================================== */
-
-function formatDateForLanguage(
-    date,
-    language
-) {
-
-    return date.toLocaleDateString(
-        language === "ar"
-            ? "ar-JO"
-            : "en-US"
-    );
 }
 
 
@@ -2945,7 +2660,17 @@ function formatDateForLanguage(
    RENDER CARD
 ===================================================== */
 
-function renderCard(data) {
+function renderCard(data){
+
+    if(!data){
+        return;
+    }
+
+
+    /*
+     * Keep the actual data object.
+     * Language changes will call this function again.
+     */
 
     currentCardData =
         data;
@@ -2953,19 +2678,19 @@ function renderCard(data) {
 
     const employeeNumber =
         escapeHTML(
-            data.employeeNumber
+            data.employeeNumber || ""
         );
 
 
     const employee =
         escapeHTML(
-            data.employee
+            data.employee || ""
         );
 
 
     const system =
         escapeHTML(
-            data.system
+            data.system || ""
         );
 
 
@@ -2999,19 +2724,23 @@ function renderCard(data) {
 
     const cardID =
         escapeHTML(
-            data.cardID
+            data.cardID || ""
         );
 
 
     const created =
         escapeHTML(
-            formatCreatedDate(data)
+            formatCardDate(data)
         );
 
 
-    document.getElementById(
-        "generatedCard"
-    ).innerHTML = `
+    const generatedCard =
+        document.getElementById(
+            "generatedCard"
+        );
+
+
+    generatedCard.innerHTML = `
 
         <div class="generated-card">
 
@@ -3167,7 +2896,6 @@ function renderCard(data) {
 
                 </div>
 
-
                 <p>
 
                     ${t("securityText")}
@@ -3189,35 +2917,49 @@ function renderCard(data) {
             </div>
 
         </div>
+
     `;
 
 
     /*
-       Generate QR again after every language
-       change because the card DOM was rebuilt.
-    */
+     * Generate QR only when the selected
+     * system environment is Web.
+     */
 
-    if (
+    if(
         data.environment === "Web" &&
         data.url
-    ) {
+    ){
 
-        new QRCode(
+        const qrContainer =
             document.getElementById(
                 "qrCode"
-            ),
-            {
-                text:
-                    data.url,
+            );
 
-                width:
-                    110,
 
-                height:
-                    110
-            }
-        );
+        if(
+            qrContainer &&
+            typeof QRCode !== "undefined"
+        ){
+
+            new QRCode(
+                qrContainer,
+                {
+                    text:
+                        data.url,
+
+                    width:
+                        110,
+
+                    height:
+                        110
+                }
+            );
+
+        }
+
     }
+
 }
 
 
@@ -3225,32 +2967,33 @@ function renderCard(data) {
    TRANSLATE ENVIRONMENT
 ===================================================== */
 
-function translateEnvironment(value) {
+function translateEnvironment(value){
+
+    if(
+        currentLanguage === "en"
+    ){
+
+        return value;
+
+    }
+
 
     const map = {
 
         "Operating System":
-            "environmentOS",
+            t("environmentOS"),
 
         "Desktop":
-            "environmentDesktop",
+            t("environmentDesktop"),
 
         "Web":
-            "environmentWeb"
+            t("environmentWeb")
+
     };
 
 
-    if (
-        map[value]
-    ) {
+    return map[value] || value;
 
-        return t(
-            map[value]
-        );
-    }
-
-
-    return value;
 }
 
 
@@ -3258,35 +3001,36 @@ function translateEnvironment(value) {
    TRANSLATE ACCESS LEVEL
 ===================================================== */
 
-function translateAccessLevel(value) {
+function translateAccessLevel(value){
+
+    if(
+        currentLanguage === "en"
+    ){
+
+        return value;
+
+    }
+
 
     const map = {
 
         "View Only":
-            "accessView",
+            t("accessView"),
 
         "Standard User":
-            "accessStandard",
+            t("accessStandard"),
 
         "Advanced User":
-            "accessAdvanced",
+            t("accessAdvanced"),
 
         "Administrator":
-            "accessAdmin"
+            t("accessAdmin")
+
     };
 
 
-    if (
-        map[value]
-    ) {
+    return map[value] || value;
 
-        return t(
-            map[value]
-        );
-    }
-
-
-    return value;
 }
 
 
@@ -3294,29 +3038,35 @@ function translateAccessLevel(value) {
    ESCAPE HTML
 ===================================================== */
 
-function escapeHTML(value) {
+function escapeHTML(value){
 
     return String(value)
+
         .replace(
             /&/g,
             "&amp;"
         )
+
         .replace(
             /</g,
             "&lt;"
         )
+
         .replace(
             />/g,
             "&gt;"
         )
+
         .replace(
             /"/g,
             "&quot;"
         )
+
         .replace(
             /'/g,
             "&#039;"
         );
+
 }
 
 
@@ -3324,7 +3074,7 @@ function escapeHTML(value) {
    SEARCH PANEL
 ===================================================== */
 
-function showSearch() {
+function showSearch(){
 
     const panel =
         document.getElementById(
@@ -3337,27 +3087,27 @@ function showSearch() {
     );
 
 
-    if (
-        panel.classList.contains(
-            "show"
-        )
-    ) {
+    if(
+        panel.classList.contains("show")
+    ){
 
         refreshArchive();
 
 
         setTimeout(
-            function() {
+            function(){
 
                 panel.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
+                    behavior:"smooth",
+                    block:"start"
                 });
 
             },
             100
         );
+
     }
+
 }
 
 
@@ -3365,7 +3115,7 @@ function showSearch() {
    REFRESH ARCHIVE
 ===================================================== */
 
-function refreshArchive() {
+function refreshArchive(){
 
     updateArchiveCount();
 
@@ -3377,6 +3127,7 @@ function refreshArchive() {
     renderSearchResults(
         cards
     );
+
 }
 
 
@@ -3384,14 +3135,16 @@ function refreshArchive() {
    SEARCH KEY
 ===================================================== */
 
-function handleSearchKey(event) {
+function handleSearchKey(event){
 
-    if (
+    if(
         event.key === "Enter"
-    ) {
+    ){
 
         searchCards();
+
     }
+
 }
 
 
@@ -3399,43 +3152,45 @@ function handleSearchKey(event) {
    SEARCH CARDS
 ===================================================== */
 
-function searchCards() {
+function searchCards(){
 
     const number =
         document
-            .getElementById(
-                "searchEmployeeNumber"
-            )
-            .value
-            .trim()
-            .toLowerCase();
+        .getElementById(
+            "searchEmployeeNumber"
+        )
+        .value
+        .trim()
+        .toLowerCase();
 
 
     const cards =
         getStoredCards();
 
 
-    if (
+    if(
         number === ""
-    ) {
+    ){
 
         renderSearchResults(
             cards
         );
 
         return;
+
     }
 
 
     const results =
         cards.filter(
-            function(card) {
+            function(card){
 
                 return String(
-                    card.employeeNumber
+                    card.employeeNumber || ""
                 )
-                    .toLowerCase()
-                    .includes(number);
+                .toLowerCase()
+                .includes(number);
+
             }
         );
 
@@ -3443,6 +3198,7 @@ function searchCards() {
     renderSearchResults(
         results
     );
+
 }
 
 
@@ -3450,7 +3206,7 @@ function searchCards() {
    RENDER SEARCH RESULTS
 ===================================================== */
 
-function renderSearchResults(cards) {
+function renderSearchResults(cards){
 
     const container =
         document.getElementById(
@@ -3458,9 +3214,7 @@ function renderSearchResults(cards) {
         );
 
 
-    if (
-        !cards.length
-    ) {
+    if(!cards.length){
 
         container.innerHTML = `
 
@@ -3475,127 +3229,130 @@ function renderSearchResults(cards) {
                 }
 
             </div>
+
         `;
 
         return;
+
     }
 
 
     container.innerHTML =
         cards.map(
-            function(card) {
-
-                /*
-                   We use the raw cardID internally.
-                   It is escaped before inserting into
-                   HTML attribute context.
-                */
+            function(card){
 
                 const safeID =
-                    escapeHTML(
-                        card.cardID
+                    encodeURIComponent(
+                        String(
+                            card.cardID || ""
+                        )
                     );
 
 
                 return `
 
-                    <div class="search-result">
+                <div class="search-result">
 
-                        <div class="search-result-header">
+                    <div class="search-result-header">
 
-                            <div class="search-result-title">
-
-                                ${escapeHTML(
-                                    card.employee
-                                )}
-
-                            </div>
-
-
-                            <div class="search-result-id">
-
-                                ${safeID}
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="search-result-info">
-
-                            <strong>
-                                ${t("employeeNumber")}:
-                            </strong>
+                        <div class="search-result-title">
 
                             ${escapeHTML(
-                                card.employeeNumber
-                            )}
-
-                            <br>
-
-
-                            <strong>
-                                ${t("system")}:
-                            </strong>
-
-                            ${escapeHTML(
-                                card.system
-                            )}
-
-                            <br>
-
-
-                            <strong>
-                                ${t("accessLevel")}:
-                            </strong>
-
-                            ${escapeHTML(
-                                translateAccessLevel(
-                                    card.accessLevel
-                                )
-                            )}
-
-                            <br>
-
-
-                            <strong>
-                                ${t("createdDate")}
-                            </strong>
-
-                            ${escapeHTML(
-                                formatCreatedDate(card)
+                                card.employee || ""
                             )}
 
                         </div>
 
+                        <div class="search-result-id">
 
-                        <div class="search-result-buttons">
-
-                            <button
-                                class="result-btn view"
-                                onclick="viewStoredCard('${safeID}')"
-                            >
-
-                                ${t("view")}
-
-                            </button>
-
-
-                            <button
-                                class="result-btn delete"
-                                onclick="deleteCard('${safeID}')"
-                            >
-
-                                ${t("delete")}
-
-                            </button>
+                            ${escapeHTML(
+                                card.cardID || ""
+                            )}
 
                         </div>
 
                     </div>
+
+
+                    <div class="search-result-info">
+
+                        <strong>
+                            ${t("employeeNumber")}:
+                        </strong>
+
+                        ${escapeHTML(
+                            card.employeeNumber || ""
+                        )}
+
+                        <br>
+
+
+                        <strong>
+                            ${t("system")}:
+                        </strong>
+
+                        ${escapeHTML(
+                            card.system || ""
+                        )}
+
+                        <br>
+
+
+                        <strong>
+                            ${t("accessLevel")}:
+                        </strong>
+
+                        ${escapeHTML(
+                            translateAccessLevel(
+                                card.accessLevel
+                            )
+                        )}
+
+                        <br>
+
+
+                        <strong>
+                            ${t("createdDate")}
+                        </strong>
+
+                        ${escapeHTML(
+                            formatCardDate(card)
+                        )}
+
+                    </div>
+
+
+                    <div class="search-result-buttons">
+
+                        <button
+                            class="result-btn view"
+                            onclick="viewStoredCard(decodeURIComponent('${safeID}'))"
+                        >
+
+                            ${t("view")}
+
+                        </button>
+
+
+                        <button
+                            class="result-btn delete"
+                            onclick="deleteCard(decodeURIComponent('${safeID}'))"
+                        >
+
+                            ${t("delete")}
+
+                        </button>
+
+                    </div>
+
+                </div>
+
                 `;
+
             }
-        ).join("");
+        )
+        .join("");
+
 }
 
 
@@ -3603,7 +3360,7 @@ function renderSearchResults(cards) {
    VIEW STORED CARD
 ===================================================== */
 
-function viewStoredCard(cardID) {
+function viewStoredCard(cardID){
 
     const cards =
         getStoredCards();
@@ -3611,22 +3368,25 @@ function viewStoredCard(cardID) {
 
     const card =
         cards.find(
-            function(item) {
+            function(item){
 
                 return item.cardID === cardID;
+
             }
         );
 
 
-    if (!card) {
+    if(!card){
 
         return;
+
     }
 
 
-    currentCardData =
-        card;
-
+    /*
+     * This displays the SAME stored card.
+     * No new card is created.
+     */
 
     renderCard(
         card
@@ -3634,27 +3394,28 @@ function viewStoredCard(cardID) {
 
 
     document
-        .getElementById(
-            "generatedCardArea"
-        )
-        .classList.add("show");
+    .getElementById(
+        "generatedCardArea"
+    )
+    .classList.add("show");
 
 
     setTimeout(
-        function() {
+        function(){
 
             document
-                .getElementById(
-                    "generatedCardArea"
-                )
-                .scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+            .getElementById(
+                "generatedCardArea"
+            )
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
 
         },
         100
     );
+
 }
 
 
@@ -3662,15 +3423,16 @@ function viewStoredCard(cardID) {
    DELETE CARD
 ===================================================== */
 
-function deleteCard(cardID) {
+function deleteCard(cardID){
 
-    if (
+    if(
         !confirm(
             t("deleteConfirm")
         )
-    ) {
+    ){
 
         return;
+
     }
 
 
@@ -3680,9 +3442,10 @@ function deleteCard(cardID) {
 
     cards =
         cards.filter(
-            function(card) {
+            function(card){
 
                 return card.cardID !== cardID;
+
             }
         );
 
@@ -3695,38 +3458,64 @@ function deleteCard(cardID) {
     updateArchiveCount();
 
 
-    renderSearchResults(
-        cards
-    );
+    /*
+     * Preserve the active search if the user
+     * is searching by employee number.
+     */
+
+    const searchInput =
+        document.getElementById(
+            "searchEmployeeNumber"
+        );
 
 
-    if (
+    if(
+        searchInput &&
+        searchInput.value.trim() !== ""
+    ){
+
+        searchCards();
+
+    }
+
+    else{
+
+        renderSearchResults(
+            cards
+        );
+
+    }
+
+
+    if(
         currentCardData &&
         currentCardData.cardID === cardID
-    ) {
+    ){
 
         currentCardData =
             null;
 
 
         document
-            .getElementById(
-                "generatedCard"
-            )
-            .innerHTML = "";
+        .getElementById(
+            "generatedCard"
+        )
+        .innerHTML = "";
 
 
         document
-            .getElementById(
-                "generatedCardArea"
-            )
-            .classList.remove("show");
+        .getElementById(
+            "generatedCardArea"
+        )
+        .classList.remove("show");
+
     }
 
 
     showSuccessToast(
         t("cardDeleted")
     );
+
 }
 
 
@@ -3734,31 +3523,31 @@ function deleteCard(cardID) {
    DELETE ALL
 ===================================================== */
 
-function deleteAllCards() {
+function deleteAllCards(){
 
     const cards =
         getStoredCards();
 
 
-    if (
-        !cards.length
-    ) {
+    if(!cards.length){
 
         alert(
             t("noCards")
         );
 
         return;
+
     }
 
 
-    if (
+    if(
         !confirm(
             t("deleteAllConfirm")
         )
-    ) {
+    ){
 
         return;
+
     }
 
 
@@ -3772,17 +3561,17 @@ function deleteAllCards() {
 
 
     document
-        .getElementById(
-            "generatedCard"
-        )
-        .innerHTML = "";
+    .getElementById(
+        "generatedCard"
+    )
+    .innerHTML = "";
 
 
     document
-        .getElementById(
-            "generatedCardArea"
-        )
-        .classList.remove("show");
+    .getElementById(
+        "generatedCardArea"
+    )
+    .classList.remove("show");
 
 
     updateArchiveCount();
@@ -3796,6 +3585,7 @@ function deleteAllCards() {
     showSuccessToast(
         t("allCardsDeleted")
     );
+
 }
 
 
@@ -3803,39 +3593,41 @@ function deleteAllCards() {
    MODAL
 ===================================================== */
 
-function openCardModal() {
+function openCardModal(){
 
     document
-        .getElementById(
-            "cardModal"
-        )
-        .classList.add("show");
+    .getElementById(
+        "cardModal"
+    )
+    .classList.add("show");
+
 }
 
 
-function closeCardModal() {
+function closeCardModal(){
 
     document
-        .getElementById(
-            "cardModal"
-        )
-        .classList.remove("show");
+    .getElementById(
+        "cardModal"
+    )
+    .classList.remove("show");
+
 }
 
 
-function handleModalBackgroundClick(
-    event
-) {
+function handleModalBackgroundClick(event){
 
-    if (
+    if(
         event.target ===
         document.getElementById(
             "cardModal"
         )
-    ) {
+    ){
 
         closeCardModal();
+
     }
+
 }
 
 
@@ -3843,9 +3635,7 @@ function handleModalBackgroundClick(
    TOAST
 ===================================================== */
 
-function showSuccessToast(
-    message
-) {
+function showSuccessToast(message){
 
     const toast =
         document.getElementById(
@@ -3859,7 +3649,7 @@ function showSuccessToast(
 
 
     toast.innerHTML =
-        "✅ " + message;
+        "✅ " + escapeHTML(message);
 
 
     toast.classList.add(
@@ -3869,7 +3659,7 @@ function showSuccessToast(
 
     toastTimer =
         setTimeout(
-            function() {
+            function(){
 
                 toast.classList.remove(
                     "show"
@@ -3878,6 +3668,7 @@ function showSuccessToast(
             },
             3500
         );
+
 }
 
 
@@ -3885,7 +3676,7 @@ function showSuccessToast(
    SAVE IMAGE
 ===================================================== */
 
-async function saveCardAsImage() {
+async function saveCardAsImage(){
 
     const card =
         document.querySelector(
@@ -3893,34 +3684,42 @@ async function saveCardAsImage() {
         );
 
 
-    if (!card) {
+    if(!card){
 
         alert(
             t("createFirst")
         );
 
         return;
+
     }
 
 
     closeCardModal();
 
 
-    try {
+    try{
+
+        if(
+            typeof html2canvas === "undefined"
+        ){
+
+            throw new Error(
+                "html2canvas library is unavailable."
+            );
+
+        }
+
 
         const canvas =
             await html2canvas(
                 card,
                 {
-                    scale: 3,
-
-                    useCORS: true,
-
-                    allowTaint: false,
-
+                    scale:3,
+                    useCORS:true,
+                    allowTaint:false,
                     backgroundColor:
                         "#ffffff",
-
                     imageTimeout:
                         15000
                 }
@@ -3935,8 +3734,10 @@ async function saveCardAsImage() {
 
         const cardID =
             currentCardData
-                ? currentCardData.cardID
-                : "Iftaa-Access-Card";
+                ?
+                currentCardData.cardID
+                :
+                "Iftaa-Access-Card";
 
 
         link.download =
@@ -3957,14 +3758,20 @@ async function saveCardAsImage() {
         );
 
     }
-    catch (error) {
 
-        console.error(error);
+    catch(error){
+
+        console.error(
+            error
+        );
+
 
         alert(
             t("imageError")
         );
+
     }
+
 }
 
 
@@ -3972,7 +3779,7 @@ async function saveCardAsImage() {
    SAVE PDF
 ===================================================== */
 
-async function saveCardAsPDF() {
+async function saveCardAsPDF(){
 
     const card =
         document.querySelector(
@@ -3980,34 +3787,42 @@ async function saveCardAsPDF() {
         );
 
 
-    if (!card) {
+    if(!card){
 
         alert(
             t("createFirst")
         );
 
         return;
+
     }
 
 
     closeCardModal();
 
 
-    try {
+    try{
+
+        if(
+            typeof html2canvas === "undefined"
+        ){
+
+            throw new Error(
+                "html2canvas library is unavailable."
+            );
+
+        }
+
 
         const canvas =
             await html2canvas(
                 card,
                 {
-                    scale: 3,
-
-                    useCORS: true,
-
-                    allowTaint: false,
-
+                    scale:3,
+                    useCORS:true,
+                    allowTaint:false,
                     backgroundColor:
                         "#ffffff",
-
                     imageTimeout:
                         15000
                 }
@@ -4018,6 +3833,18 @@ async function saveCardAsPDF() {
             canvas.toDataURL(
                 "image/png"
             );
+
+
+        if(
+            !window.jspdf ||
+            !window.jspdf.jsPDF
+        ){
+
+            throw new Error(
+                "jsPDF library is unavailable."
+            );
+
+        }
 
 
         const {
@@ -4036,16 +3863,18 @@ async function saveCardAsPDF() {
 
         const pdf =
             new jsPDF({
+
                 orientation:
                     "landscape",
 
                 unit:
                     "mm",
 
-                format: [
+                format:[
                     cardWidth,
                     cardHeight
                 ]
+
             });
 
 
@@ -4060,14 +3889,17 @@ async function saveCardAsPDF() {
 
 
         let imageWidth;
+
         let imageHeight;
+
         let x;
+
         let y;
 
 
-        if (
+        if(
             imageRatio > pdfRatio
-        ) {
+        ){
 
             imageWidth =
                 cardWidth;
@@ -4088,7 +3920,8 @@ async function saveCardAsPDF() {
                 ) / 2;
 
         }
-        else {
+
+        else{
 
             imageHeight =
                 cardHeight;
@@ -4107,6 +3940,7 @@ async function saveCardAsPDF() {
 
 
             y = 0;
+
         }
 
 
@@ -4124,8 +3958,10 @@ async function saveCardAsPDF() {
 
         const cardID =
             currentCardData
-                ? currentCardData.cardID
-                : "Iftaa-Access-Card";
+                ?
+                currentCardData.cardID
+                :
+                "Iftaa-Access-Card";
 
 
         pdf.save(
@@ -4138,17 +3974,24 @@ async function saveCardAsPDF() {
         );
 
     }
-    catch (error) {
 
-        console.error(error);
+    catch(error){
+
+        console.error(
+            error
+        );
+
 
         alert(
             t("pdfError")
         );
+
     }
+
 }
 
 </script>
+
 </body>
 
 </html>
