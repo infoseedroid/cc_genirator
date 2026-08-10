@@ -1,37 +1,23 @@
 <!DOCTYPE html>
+
 <html lang="en" dir="ltr">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Iftaa Systems Access Card</title>
 
-<!-- QR Code Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-<!-- HTML To Image -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-<!-- PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
 
-/* =====================================================
-   GLOBAL
-===================================================== */
-
 *{
     box-sizing:border-box;
-    font-family:
-        "Segoe UI",
-        Tahoma,
-        Arial,
-        sans-serif;
+    font-family:"Segoe UI",Tahoma,Arial,sans-serif;
 }
 
 body{
@@ -49,10 +35,7 @@ body.rtl .security-notice{
     text-align:right;
 }
 
-
-/* =====================================================
-   LANGUAGE BUTTON
-===================================================== */
+/* LANGUAGE BUTTON */
 
 .language-switcher{
     position:absolute;
@@ -82,10 +65,7 @@ body.rtl .language-switcher{
     background:#f2f7f4;
 }
 
-
-/* =====================================================
-   SPLASH
-===================================================== */
+/* SPLASH */
 
 #splashScreen{
     position:fixed;
@@ -100,9 +80,7 @@ body.rtl .language-switcher{
     z-index:99999;
     opacity:1;
     visibility:visible;
-    transition:
-        opacity .6s ease,
-        visibility .6s ease;
+    transition:opacity .6s ease, visibility .6s ease;
 }
 
 #splashScreen.hide{
@@ -160,10 +138,7 @@ body.rtl .language-switcher{
     }
 }
 
-
-/* =====================================================
-   HEADER
-===================================================== */
+/* HEADER */
 
 .header{
     position:relative;
@@ -192,10 +167,7 @@ body.rtl .language-switcher{
     font-size:15px;
 }
 
-
-/* =====================================================
-   CONTAINER
-===================================================== */
+/* CONTAINER */
 
 .container{
     max-width:900px;
@@ -217,10 +189,7 @@ body.rtl .language-switcher{
     margin-bottom:20px;
 }
 
-
-/* =====================================================
-   FORM
-===================================================== */
+/* FORM */
 
 .form-group{
     margin-top:18px;
@@ -248,8 +217,7 @@ input:focus,
 textarea:focus,
 select:focus{
     border-color:#0b6b4a;
-    box-shadow:
-        0 0 5px rgba(11,107,74,.3);
+    box-shadow:0 0 5px rgba(11,107,74,.3);
 }
 
 textarea{
@@ -262,10 +230,7 @@ select{
     cursor:pointer;
 }
 
-
-/* =====================================================
-   BUTTONS
-===================================================== */
+/* BUTTONS */
 
 .create-btn,
 .search-btn{
@@ -296,10 +261,7 @@ select{
     background:#444;
 }
 
-
-/* =====================================================
-   GENERATED CARD AREA
-===================================================== */
+/* GENERATED CARD AREA */
 
 .generated-card-area{
     display:none;
@@ -312,10 +274,7 @@ select{
     display:block;
 }
 
-
-/* =====================================================
-   GENERATED CARD
-===================================================== */
+/* GENERATED CARD */
 
 .generated-card{
     width:100%;
@@ -324,16 +283,12 @@ select{
     background:#ffffff;
     border-radius:16px;
     padding:20px;
-    box-shadow:
-        0 5px 18px rgba(0,0,0,.15);
+    box-shadow:0 5px 18px rgba(0,0,0,.15);
     border:1px solid #e1e8e5;
     text-align:center;
 }
 
-
-/* =====================================================
-   CARD LOGO
-===================================================== */
+/* CARD LOGO */
 
 .card-logo{
     width:100%;
@@ -353,10 +308,7 @@ select{
     display:block;
 }
 
-
-/* =====================================================
-   CARD TITLE
-===================================================== */
+/* CARD TITLE */
 
 .generated-card h2{
     color:#0b6b4a;
@@ -364,10 +316,7 @@ select{
     font-size:21px;
 }
 
-
-/* =====================================================
-   QR
-===================================================== */
+/* QR */
 
 .qr-area{
     display:flex;
@@ -382,10 +331,7 @@ select{
     align-items:center;
 }
 
-
-/* =====================================================
-   INFORMATION
-===================================================== */
+/* INFORMATION */
 
 .info-row{
     text-align:left;
@@ -402,10 +348,7 @@ select{
     color:#0b6b4a;
 }
 
-
-/* =====================================================
-   STATUS
-===================================================== */
+/* STATUS */
 
 .access-status{
     margin-top:10px;
@@ -418,10 +361,7 @@ select{
     text-align:center;
 }
 
-
-/* =====================================================
-   SECURITY
-===================================================== */
+/* SECURITY */
 
 .security-notice{
     margin-top:12px;
@@ -446,10 +386,7 @@ select{
     line-height:1.5;
 }
 
-
-/* =====================================================
-   FOOTER
-===================================================== */
+/* FOOTER */
 
 .card-footer{
     margin-top:12px;
@@ -459,10 +396,7 @@ select{
     font-size:11px;
 }
 
-
-/* =====================================================
-   CARD ACTIONS
-===================================================== */
+/* CARD ACTIONS */
 
 .card-actions{
     position:relative;
@@ -496,10 +430,7 @@ select{
     line-height:15px;
 }
 
-
-/* =====================================================
-   MODAL
-===================================================== */
+/* MODAL */
 
 .card-modal{
     display:none;
@@ -525,8 +456,7 @@ select{
     background:white;
     border-radius:20px;
     padding:25px;
-    box-shadow:
-        0 15px 45px rgba(0,0,0,.30);
+    box-shadow:0 15px 45px rgba(0,0,0,.30);
 }
 
 .card-modal-header{
@@ -574,8 +504,7 @@ body.rtl .card-modal-option{
     align-items:center;
     justify-content:center;
     font-size:22px;
-    box-shadow:
-        0 2px 6px rgba(0,0,0,.08);
+    box-shadow:0 2px 6px rgba(0,0,0,.08);
     flex-shrink:0;
 }
 
@@ -607,10 +536,7 @@ body.rtl .card-modal-option{
     cursor:pointer;
 }
 
-
-/* =====================================================
-   SEARCH / ARCHIVE
-===================================================== */
+/* SEARCH / ARCHIVE */
 
 .search-panel{
     display:none;
@@ -745,32 +671,23 @@ body.rtl .card-modal-option{
     border-radius:10px;
 }
 
-
-/* =====================================================
-   TOAST
-===================================================== */
+/* TOAST */
 
 #successToast{
     position:fixed;
     left:50%;
     bottom:30px;
-    transform:
-        translateX(-50%)
-        translateY(30px);
+    transform:translateX(-50%) translateY(30px);
     background:#0b6b4a;
     color:white;
     padding:14px 22px;
     border-radius:12px;
     font-size:14px;
     font-weight:500;
-    box-shadow:
-        0 6px 20px rgba(0,0,0,.25);
+    box-shadow:0 6px 20px rgba(0,0,0,.25);
     opacity:0;
     visibility:hidden;
-    transition:
-        opacity .3s ease,
-        transform .3s ease,
-        visibility .3s ease;
+    transition:opacity .3s ease, transform .3s ease, visibility .3s ease;
     z-index:1000000;
     text-align:center;
     min-width:260px;
@@ -780,15 +697,10 @@ body.rtl .card-modal-option{
 #successToast.show{
     opacity:1;
     visibility:visible;
-    transform:
-        translateX(-50%)
-        translateY(0);
+    transform:translateX(-50%) translateY(0);
 }
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
+/* MOBILE */
 
 @media(max-width:600px){
 
@@ -880,10 +792,7 @@ body.rtl .card-modal-option{
 
 }
 
-
-/* =====================================================
-   PRINT
-===================================================== */
+/* PRINT */
 
 @media print{
 
@@ -908,193 +817,185 @@ body.rtl .card-modal-option{
 
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-     SPLASH
-===================================================== -->
+<!-- SPLASH -->
 
 <div id="splashScreen">
 
-    <div class="splash-content">
-
-        <img
-            src="logo.png"
-            class="splash-logo"
-            alt="Iftaa Logo"
-        >
-
-        <h1 id="splashTitle">
-            Iftaa Systems Access Card
-        </h1>
-
-        <p id="splashLoading">
-            Loading System...
-        </p>
-
-        <div class="spinner"></div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<div class="header">
-
-    <div class="language-switcher">
-
-        <button
-            class="language-btn"
-            onclick="toggleLanguage()"
-            id="languageButton"
-        >
-            العربية
-        </button>
-
-    </div>
+```
+<div class="splash-content">
 
     <img
         src="logo.png"
-        alt="Iftaa Logo"
+        class="splash-logo"
+        onerror="this.style.display='none'"
     >
 
-    <h1 id="mainTitle">
+    <h1 id="splashTitle">
         Iftaa Systems Access Card
     </h1>
 
-    <p id="mainSubtitle">
-        Systems Access Authorization Management Tool
+    <p id="splashLoading">
+        Loading System...
     </p>
+
+    <div class="spinner"></div>
+
+</div>
+```
 
 </div>
 
+<!-- HEADER -->
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+<div class="header">
+
+```
+<div class="language-switcher">
+
+    <button
+        class="language-btn"
+        onclick="toggleLanguage()"
+        id="languageButton"
+    >
+        العربية
+    </button>
+
+</div>
+
+<img
+    src="logo.png"
+    onerror="this.style.display='none'"
+>
+
+<h1 id="mainTitle">
+    Iftaa Systems Access Card
+</h1>
+
+<p id="mainSubtitle">
+    Systems Access Authorization Management Tool
+</p>
+```
+
+</div>
+
+<!-- MAIN -->
 
 <div class="container">
 
 <div class="box">
 
-
 <h2
     class="section-title"
     id="createTitle"
 >
-    Create Access Card
+Create Access Card
 </h2>
-
 
 <!-- EMPLOYEE NUMBER -->
 
 <div class="form-group">
 
 <label id="employeeNumberLabel">
-    Employee Number
+Employee Number
 </label>
 
 <input
-    type="text"
-    id="employeeNumber"
-    placeholder="Enter employee number"
+type="text"
+id="employeeNumber"
+placeholder="Enter employee number"
+
 >
 
 </div>
-
 
 <!-- EMPLOYEE -->
 
 <div class="form-group">
 
 <label id="employeeNameLabel">
-    Employee Name
+Employee Name
 </label>
 
 <input
-    type="text"
-    id="employeeName"
-    placeholder="Enter employee name"
+type="text"
+id="employeeName"
+placeholder="Enter employee name"
+
 >
 
 </div>
-
 
 <!-- SYSTEM -->
 
 <div class="form-group">
 
 <label id="systemNameLabel">
-    System Name
+System Name
 </label>
 
 <input
-    type="text"
-    id="systemName"
-    placeholder="Enter system name"
+type="text"
+id="systemName"
+placeholder="Enter system name"
+
 >
 
 </div>
-
 
 <!-- ENVIRONMENT -->
 
 <div class="form-group">
 
 <label id="environmentLabel">
-    System Environment
+System Environment
 </label>
 
 <select
-    id="environment"
-    onchange="changeEnvironment()"
+id="environment"
+onchange="changeEnvironment()"
+
 >
 
 <option
     value=""
     id="environmentPlaceholder"
 >
-    Select system environment
+Select system environment
 </option>
 
 <option
     value="Operating System"
     id="environmentOS"
 >
-    Operating System
+Operating System
 </option>
 
 <option
     value="Desktop"
     id="environmentDesktop"
 >
-    Desktop App
+Desktop App
 </option>
 
 <option
     value="Web"
     id="environmentWeb"
 >
-    Web App
+Web App
 </option>
 
 </select>
 
 </div>
 
-
 <!-- ACCESS LEVEL -->
 
 <div class="form-group">
 
 <label id="accessLevelLabel">
-    Access Level
+Access Level
 </label>
 
 <select id="accessLevel">
@@ -1103,41 +1004,40 @@ body.rtl .card-modal-option{
     value=""
     id="accessPlaceholder"
 >
-    Select access level
+Select access level
 </option>
 
 <option
     value="View Only"
     id="accessView"
 >
-    View Only
+View Only
 </option>
 
 <option
     value="Standard User"
     id="accessStandard"
 >
-    Standard User
+Standard User
 </option>
 
 <option
     value="Advanced User"
     id="accessAdvanced"
 >
-    Advanced User
+Advanced User
 </option>
 
 <option
     value="Administrator"
     id="accessAdmin"
 >
-    Administrator
+Administrator
 </option>
 
 </select>
 
 </div>
-
 
 <!-- URL -->
 
@@ -1148,24 +1048,24 @@ body.rtl .card-modal-option{
 >
 
 <label id="systemUrlLabel">
-    System URL
+System URL
 </label>
 
 <input
-    type="text"
-    id="systemUrl"
-    placeholder="Paste web system URL here"
+type="text"
+id="systemUrl"
+placeholder="Paste web system URL here"
+
 >
 
 </div>
-
 
 <!-- NOTES -->
 
 <div class="form-group">
 
 <label id="notesLabel">
-    Notes
+Notes
 </label>
 
 <textarea
@@ -1175,147 +1075,139 @@ body.rtl .card-modal-option{
 
 </div>
 
-
 <!-- CREATE -->
 
 <button
-    class="create-btn"
-    onclick="generateCard()"
-    id="createButton"
->
-    Create Access Card
-</button>
+class="create-btn"
+onclick="generateCard()"
+id="createButton"
 
+>
+
+Create Access Card </button>
 
 <!-- SEARCH -->
 
 <button
-    class="search-btn"
-    onclick="showSearch()"
-    id="searchButton"
+class="search-btn"
+onclick="showSearch()"
+id="searchButton"
+
 >
-    Search / Query
-</button>
 
+Search / Query </button>
 
-<!-- =====================================================
-     GENERATED CARD
-===================================================== -->
+<!-- GENERATED CARD -->
 
 <div
     id="generatedCardArea"
     class="generated-card-area"
 >
 
-    <div id="generatedCard"></div>
+```
+<div id="generatedCard"></div>
 
-    <div class="card-actions">
+<div class="card-actions">
 
-        <button
-            type="button"
-            class="more-btn"
-            onclick="openCardModal()"
-        >
+    <button
+        type="button"
+        class="more-btn"
+        onclick="openCardModal()"
+    >
 
-            <span class="more-dots">
-                ⋮
-            </span>
+        <span class="more-dots">
+            ⋮
+        </span>
 
-            <span id="moreButtonText">
-                More
-            </span>
+        <span id="moreButtonText">
+            More
+        </span>
 
-        </button>
+    </button>
 
-    </div>
+</div>
+```
 
 </div>
 
-
-<!-- =====================================================
-     SEARCH PANEL
-===================================================== -->
+<!-- SEARCH PANEL -->
 
 <div
     id="searchPanel"
     class="search-panel"
 >
 
-    <div class="archive-header">
-
-        <div
-            class="archive-count"
-            id="archiveCount"
-        >
-            Saved Cards: 0 Cards
-        </div>
-
-        <div class="archive-actions">
-
-            <button
-                class="archive-small-btn"
-                onclick="refreshArchive()"
-                id="refreshButton"
-            >
-                Refresh
-            </button>
-
-            <button
-                class="archive-small-btn delete-all"
-                onclick="deleteAllCards()"
-                id="deleteAllButton"
-            >
-                Delete All
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label id="searchEmployeeLabel">
-            Search by Employee Number
-        </label>
-
-        <div class="search-input-row">
-
-            <input
-                type="text"
-                id="searchEmployeeNumber"
-                placeholder="Enter employee number"
-                onkeydown="handleSearchKey(event)"
-            >
-
-            <button
-                onclick="searchCards()"
-                id="searchNowButton"
-            >
-                Search
-            </button>
-
-        </div>
-
-    </div>
-
+```
+<div class="archive-header">
 
     <div
-        id="searchResults"
-        class="search-results"
-    ></div>
+        class="archive-count"
+        id="archiveCount"
+    >
+        0 Cards Saved
+    </div>
+
+    <div class="archive-actions">
+
+        <button
+            class="archive-small-btn"
+            onclick="refreshArchive()"
+            id="refreshButton"
+        >
+            Refresh
+        </button>
+
+        <button
+            class="archive-small-btn delete-all"
+            onclick="deleteAllCards()"
+            id="deleteAllButton"
+        >
+            Delete All
+        </button>
+
+    </div>
 
 </div>
 
+<div class="form-group">
+
+    <label id="searchEmployeeLabel">
+        Search by Employee Number
+    </label>
+
+    <div class="search-input-row">
+
+        <input
+            type="text"
+            id="searchEmployeeNumber"
+            placeholder="Enter employee number"
+            onkeydown="handleSearchKey(event)"
+        >
+
+        <button
+            onclick="searchCards()"
+            id="searchNowButton"
+        >
+            Search
+        </button>
+
+    </div>
+
+</div>
+
+<div
+    id="searchResults"
+    class="search-results"
+></div>
+```
 
 </div>
 
 </div>
 
+</div>
 
-<!-- =====================================================
-     MODAL
-===================================================== -->
+<!-- MODAL -->
 
 <div
     id="cardModal"
@@ -1325,97 +1217,91 @@ body.rtl .card-modal-option{
 
 <div class="card-modal-box">
 
-
 <div class="card-modal-header">
 
 <h3 id="modalTitle">
-    Card Options
+Card Options
 </h3>
 
 <p id="modalSubtitle">
-    Choose an action for this access card
+Choose an action for this access card
 </p>
 
 </div>
 
-
 <!-- SAVE IMAGE -->
 
 <button
-    type="button"
-    class="card-modal-option"
-    onclick="saveCardAsImage()"
+type="button"
+class="card-modal-option"
+onclick="saveCardAsImage()"
+
 >
 
 <div class="card-modal-icon">
-    🖼️
+🖼️
 </div>
 
 <div class="card-modal-text">
 
 <strong id="saveImageTitle">
-    Save as Image
+Save as Image
 </strong>
 
 <small id="saveImageDescription">
-    Save the access card as a PNG image
+Save the access card as a PNG image
 </small>
 
 </div>
 
 </button>
 
-
 <!-- SAVE PDF -->
 
 <button
-    type="button"
-    class="card-modal-option"
-    onclick="saveCardAsPDF()"
+type="button"
+class="card-modal-option"
+onclick="saveCardAsPDF()"
+
 >
 
 <div class="card-modal-icon">
-    📄
+📄
 </div>
 
 <div class="card-modal-text">
 
 <strong id="savePDFTitle">
-    Save as PDF
+Save as PDF
 </strong>
 
 <small id="savePDFDescription">
-    Create and save a PDF access card
+Create and save a PDF access card
 </small>
 
 </div>
 
 </button>
 
-
 <!-- CLOSE -->
 
 <button
-    type="button"
-    class="card-modal-close"
-    onclick="closeCardModal()"
-    id="cancelButton"
+type="button"
+class="card-modal-close"
+onclick="closeCardModal()"
+id="cancelButton"
+
 >
-    Cancel
-</button>
 
-
-</div>
+Cancel </button>
 
 </div>
 
+</div>
 
-<!-- =====================================================
-     TOAST
-===================================================== -->
+<!-- TOAST -->
 
 <div id="successToast"></div>
-
 
 <script>
 
@@ -1424,15 +1310,11 @@ body.rtl .card-modal-option{
 ===================================================== */
 
 let selectedEnvironment = "";
-
-let toastTimer = null;
-
+let toastTimer;
 let currentCardData = null;
 
 const STORAGE_KEY = "iftaaAccessCards";
-
 const LANGUAGE_KEY = "iftaaAccessLanguage";
-
 
 /* =====================================================
    TRANSLATIONS
@@ -1442,453 +1324,251 @@ const translations = {
 
     en: {
 
-        splashTitle:
-            "Iftaa Systems Access Card",
+        splashTitle:"Iftaa Systems Access Card",
+        splashLoading:"Loading System...",
 
-        splashLoading:
-            "Loading System...",
+        mainTitle:"Iftaa Systems Access Card",
+        mainSubtitle:"Systems Access Authorization Management Tool",
 
-        mainTitle:
-            "Iftaa Systems Access Card",
+        languageButton:"العربية",
 
-        mainSubtitle:
-            "Systems Access Authorization Management Tool",
+        createTitle:"Create Access Card",
 
-        languageButton:
-            "العربية",
+        employeeNumberLabel:"Employee Number",
+        employeeNumberPlaceholder:"Enter employee number",
 
-        createTitle:
-            "Create Access Card",
+        employeeNameLabel:"Employee Name",
+        employeeNamePlaceholder:"Enter employee name",
 
-        employeeNumberLabel:
-            "Employee Number",
+        systemNameLabel:"System Name",
+        systemNamePlaceholder:"Enter system name",
 
-        employeeNumberPlaceholder:
-            "Enter employee number",
+        environmentLabel:"System Environment",
+        environmentPlaceholder:"Select system environment",
 
-        employeeNameLabel:
-            "Employee Name",
+        environmentOS:"Operating System",
+        environmentDesktop:"Desktop App",
+        environmentWeb:"Web App",
 
-        employeeNamePlaceholder:
-            "Enter employee name",
+        accessLevelLabel:"Access Level",
+        accessPlaceholder:"Select access level",
 
-        systemNameLabel:
-            "System Name",
+        accessView:"View Only",
+        accessStandard:"Standard User",
+        accessAdvanced:"Advanced User",
+        accessAdmin:"Administrator",
 
-        systemNamePlaceholder:
-            "Enter system name",
+        systemUrlLabel:"System URL",
+        systemUrlPlaceholder:"Paste web system URL here",
 
-        environmentLabel:
-            "System Environment",
+        notesLabel:"Notes",
+        notesPlaceholder:"Enter notes",
 
-        environmentPlaceholder:
-            "Select system environment",
+        createButton:"Create Access Card",
+        searchButton:"Search / Query",
 
-        environmentOS:
-            "Operating System",
+        moreButtonText:"More",
 
-        environmentDesktop:
-            "Desktop App",
+        modalTitle:"Card Options",
+        modalSubtitle:"Choose an action for this access card",
 
-        environmentWeb:
-            "Web App",
+        saveImageTitle:"Save as Image",
+        saveImageDescription:"Save the access card as a PNG image",
 
-        accessLevelLabel:
-            "Access Level",
+        savePDFTitle:"Save as PDF",
+        savePDFDescription:"Create and save a PDF access card",
 
-        accessPlaceholder:
-            "Select access level",
+        cancelButton:"Cancel",
 
-        accessView:
-            "View Only",
+        refreshButton:"Refresh",
+        deleteAllButton:"Delete All",
 
-        accessStandard:
-            "Standard User",
+        searchEmployeeLabel:"Search by Employee Number",
+        searchEmployeePlaceholder:"Enter employee number",
+        searchNowButton:"Search",
 
-        accessAdvanced:
-            "Advanced User",
+        cardSaved:"Access card saved successfully.",
+        cardImageSaved:"Access card image saved successfully.",
+        cardPDFSaved:"Access card PDF saved successfully.",
 
-        accessAdmin:
-            "Administrator",
+        noCards:"No saved access cards found.",
+        noSearchResults:"No cards found for this employee number.",
 
-        systemUrlLabel:
-            "System URL",
+        deleteConfirm:"Are you sure you want to delete this card?",
+        deleteAllConfirm:"Are you sure you want to delete ALL saved cards?",
 
-        systemUrlPlaceholder:
-            "Paste web system URL here",
+        cardDeleted:"Access card deleted successfully.",
+        allCardsDeleted:"All saved cards have been deleted.",
 
-        notesLabel:
-            "Notes",
+        requiredFields:"Please complete all required fields.",
+        urlRequired:"Please enter system URL.",
 
-        notesPlaceholder:
-            "Enter notes",
+        createFirst:"Please create an access card first.",
 
-        createButton:
-            "Create Access Card",
+        imageError:"Unable to save the access card as an image.",
+        pdfError:"Unable to create the access card PDF.",
 
-        searchButton:
-            "Search / Query",
+        savedCards:"Saved Cards",
 
-        moreButtonText:
-            "More",
+        view:"View",
+        delete:"Delete",
 
-        modalTitle:
-            "Card Options",
+        accessCard:"Access Card",
+        employee:"Employee",
+        employeeNumber:"Employee Number",
+        system:"System",
+        environment:"Environment",
+        accessLevel:"Access Level",
+        systemURL:"System URL",
+        notes:"Notes",
 
-        modalSubtitle:
-            "Choose an action for this access card",
+        authorized:"✓ Authorized Access",
 
-        saveImageTitle:
-            "Save as Image",
-
-        saveImageDescription:
-            "Save the access card as a PNG image",
-
-        savePDFTitle:
-            "Save as PDF",
-
-        savePDFDescription:
-            "Create and save a PDF access card",
-
-        cancelButton:
-            "Cancel",
-
-        refreshButton:
-            "Refresh",
-
-        deleteAllButton:
-            "Delete All",
-
-        searchEmployeeLabel:
-            "Search by Employee Number",
-
-        searchEmployeePlaceholder:
-            "Enter employee number",
-
-        searchNowButton:
-            "Search",
-
-        cardSaved:
-            "Access card saved successfully.",
-
-        cardImageSaved:
-            "Access card image saved successfully.",
-
-        cardPDFSaved:
-            "Access card PDF saved successfully.",
-
-        noCards:
-            "No saved access cards found.",
-
-        noSearchResults:
-            "No cards found for this employee number.",
-
-        deleteConfirm:
-            "Are you sure you want to delete this card?",
-
-        deleteAllConfirm:
-            "Are you sure you want to delete ALL saved cards?",
-
-        cardDeleted:
-            "Access card deleted successfully.",
-
-        allCardsDeleted:
-            "All saved cards have been deleted.",
-
-        requiredFields:
-            "Please complete all required fields.",
-
-        urlRequired:
-            "Please enter system URL.",
-
-        createFirst:
-            "Please create an access card first.",
-
-        imageError:
-            "Unable to save the access card as an image.",
-
-        pdfError:
-            "Unable to create the access card PDF.",
-
-        savedCards:
-            "Saved Cards",
-
-        view:
-            "View",
-
-        delete:
-            "Delete",
-
-        accessCard:
-            "Access Card",
-
-        employee:
-            "Employee",
-
-        employeeNumber:
-            "Employee Number",
-
-        system:
-            "System",
-
-        environment:
-            "Environment",
-
-        accessLevel:
-            "Access Level",
-
-        systemURL:
-            "System URL",
-
-        notes:
-            "Notes",
-
-        authorized:
-            "✓ Authorized Access",
-
-        securityTitle:
-            "🔐 Security Notice",
+        securityTitle:"🔐 Security Notice",
 
         securityText:
-            "This card documents system access authorization only. It does not contain a username, password, or any confidential credentials.",
+        "هذه البطاقة توثق صلاحية الوصول إلى النظام فقط، ولا تحتوي على اسم مستخدم أو كلمة مرور أو أي بيانات اعتماد سرية.",
 
-        createdDate:
-            "Created Date:",
+        createdDate:"Created Date:",
 
-        cards:
-            "Cards",
+        cards:"Cards",
+        card:"Card",
 
-        card:
-            "Card"
+        saveQuestion:
+        "The access card has been created. Do you want to save it?",
+
+        saveYes:"Save",
+        saveNo:"Cancel",
+
+        cardNotSaved:
+        "The access card was not saved."
 
     },
 
-
     ar: {
 
-        splashTitle:
-            "بطاقة صلاحية الوصول لأنظمة الإفتاء",
+        splashTitle:"بطاقة صلاحية الوصول لأنظمة الإفتاء",
+        splashLoading:"جاري تحميل النظام...",
 
-        splashLoading:
-            "جاري تحميل النظام...",
+        mainTitle:"بطاقة صلاحية الوصول لأنظمة الإفتاء",
+        mainSubtitle:"أداة إدارة وتوثيق صلاحيات الوصول إلى الأنظمة",
 
-        mainTitle:
-            "بطاقة صلاحية الوصول لأنظمة الإفتاء",
+        languageButton:"English",
 
-        mainSubtitle:
-            "أداة إدارة وتوثيق صلاحيات الوصول إلى الأنظمة",
+        createTitle:"إنشاء بطاقة صلاحية",
 
-        languageButton:
-            "English",
+        employeeNumberLabel:"رقم الموظف",
+        employeeNumberPlaceholder:"أدخل رقم الموظف",
 
-        createTitle:
-            "إنشاء بطاقة صلاحية",
+        employeeNameLabel:"اسم الموظف",
+        employeeNamePlaceholder:"أدخل اسم الموظف",
 
-        employeeNumberLabel:
-            "رقم الموظف",
+        systemNameLabel:"اسم النظام",
+        systemNamePlaceholder:"أدخل اسم النظام",
 
-        employeeNumberPlaceholder:
-            "أدخل رقم الموظف",
+        environmentLabel:"بيئة النظام",
+        environmentPlaceholder:"اختر بيئة النظام",
 
-        employeeNameLabel:
-            "اسم الموظف",
+        environmentOS:"نظام التشغيل",
+        environmentDesktop:"تطبيق سطح المكتب",
+        environmentWeb:"تطبيق ويب",
 
-        employeeNamePlaceholder:
-            "أدخل اسم الموظف",
+        accessLevelLabel:"مستوى الصلاحية",
+        accessPlaceholder:"اختر مستوى الصلاحية",
 
-        systemNameLabel:
-            "اسم النظام",
+        accessView:"عرض فقط",
+        accessStandard:"مستخدم عادي",
+        accessAdvanced:"مستخدم متقدم",
+        accessAdmin:"مدير النظام",
 
-        systemNamePlaceholder:
-            "أدخل اسم النظام",
+        systemUrlLabel:"رابط النظام",
+        systemUrlPlaceholder:"ألصق رابط نظام الويب هنا",
 
-        environmentLabel:
-            "بيئة النظام",
+        notesLabel:"ملاحظات",
+        notesPlaceholder:"أدخل الملاحظات",
 
-        environmentPlaceholder:
-            "اختر بيئة النظام",
+        createButton:"إنشاء بطاقة صلاحية",
+        searchButton:"البحث / الاستعلام",
 
-        environmentOS:
-            "نظام التشغيل",
+        moreButtonText:"المزيد",
 
-        environmentDesktop:
-            "تطبيق سطح المكتب",
+        modalTitle:"خيارات البطاقة",
+        modalSubtitle:"اختر الإجراء المطلوب للبطاقة",
 
-        environmentWeb:
-            "تطبيق ويب",
+        saveImageTitle:"حفظ كصورة",
+        saveImageDescription:"حفظ بطاقة الصلاحية كصورة PNG",
 
-        accessLevelLabel:
-            "مستوى الصلاحية",
+        savePDFTitle:"حفظ كملف PDF",
+        savePDFDescription:"إنشاء وحفظ بطاقة الصلاحية بصيغة PDF",
 
-        accessPlaceholder:
-            "اختر مستوى الصلاحية",
+        cancelButton:"إلغاء",
 
-        accessView:
-            "عرض فقط",
+        refreshButton:"تحديث",
+        deleteAllButton:"حذف الكل",
 
-        accessStandard:
-            "مستخدم عادي",
+        searchEmployeeLabel:"البحث باستخدام رقم الموظف",
+        searchEmployeePlaceholder:"أدخل رقم الموظف",
+        searchNowButton:"بحث",
 
-        accessAdvanced:
-            "مستخدم متقدم",
+        cardSaved:"تم حفظ بطاقة الصلاحية بنجاح.",
+        cardImageSaved:"تم حفظ صورة بطاقة الصلاحية بنجاح.",
+        cardPDFSaved:"تم حفظ ملف PDF بنجاح.",
 
-        accessAdmin:
-            "مدير النظام",
+        noCards:"لا توجد بطاقات صلاحية محفوظة.",
+        noSearchResults:"لم يتم العثور على بطاقات لهذا الرقم الوظيفي.",
 
-        systemUrlLabel:
-            "رابط النظام",
+        deleteConfirm:"هل أنت متأكد من رغبتك في حذف هذه البطاقة؟",
+        deleteAllConfirm:"هل أنت متأكد من رغبتك في حذف جميع البطاقات المحفوظة؟",
 
-        systemUrlPlaceholder:
-            "ألصق رابط نظام الويب هنا",
+        cardDeleted:"تم حذف بطاقة الصلاحية بنجاح.",
+        allCardsDeleted:"تم حذف جميع البطاقات المحفوظة.",
 
-        notesLabel:
-            "ملاحظات",
+        requiredFields:"يرجى استكمال جميع الحقول المطلوبة.",
+        urlRequired:"يرجى إدخال رابط النظام.",
 
-        notesPlaceholder:
-            "أدخل الملاحظات",
+        createFirst:"يرجى إنشاء بطاقة صلاحية أولاً.",
 
-        createButton:
-            "إنشاء بطاقة صلاحية",
+        imageError:"تعذر حفظ بطاقة الصلاحية كصورة.",
+        pdfError:"تعذر إنشاء ملف PDF.",
 
-        searchButton:
-            "البحث / الاستعلام",
+        savedCards:"البطاقات المحفوظة",
 
-        moreButtonText:
-            "المزيد",
+        view:"عرض",
+        delete:"حذف",
 
-        modalTitle:
-            "خيارات البطاقة",
+        accessCard:"بطاقة صلاحية",
+        employee:"الموظف",
+        employeeNumber:"رقم الموظف",
+        system:"النظام",
+        environment:"البيئة",
+        accessLevel:"مستوى الصلاحية",
+        systemURL:"رابط النظام",
+        notes:"الملاحظات",
 
-        modalSubtitle:
-            "اختر الإجراء المطلوب للبطاقة",
+        authorized:"✓ صلاحية وصول معتمدة",
 
-        saveImageTitle:
-            "حفظ كصورة",
-
-        saveImageDescription:
-            "حفظ بطاقة الصلاحية كصورة PNG",
-
-        savePDFTitle:
-            "حفظ كملف PDF",
-
-        savePDFDescription:
-            "إنشاء وحفظ بطاقة الصلاحية بصيغة PDF",
-
-        cancelButton:
-            "إلغاء",
-
-        refreshButton:
-            "تحديث",
-
-        deleteAllButton:
-            "حذف الكل",
-
-        searchEmployeeLabel:
-            "البحث باستخدام رقم الموظف",
-
-        searchEmployeePlaceholder:
-            "أدخل رقم الموظف",
-
-        searchNowButton:
-            "بحث",
-
-        cardSaved:
-            "تم حفظ بطاقة الصلاحية بنجاح.",
-
-        cardImageSaved:
-            "تم حفظ صورة بطاقة الصلاحية بنجاح.",
-
-        cardPDFSaved:
-            "تم حفظ ملف PDF بنجاح.",
-
-        noCards:
-            "لا توجد بطاقات صلاحية محفوظة.",
-
-        noSearchResults:
-            "لم يتم العثور على بطاقات لهذا الرقم الوظيفي.",
-
-        deleteConfirm:
-            "هل أنت متأكد من رغبتك في حذف هذه البطاقة؟",
-
-        deleteAllConfirm:
-            "هل أنت متأكد من رغبتك في حذف جميع البطاقات المحفوظة؟",
-
-        cardDeleted:
-            "تم حذف بطاقة الصلاحية بنجاح.",
-
-        allCardsDeleted:
-            "تم حذف جميع البطاقات المحفوظة.",
-
-        requiredFields:
-            "يرجى استكمال جميع الحقول المطلوبة.",
-
-        urlRequired:
-            "يرجى إدخال رابط النظام.",
-
-        createFirst:
-            "يرجى إنشاء بطاقة صلاحية أولاً.",
-
-        imageError:
-            "تعذر حفظ بطاقة الصلاحية كصورة.",
-
-        pdfError:
-            "تعذر إنشاء ملف PDF.",
-
-        savedCards:
-            "البطاقات المحفوظة",
-
-        view:
-            "عرض",
-
-        delete:
-            "حذف",
-
-        accessCard:
-            "بطاقة صلاحية",
-
-        employee:
-            "الموظف",
-
-        employeeNumber:
-            "رقم الموظف",
-
-        system:
-            "النظام",
-
-        environment:
-            "البيئة",
-
-        accessLevel:
-            "مستوى الصلاحية",
-
-        systemURL:
-            "رابط النظام",
-
-        notes:
-            "الملاحظات",
-
-        authorized:
-            "✓ صلاحية وصول معتمدة",
-
-        securityTitle:
-            "🔐 تنبيه أمني",
+        securityTitle:"🔐 تنبيه أمني",
 
         securityText:
-            "هذه البطاقة توثق صلاحية الوصول إلى النظام فقط، ولا تحتوي على اسم مستخدم أو كلمة مرور أو أي بيانات اعتماد سرية.",
+        "هذه البطاقة توثق صلاحية الوصول إلى النظام فقط، ولا تحتوي على اسم مستخدم أو كلمة مرور أو أي بيانات اعتماد سرية.",
 
-        createdDate:
-            "تاريخ الإنشاء:",
+        createdDate:"تاريخ الإنشاء:",
 
-        cards:
-            "بطاقات",
+        cards:"بطاقات",
+        card:"بطاقة",
 
-        card:
-            "بطاقة"
+        saveQuestion:
+        "تم إنشاء بطاقة الصلاحية. هل تريد حفظ البطاقة؟",
+
+        saveYes:"حفظ",
+        saveNo:"تراجع",
+
+        cardNotSaved:
+        "لم يتم حفظ بطاقة الصلاحية."
 
     }
 
 };
-
 
 /* =====================================================
    CURRENT LANGUAGE
@@ -1897,74 +1577,17 @@ const translations = {
 let currentLanguage =
     localStorage.getItem(LANGUAGE_KEY) || "en";
 
-
 /* =====================================================
    TRANSLATION HELPER
 ===================================================== */
 
 function t(key){
 
-    return translations[currentLanguage][key]
-        || translations.en[key]
-        || key;
+    return translations[currentLanguage][key] ||
+           translations.en[key] ||
+           key;
 
 }
-
-
-/* =====================================================
-   DATE FORMATTER
-===================================================== */
-
-function formatCardDate(card){
-
-    let dateValue = null;
-
-    if(card.createdAt){
-
-        dateValue =
-            new Date(card.createdAt);
-
-    }
-
-    else if(card.created){
-
-        /*
-         * Compatibility with old cards.
-         * Old cards remain untouched.
-         */
-        const parsed =
-            new Date(card.created);
-
-        if(!isNaN(parsed.getTime())){
-
-            dateValue = parsed;
-
-        }
-
-    }
-
-    if(
-        dateValue &&
-        !isNaN(dateValue.getTime())
-    ){
-
-        return dateValue.toLocaleDateString(
-            currentLanguage === "ar"
-                ? "ar-JO"
-                : "en-US",
-            {
-                year:"numeric",
-                month:"2-digit",
-                day:"2-digit"
-            }
-        );
-
-    }
-
-    return card.created || "";
-
-}
-
 
 /* =====================================================
    APPLY LANGUAGE
@@ -1977,14 +1600,13 @@ function applyLanguage(){
 
     document.documentElement.dir =
         currentLanguage === "ar"
-            ? "rtl"
-            : "ltr";
+        ? "rtl"
+        : "ltr";
 
     document.body.classList.toggle(
         "rtl",
         currentLanguage === "ar"
     );
-
 
     const ids = [
 
@@ -2018,7 +1640,6 @@ function applyLanguage(){
 
     ];
 
-
     ids.forEach(function(id){
 
         const element =
@@ -2032,7 +1653,6 @@ function applyLanguage(){
         }
 
     });
-
 
     const placeholders = {
 
@@ -2056,22 +1676,20 @@ function applyLanguage(){
 
     };
 
-
     Object.keys(placeholders)
-        .forEach(function(id){
+    .forEach(function(id){
 
-            const element =
-                document.getElementById(id);
+        const element =
+            document.getElementById(id);
 
-            if(element){
+        if(element){
 
-                element.placeholder =
-                    t(placeholders[id]);
+            element.placeholder =
+                t(placeholders[id]);
 
-            }
+        }
 
-        });
-
+    });
 
     document.getElementById(
         "environmentPlaceholder"
@@ -2092,7 +1710,6 @@ function applyLanguage(){
         "environmentWeb"
     ).textContent =
         t("environmentWeb");
-
 
     document.getElementById(
         "accessPlaceholder"
@@ -2119,66 +1736,61 @@ function applyLanguage(){
     ).textContent =
         t("accessAdmin");
 
-
     updateArchiveCount();
 
-
     /*
-     * IMPORTANT:
-     * Re-render the currently displayed card
-     * using the NEW language without changing
-     * the stored card itself.
-     */
+       If a card is currently displayed,
+       re-render it using the new language.
+       Stored data itself is NOT changed.
+    */
 
     if(currentCardData){
 
-        const generatedArea =
-            document.getElementById(
-                "generatedCardArea"
-            );
-
-        if(
-            generatedArea.classList.contains("show")
-        ){
-
-            renderCard(
-                currentCardData
-            );
-
-        }
+        renderCard(
+            currentCardData
+        );
 
     }
 
+}
 
-    /*
-     * Also refresh search results
-     * without changing stored data.
-     */
+/* =====================================================
+   TOGGLE LANGUAGE
+===================================================== */
 
-    const searchPanel =
-        document.getElementById(
-            "searchPanel"
-        );
+function toggleLanguage(){
+
+    currentLanguage =
+        currentLanguage === "en"
+        ? "ar"
+        : "en";
+
+    localStorage.setItem(
+        LANGUAGE_KEY,
+        currentLanguage
+    );
+
+    applyLanguage();
 
     if(
-        searchPanel &&
-        searchPanel.classList.contains("show")
+        document
+        .getElementById("searchPanel")
+        .classList.contains("show")
     ){
 
-        const searchInput =
-            document.getElementById(
+        const searchValue =
+            document
+            .getElementById(
                 "searchEmployeeNumber"
-            );
+            )
+            .value
+            .trim();
 
-        if(
-            searchInput &&
-            searchInput.value.trim() !== ""
-        ){
+        if(searchValue){
 
             searchCards();
 
         }
-
         else{
 
             renderSearchResults(
@@ -2191,101 +1803,68 @@ function applyLanguage(){
 
 }
 
-
-/* =====================================================
-   TOGGLE LANGUAGE
-===================================================== */
-
-function toggleLanguage(){
-
-    currentLanguage =
-        currentLanguage === "en"
-            ? "ar"
-            : "en";
-
-    localStorage.setItem(
-        LANGUAGE_KEY,
-        currentLanguage
-    );
-
-
-    /*
-     * Language changes ONLY the presentation.
-     *
-     * It NEVER:
-     * - deletes cards
-     * - rewrites storage
-     * - creates a new card
-     */
-
-    applyLanguage();
-
-}
-
-
 /* =====================================================
    SPLASH
 ===================================================== */
 
-/*
- * We intentionally do NOT depend on window.load.
- *
- * External libraries or images may delay load events.
- * The application itself must not remain trapped
- * behind the splash screen.
- */
-
-function hideSplash(){
-
-    const splash =
-        document.getElementById(
-            "splashScreen"
-        );
-
-    if(!splash){
-        return;
-    }
-
-    splash.classList.add("hide");
-
-}
-
-
-/*
- * Start application immediately when DOM exists.
- */
-
-document.addEventListener(
-    "DOMContentLoaded",
+window.addEventListener(
+    "load",
     function(){
 
         applyLanguage();
 
         refreshArchive();
 
+        const splash =
+            document.getElementById(
+                "splashScreen"
+            );
+
         /*
-         * Always hide splash after 5 seconds.
-         */
+           Splash is intentionally limited to
+           five seconds. External libraries cannot
+           keep it alive.
+        */
+
         setTimeout(
-            hideSplash,
+            function(){
+
+                splash.classList.add(
+                    "hide"
+                );
+
+            },
             5000
         );
 
     }
 );
 
-
 /*
- * Safety fallback:
- * If something unusual happens during startup,
- * the splash can never remain forever.
- */
+   Emergency fallback:
+   even if a browser behaves unexpectedly,
+   never leave the splash permanently visible.
+*/
 
 setTimeout(
-    hideSplash,
-    6500
-);
+    function(){
 
+        const splash =
+            document.getElementById(
+                "splashScreen"
+            );
+
+        if(splash){
+
+            splash.classList.add(
+                "hide"
+            );
+
+        }
+
+    },
+    8000
+);
 
 /* =====================================================
    ENVIRONMENT
@@ -2301,12 +1880,10 @@ function changeEnvironment(){
     selectedEnvironment =
         selected.value;
 
-
     const urlSection =
         document.getElementById(
             "urlSection"
         );
-
 
     if(
         selectedEnvironment === "Web"
@@ -2316,7 +1893,6 @@ function changeEnvironment(){
             "block";
 
     }
-
     else{
 
         urlSection.style.display =
@@ -2329,7 +1905,6 @@ function changeEnvironment(){
     }
 
 }
-
 
 /* =====================================================
    GET STORED CARDS
@@ -2345,7 +1920,9 @@ function getStoredCards(){
             );
 
         if(!data){
+
             return [];
+
         }
 
         const cards =
@@ -2356,7 +1933,6 @@ function getStoredCards(){
             : [];
 
     }
-
     catch(error){
 
         console.error(
@@ -2369,7 +1945,6 @@ function getStoredCards(){
     }
 
 }
-
 
 /* =====================================================
    SAVE STORED CARDS
@@ -2387,7 +1962,6 @@ function saveStoredCards(cards){
         return true;
 
     }
-
     catch(error){
 
         console.error(
@@ -2395,18 +1969,11 @@ function saveStoredCards(cards){
             error
         );
 
-        alert(
-            currentLanguage === "ar"
-                ? "تعذر حفظ البيانات في التخزين المحلي."
-                : "Unable to save data to local storage."
-        );
-
         return false;
 
     }
 
 }
-
 
 /* =====================================================
    UPDATE COUNT
@@ -2417,30 +1984,64 @@ function updateArchiveCount(){
     const count =
         getStoredCards().length;
 
-
-    const countText =
-        count === 1
-            ? count + " " + t("card")
-            : count + " " + t("cards");
-
-
-    const element =
-        document.getElementById(
-            "archiveCount"
+    const text =
+        count + " " +
+        (
+            count === 1
+            ? t("card")
+            : t("cards")
         );
 
-
-    if(element){
-
-        element.textContent =
-            t("savedCards") +
-            ": " +
-            countText;
-
-    }
+    document.getElementById(
+        "archiveCount"
+    ).textContent =
+        t("savedCards") +
+        ": " +
+        text;
 
 }
 
+/* =====================================================
+   CLEAR FORM
+===================================================== */
+
+function clearInputForm(){
+
+    document.getElementById(
+        "employeeNumber"
+    ).value = "";
+
+    document.getElementById(
+        "employeeName"
+    ).value = "";
+
+    document.getElementById(
+        "systemName"
+    ).value = "";
+
+    document.getElementById(
+        "environment"
+    ).value = "";
+
+    document.getElementById(
+        "accessLevel"
+    ).value = "";
+
+    document.getElementById(
+        "systemUrl"
+    ).value = "";
+
+    document.getElementById(
+        "notes"
+    ).value = "";
+
+    selectedEnvironment = "";
+
+    document.getElementById(
+        "urlSection"
+    ).style.display = "none";
+
+}
 
 /* =====================================================
    GENERATE CARD
@@ -2456,7 +2057,6 @@ function generateCard(){
         .value
         .trim();
 
-
     const employee =
         document
         .getElementById(
@@ -2464,7 +2064,6 @@ function generateCard(){
         )
         .value
         .trim();
-
 
     const system =
         document
@@ -2474,7 +2073,6 @@ function generateCard(){
         .value
         .trim();
 
-
     const environment =
         document
         .getElementById(
@@ -2482,14 +2080,12 @@ function generateCard(){
         )
         .value;
 
-
     const accessLevel =
         document
         .getElementById(
             "accessLevel"
         )
         .value;
-
 
     const url =
         document
@@ -2499,7 +2095,6 @@ function generateCard(){
         .value
         .trim();
 
-
     const notes =
         document
         .getElementById(
@@ -2508,6 +2103,7 @@ function generateCard(){
         .value
         .trim();
 
+    /* REQUIRED FIELDS */
 
     if(
         employeeNumber === "" ||
@@ -2525,6 +2121,7 @@ function generateCard(){
 
     }
 
+    /* URL REQUIRED FOR WEB */
 
     if(
         environment === "Web" &&
@@ -2539,6 +2136,7 @@ function generateCard(){
 
     }
 
+    /* CREATE UNIQUE CARD ID */
 
     const cardID =
         "IFT-" +
@@ -2548,16 +2146,30 @@ function generateCard(){
             Math.random() * 90000 + 10000
         );
 
-
     /*
-     * IMPORTANT:
-     * Store the real date/time,
-     * not the translated display text.
-     */
+       IMPORTANT:
+       Store the date in a language-neutral
+       format so changing interface language
+       does not alter the underlying card data.
+    */
 
-    const createdAt =
+    const createdISO =
         new Date().toISOString();
 
+    const currentDate =
+        new Date();
+
+    const created =
+        currentDate.toLocaleDateString(
+            currentLanguage === "ar"
+            ? "ar-JO"
+            : "en-US"
+        );
+
+    /*
+       This object is NOT saved yet.
+       It is only prepared for confirmation.
+    */
 
     currentCardData = {
 
@@ -2585,57 +2197,25 @@ function generateCard(){
         notes:
             notes,
 
-        createdAt:
-            createdAt
+        created:
+            created,
+
+        createdISO:
+            createdISO
 
     };
 
-
-    /*
-     * SAVE TO LOCAL STORAGE
-     */
-
-    const cards =
-        getStoredCards();
-
-
-    cards.unshift(
-        currentCardData
-    );
-
-
-    if(
-        !saveStoredCards(cards)
-    ){
-
-        return;
-
-    }
-
-
-    /*
-     * CREATE / DISPLAY CARD
-     */
+    /* SHOW PREVIEW */
 
     renderCard(
         currentCardData
     );
-
-
-    updateArchiveCount();
-
-
-    showSuccessToast(
-        t("cardSaved")
-    );
-
 
     document
     .getElementById(
         "generatedCardArea"
     )
     .classList.add("show");
-
 
     setTimeout(
         function(){
@@ -2653,8 +2233,64 @@ function generateCard(){
         100
     );
 
-}
+    /*
+       ASK USER WHETHER TO SAVE
+    */
 
+    const shouldSave =
+        confirm(
+            t("saveQuestion")
+        );
+
+    if(!shouldSave){
+
+        showSuccessToast(
+            t("cardNotSaved")
+        );
+
+        return;
+
+    }
+
+    /*
+       SAVE ONLY AFTER USER CONFIRMS
+    */
+
+    const cards =
+        getStoredCards();
+
+    cards.unshift(
+        currentCardData
+    );
+
+    const saved =
+        saveStoredCards(
+            cards
+        );
+
+    if(!saved){
+
+        alert(
+            "Unable to save card data."
+        );
+
+        return;
+
+    }
+
+    updateArchiveCount();
+
+    showSuccessToast(
+        t("cardSaved")
+    );
+
+    /*
+       CLEAR INPUT FIELDS AFTER SUCCESSFUL SAVE
+    */
+
+    clearInputForm();
+
+}
 
 /* =====================================================
    RENDER CARD
@@ -2662,37 +2298,23 @@ function generateCard(){
 
 function renderCard(data){
 
-    if(!data){
-        return;
-    }
-
-
-    /*
-     * Keep the actual data object.
-     * Language changes will call this function again.
-     */
-
     currentCardData =
         data;
 
-
     const employeeNumber =
         escapeHTML(
-            data.employeeNumber || ""
+            data.employeeNumber
         );
-
 
     const employee =
         escapeHTML(
-            data.employee || ""
+            data.employee
         );
-
 
     const system =
         escapeHTML(
-            data.system || ""
+            data.system
         );
-
 
     const environment =
         escapeHTML(
@@ -2701,7 +2323,6 @@ function renderCard(data){
             )
         );
 
-
     const accessLevel =
         escapeHTML(
             translateAccessLevel(
@@ -2709,222 +2330,236 @@ function renderCard(data){
             )
         );
 
-
     const url =
         escapeHTML(
             data.url || ""
         );
-
 
     const notes =
         escapeHTML(
             data.notes || ""
         );
 
-
     const cardID =
         escapeHTML(
-            data.cardID || ""
+            data.cardID
         );
 
+    /*
+       Existing stored cards may have created,
+       while newer cards also have createdISO.
+    */
+
+    let createdDisplay =
+        data.created || "";
+
+    /*
+       If createdISO exists, always display it
+       according to the CURRENT interface language.
+       This is what makes language switching
+       independent from stored card data.
+    */
+
+    if(data.createdISO){
+
+        try{
+
+            createdDisplay =
+                new Date(
+                    data.createdISO
+                ).toLocaleDateString(
+                    currentLanguage === "ar"
+                    ? "ar-JO"
+                    : "en-US"
+                );
+
+        }
+        catch(error){
+
+            createdDisplay =
+                data.created || "";
+
+        }
+
+    }
 
     const created =
         escapeHTML(
-            formatCardDate(data)
+            createdDisplay
         );
 
-
-    const generatedCard =
-        document.getElementById(
-            "generatedCard"
-        );
-
-
-    generatedCard.innerHTML = `
-
-        <div class="generated-card">
-
-            <div class="card-logo">
-
-                <img
-                    src="card-logo.png"
-                    alt="Card Logo"
-                >
-
-            </div>
-
-
-            <h2>
-                ${t("accessCard")}
-            </h2>
-
-
-            ${
-                data.environment === "Web"
-                ?
-                `
-                <div class="qr-area">
-
-                    <div id="qrCode"></div>
-
-                </div>
-                `
-                :
-                ""
-            }
-
-
-            <div class="info-row">
-
-                <b>
-                    ${t("employeeNumber")}
-                </b>
-
-                <br>
-
-                ${employeeNumber}
-
-            </div>
-
-
-            <div class="info-row">
-
-                <b>
-                    ${t("employee")}
-                </b>
-
-                <br>
-
-                ${employee}
-
-            </div>
-
-
-            <div class="info-row">
-
-                <b>
-                    ${t("system")}
-                </b>
-
-                <br>
-
-                ${system}
-
-            </div>
-
-
-            <div class="info-row">
-
-                <b>
-                    ${t("environment")}
-                </b>
-
-                <br>
-
-                ${environment}
-
-            </div>
-
-
-            <div class="info-row">
-
-                <b>
-                    ${t("accessLevel")}
-                </b>
-
-                <br>
-
-                ${accessLevel}
-
-            </div>
-
-
-            ${
-                data.environment === "Web"
-                ?
-                `
-                <div class="info-row">
-
-                    <b>
-                        ${t("systemURL")}
-                    </b>
-
-                    <br>
-
-                    ${url}
-
-                </div>
-                `
-                :
-                ""
-            }
-
-
-            ${
-                data.notes
-                ?
-                `
-                <div class="info-row">
-
-                    <b>
-                        ${t("notes")}
-                    </b>
-
-                    <br>
-
-                    ${notes}
-
-                </div>
-                `
-                :
-                ""
-            }
-
-
-            <div class="access-status">
-
-                ${t("authorized")}
-
-            </div>
-
-
-            <div class="security-notice">
-
-                <div class="security-notice-title">
-
-                    ${t("securityTitle")}
-
-                </div>
-
-                <p>
-
-                    ${t("securityText")}
-
-                </p>
-
-            </div>
-
-
-            <div class="card-footer">
-
-                ${t("createdDate")}
-                ${created}
-
-                <br>
-
-                ${cardID}
-
-            </div>
+    document.getElementById(
+        "generatedCard"
+    ).innerHTML = `
+
+    <div class="generated-card">
+
+        <div class="card-logo">
+
+            <img
+                src="card-logo.png"
+                alt="Card Logo"
+                onerror="this.style.display='none'"
+            >
 
         </div>
 
+        <h2>
+            ${t("accessCard")}
+        </h2>
+
+        ${
+            data.environment === "Web"
+            ?
+            `
+            <div class="qr-area">
+                <div id="qrCode"></div>
+            </div>
+            `
+            :
+            ""
+        }
+
+        <div class="info-row">
+
+            <b>
+                ${t("employeeNumber")}
+            </b>
+
+            <br>
+
+            ${employeeNumber}
+
+        </div>
+
+        <div class="info-row">
+
+            <b>
+                ${t("employee")}
+            </b>
+
+            <br>
+
+            ${employee}
+
+        </div>
+
+        <div class="info-row">
+
+            <b>
+                ${t("system")}
+            </b>
+
+            <br>
+
+            ${system}
+
+        </div>
+
+        <div class="info-row">
+
+            <b>
+                ${t("environment")}
+            </b>
+
+            <br>
+
+            ${environment}
+
+        </div>
+
+        <div class="info-row">
+
+            <b>
+                ${t("accessLevel")}
+            </b>
+
+            <br>
+
+            ${accessLevel}
+
+        </div>
+
+        ${
+            data.environment === "Web"
+            ?
+            `
+            <div class="info-row">
+
+                <b>
+                    ${t("systemURL")}
+                </b>
+
+                <br>
+
+                ${url}
+
+            </div>
+            `
+            :
+            ""
+        }
+
+        ${
+            data.notes
+            ?
+            `
+            <div class="info-row">
+
+                <b>
+                    ${t("notes")}
+                </b>
+
+                <br>
+
+                ${notes}
+
+            </div>
+            `
+            :
+            ""
+        }
+
+        <div class="access-status">
+
+            ${t("authorized")}
+
+        </div>
+
+        <div class="security-notice">
+
+            <div class="security-notice-title">
+
+                ${t("securityTitle")}
+
+            </div>
+
+            <p>
+
+                ${t("securityText")}
+
+            </p>
+
+        </div>
+
+        <div class="card-footer">
+
+            ${t("createdDate")}
+            ${created}
+
+            <br>
+
+            ${cardID}
+
+        </div>
+
+    </div>
+
     `;
 
-
     /*
-     * Generate QR only when the selected
-     * system environment is Web.
-     */
+       Generate QR code only for Web applications.
+    */
 
     if(
         data.environment === "Web" &&
@@ -2936,7 +2571,6 @@ function renderCard(data){
                 "qrCode"
             );
 
-
         if(
             qrContainer &&
             typeof QRCode !== "undefined"
@@ -2945,14 +2579,9 @@ function renderCard(data){
             new QRCode(
                 qrContainer,
                 {
-                    text:
-                        data.url,
-
-                    width:
-                        110,
-
-                    height:
-                        110
+                    text:data.url,
+                    width:110,
+                    height:110
                 }
             );
 
@@ -2961,7 +2590,6 @@ function renderCard(data){
     }
 
 }
-
 
 /* =====================================================
    TRANSLATE ENVIRONMENT
@@ -2977,7 +2605,6 @@ function translateEnvironment(value){
 
     }
 
-
     const map = {
 
         "Operating System":
@@ -2991,11 +2618,9 @@ function translateEnvironment(value){
 
     };
 
-
     return map[value] || value;
 
 }
-
 
 /* =====================================================
    TRANSLATE ACCESS LEVEL
@@ -3010,7 +2635,6 @@ function translateAccessLevel(value){
         return value;
 
     }
-
 
     const map = {
 
@@ -3028,11 +2652,9 @@ function translateAccessLevel(value){
 
     };
 
-
     return map[value] || value;
 
 }
-
 
 /* =====================================================
    ESCAPE HTML
@@ -3069,7 +2691,6 @@ function escapeHTML(value){
 
 }
 
-
 /* =====================================================
    SEARCH PANEL
 ===================================================== */
@@ -3081,18 +2702,15 @@ function showSearch(){
             "searchPanel"
         );
 
-
     panel.classList.toggle(
         "show"
     );
-
 
     if(
         panel.classList.contains("show")
     ){
 
         refreshArchive();
-
 
         setTimeout(
             function(){
@@ -3110,7 +2728,6 @@ function showSearch(){
 
 }
 
-
 /* =====================================================
    REFRESH ARCHIVE
 ===================================================== */
@@ -3119,17 +2736,14 @@ function refreshArchive(){
 
     updateArchiveCount();
 
-
     const cards =
         getStoredCards();
-
 
     renderSearchResults(
         cards
     );
 
 }
-
 
 /* =====================================================
    SEARCH KEY
@@ -3147,7 +2761,6 @@ function handleSearchKey(event){
 
 }
 
-
 /* =====================================================
    SEARCH CARDS
 ===================================================== */
@@ -3163,14 +2776,10 @@ function searchCards(){
         .trim()
         .toLowerCase();
 
-
     const cards =
         getStoredCards();
 
-
-    if(
-        number === ""
-    ){
+    if(number === ""){
 
         renderSearchResults(
             cards
@@ -3180,13 +2789,12 @@ function searchCards(){
 
     }
 
-
     const results =
         cards.filter(
             function(card){
 
                 return String(
-                    card.employeeNumber || ""
+                    card.employeeNumber
                 )
                 .toLowerCase()
                 .includes(number);
@@ -3194,13 +2802,11 @@ function searchCards(){
             }
         );
 
-
     renderSearchResults(
         results
     );
 
 }
-
 
 /* =====================================================
    RENDER SEARCH RESULTS
@@ -3212,7 +2818,6 @@ function renderSearchResults(cards){
         document.getElementById(
             "searchResults"
         );
-
 
     if(!cards.length){
 
@@ -3236,18 +2841,9 @@ function renderSearchResults(cards){
 
     }
 
-
     container.innerHTML =
         cards.map(
             function(card){
-
-                const safeID =
-                    encodeURIComponent(
-                        String(
-                            card.cardID || ""
-                        )
-                    );
-
 
                 return `
 
@@ -3258,7 +2854,7 @@ function renderSearchResults(cards){
                         <div class="search-result-title">
 
                             ${escapeHTML(
-                                card.employee || ""
+                                card.employee
                             )}
 
                         </div>
@@ -3266,13 +2862,12 @@ function renderSearchResults(cards){
                         <div class="search-result-id">
 
                             ${escapeHTML(
-                                card.cardID || ""
+                                card.cardID
                             )}
 
                         </div>
 
                     </div>
-
 
                     <div class="search-result-info">
 
@@ -3281,22 +2876,20 @@ function renderSearchResults(cards){
                         </strong>
 
                         ${escapeHTML(
-                            card.employeeNumber || ""
+                            card.employeeNumber
                         )}
 
                         <br>
-
 
                         <strong>
                             ${t("system")}:
                         </strong>
 
                         ${escapeHTML(
-                            card.system || ""
+                            card.system
                         )}
 
                         <br>
-
 
                         <strong>
                             ${t("accessLevel")}:
@@ -3310,37 +2903,32 @@ function renderSearchResults(cards){
 
                         <br>
 
-
                         <strong>
                             ${t("createdDate")}
                         </strong>
 
                         ${escapeHTML(
-                            formatCardDate(card)
+                            getCardDisplayDate(
+                                card
+                            )
                         )}
 
                     </div>
-
 
                     <div class="search-result-buttons">
 
                         <button
                             class="result-btn view"
-                            onclick="viewStoredCard(decodeURIComponent('${safeID}'))"
+                            onclick="viewStoredCard('${escapeJS(card.cardID)}')"
                         >
-
                             ${t("view")}
-
                         </button>
-
 
                         <button
                             class="result-btn delete"
-                            onclick="deleteCard(decodeURIComponent('${safeID}'))"
+                            onclick="deleteCard('${escapeJS(card.cardID)}')"
                         >
-
                             ${t("delete")}
-
                         </button>
 
                     </div>
@@ -3350,11 +2938,51 @@ function renderSearchResults(cards){
                 `;
 
             }
-        )
-        .join("");
+        ).join("");
 
 }
 
+/* =====================================================
+   CARD DISPLAY DATE
+===================================================== */
+
+function getCardDisplayDate(card){
+
+    if(card.createdISO){
+
+        try{
+
+            return new Date(
+                card.createdISO
+            ).toLocaleDateString(
+                currentLanguage === "ar"
+                ? "ar-JO"
+                : "en-US"
+            );
+
+        }
+        catch(error){}
+
+    }
+
+    return card.created || "";
+
+}
+
+/* =====================================================
+   ESCAPE JAVASCRIPT
+===================================================== */
+
+function escapeJS(value){
+
+    return String(value)
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,"&quot;")
+        .replace(/\r/g,"")
+        .replace(/\n/g,"");
+
+}
 
 /* =====================================================
    VIEW STORED CARD
@@ -3365,7 +2993,6 @@ function viewStoredCard(cardID){
     const cards =
         getStoredCards();
 
-
     const card =
         cards.find(
             function(item){
@@ -3375,30 +3002,21 @@ function viewStoredCard(cardID){
             }
         );
 
-
     if(!card){
 
         return;
 
     }
 
-
-    /*
-     * This displays the SAME stored card.
-     * No new card is created.
-     */
-
     renderCard(
         card
     );
-
 
     document
     .getElementById(
         "generatedCardArea"
     )
     .classList.add("show");
-
 
     setTimeout(
         function(){
@@ -3418,7 +3036,6 @@ function viewStoredCard(cardID){
 
 }
 
-
 /* =====================================================
    DELETE CARD
 ===================================================== */
@@ -3435,10 +3052,8 @@ function deleteCard(cardID){
 
     }
 
-
     let cards =
         getStoredCards();
-
 
     cards =
         cards.filter(
@@ -3449,59 +3064,28 @@ function deleteCard(cardID){
             }
         );
 
-
     saveStoredCards(
         cards
     );
 
-
     updateArchiveCount();
 
-
-    /*
-     * Preserve the active search if the user
-     * is searching by employee number.
-     */
-
-    const searchInput =
-        document.getElementById(
-            "searchEmployeeNumber"
-        );
-
-
-    if(
-        searchInput &&
-        searchInput.value.trim() !== ""
-    ){
-
-        searchCards();
-
-    }
-
-    else{
-
-        renderSearchResults(
-            cards
-        );
-
-    }
-
+    renderSearchResults(
+        cards
+    );
 
     if(
         currentCardData &&
         currentCardData.cardID === cardID
     ){
 
-        currentCardData =
-            null;
-
+        currentCardData = null;
 
         document
         .getElementById(
             "generatedCard"
         )
         .innerHTML = "";
-
 
         document
         .getElementById(
@@ -3511,13 +3095,11 @@ function deleteCard(cardID){
 
     }
 
-
     showSuccessToast(
         t("cardDeleted")
     );
 
 }
-
 
 /* =====================================================
    DELETE ALL
@@ -3527,7 +3109,6 @@ function deleteAllCards(){
 
     const cards =
         getStoredCards();
-
 
     if(!cards.length){
 
@@ -3539,7 +3120,6 @@ function deleteAllCards(){
 
     }
 
-
     if(
         !confirm(
             t("deleteAllConfirm")
@@ -3550,15 +3130,11 @@ function deleteAllCards(){
 
     }
 
-
     localStorage.removeItem(
         STORAGE_KEY
     );
 
-
-    currentCardData =
-        null;
-
+    currentCardData = null;
 
     document
     .getElementById(
@@ -3566,28 +3142,23 @@ function deleteAllCards(){
     )
     .innerHTML = "";
 
-
     document
     .getElementById(
         "generatedCardArea"
     )
     .classList.remove("show");
 
-
     updateArchiveCount();
-
 
     renderSearchResults(
         []
     );
-
 
     showSuccessToast(
         t("allCardsDeleted")
     );
 
 }
-
 
 /* =====================================================
    MODAL
@@ -3603,7 +3174,6 @@ function openCardModal(){
 
 }
 
-
 function closeCardModal(){
 
     document
@@ -3613,7 +3183,6 @@ function closeCardModal(){
     .classList.remove("show");
 
 }
-
 
 function handleModalBackgroundClick(event){
 
@@ -3630,7 +3199,6 @@ function handleModalBackgroundClick(event){
 
 }
 
-
 /* =====================================================
    TOAST
 ===================================================== */
@@ -3642,20 +3210,16 @@ function showSuccessToast(message){
             "successToast"
         );
 
-
     clearTimeout(
         toastTimer
     );
 
-
     toast.innerHTML =
-        "✅ " + escapeHTML(message);
-
+        "✅ " + message;
 
     toast.classList.add(
         "show"
     );
-
 
     toastTimer =
         setTimeout(
@@ -3671,7 +3235,6 @@ function showSuccessToast(message){
 
 }
 
-
 /* =====================================================
    SAVE IMAGE
 ===================================================== */
@@ -3683,7 +3246,6 @@ async function saveCardAsImage(){
             ".generated-card"
         );
 
-
     if(!card){
 
         alert(
@@ -3694,9 +3256,7 @@ async function saveCardAsImage(){
 
     }
 
-
     closeCardModal();
-
 
     try{
 
@@ -3705,11 +3265,10 @@ async function saveCardAsImage(){
         ){
 
             throw new Error(
-                "html2canvas library is unavailable."
+                "html2canvas is not available"
             );
 
         }
-
 
         const canvas =
             await html2canvas(
@@ -3718,53 +3277,43 @@ async function saveCardAsImage(){
                     scale:3,
                     useCORS:true,
                     allowTaint:false,
-                    backgroundColor:
-                        "#ffffff",
-                    imageTimeout:
-                        15000
+                    backgroundColor:"#ffffff",
+                    imageTimeout:15000
                 }
             );
-
 
         const link =
             document.createElement(
                 "a"
             );
 
-
         const cardID =
             currentCardData
-                ?
-                currentCardData.cardID
-                :
-                "Iftaa-Access-Card";
-
+            ?
+            currentCardData.cardID
+            :
+            "Iftaa-Access-Card";
 
         link.download =
             cardID + ".png";
-
 
         link.href =
             canvas.toDataURL(
                 "image/png"
             );
 
-
         link.click();
-
 
         showSuccessToast(
             t("cardImageSaved")
         );
 
     }
-
     catch(error){
 
         console.error(
             error
         );
-
 
         alert(
             t("imageError")
@@ -3773,7 +3322,6 @@ async function saveCardAsImage(){
     }
 
 }
-
 
 /* =====================================================
    SAVE PDF
@@ -3786,7 +3334,6 @@ async function saveCardAsPDF(){
             ".generated-card"
         );
 
-
     if(!card){
 
         alert(
@@ -3797,9 +3344,7 @@ async function saveCardAsPDF(){
 
     }
 
-
     closeCardModal();
-
 
     try{
 
@@ -3808,11 +3353,10 @@ async function saveCardAsPDF(){
         ){
 
             throw new Error(
-                "html2canvas library is unavailable."
+                "html2canvas is not available"
             );
 
         }
-
 
         const canvas =
             await html2canvas(
@@ -3821,81 +3365,59 @@ async function saveCardAsPDF(){
                     scale:3,
                     useCORS:true,
                     allowTaint:false,
-                    backgroundColor:
-                        "#ffffff",
-                    imageTimeout:
-                        15000
+                    backgroundColor:"#ffffff",
+                    imageTimeout:15000
                 }
             );
-
 
         const imageData =
             canvas.toDataURL(
                 "image/png"
             );
 
-
         if(
-            !window.jspdf ||
-            !window.jspdf.jsPDF
+            !window.jspdf
         ){
 
             throw new Error(
-                "jsPDF library is unavailable."
+                "jsPDF is not available"
             );
 
         }
-
 
         const {
             jsPDF
         } =
             window.jspdf;
 
-
         const cardWidth =
             90;
-
 
         const cardHeight =
             55;
 
-
         const pdf =
             new jsPDF({
-
-                orientation:
-                    "landscape",
-
-                unit:
-                    "mm",
-
+                orientation:"landscape",
+                unit:"mm",
                 format:[
                     cardWidth,
                     cardHeight
                 ]
-
             });
-
 
         const imageRatio =
             canvas.width /
             canvas.height;
 
-
         const pdfRatio =
             cardWidth /
             cardHeight;
 
-
         let imageWidth;
-
         let imageHeight;
-
         let x;
-
         let y;
-
 
         if(
             imageRatio > pdfRatio
@@ -3904,14 +3426,11 @@ async function saveCardAsPDF(){
             imageWidth =
                 cardWidth;
 
-
             imageHeight =
                 cardWidth /
                 imageRatio;
 
-
             x = 0;
-
 
             y =
                 (
@@ -3920,17 +3439,14 @@ async function saveCardAsPDF(){
                 ) / 2;
 
         }
-
         else{
 
             imageHeight =
                 cardHeight;
 
-
             imageWidth =
                 cardHeight *
                 imageRatio;
-
 
             x =
                 (
@@ -3938,11 +3454,9 @@ async function saveCardAsPDF(){
                     imageWidth
                 ) / 2;
 
-
             y = 0;
 
         }
-
 
         pdf.addImage(
             imageData,
@@ -3955,32 +3469,27 @@ async function saveCardAsPDF(){
             "FAST"
         );
 
-
         const cardID =
             currentCardData
-                ?
-                currentCardData.cardID
-                :
-                "Iftaa-Access-Card";
-
+            ?
+            currentCardData.cardID
+            :
+            "Iftaa-Access-Card";
 
         pdf.save(
             cardID + ".pdf"
         );
-
 
         showSuccessToast(
             t("cardPDFSaved")
         );
 
     }
-
     catch(error){
 
         console.error(
             error
         );
-
 
         alert(
             t("pdfError")
@@ -3993,5 +3502,4 @@ async function saveCardAsPDF(){
 </script>
 
 </body>
-
 </html>
