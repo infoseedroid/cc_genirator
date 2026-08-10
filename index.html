@@ -1,31 +1,27 @@
 <!DOCTYPE html>
+
 <html lang="en" dir="ltr">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Iftaa Systems Access Card</title>
 
-
 <!-- QR Code Library -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <!-- HTML To Image -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <!-- PDF -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-
 <style>
-
 /* =====================================================
    GLOBAL STYLE
 ===================================================== */
-
 *{
     box-sizing:border-box;
     font-family:
@@ -41,11 +37,9 @@ body{
     color:#222;
 }
 
-
 /* =====================================================
    SPLASH SCREEN
 ===================================================== */
-
 #splashScreen{
     position:fixed;
     top:0;
@@ -98,7 +92,6 @@ body{
     from{
         transform:rotate(0deg);
     }
-
     to{
         transform:rotate(360deg);
     }
@@ -110,11 +103,9 @@ body{
     }
 }
 
-
 /* =====================================================
    HEADER
 ===================================================== */
-
 .header{
     background:#0b6b4a;
     color:white;
@@ -141,11 +132,9 @@ body{
     font-size:15px;
 }
 
-
 /* =====================================================
    CONTAINER
 ===================================================== */
-
 .container{
     max-width:900px;
     margin:auto;
@@ -167,11 +156,9 @@ body{
     margin-bottom:20px;
 }
 
-
 /* =====================================================
    FORM
 ===================================================== */
-
 .form-group{
     margin-top:18px;
 }
@@ -222,11 +209,9 @@ select:focus{
     0 0 5px rgba(11,107,74,.3);
 }
 
-
 /* =====================================================
    BUTTONS
 ===================================================== */
-
 .create-btn,
 .search-btn{
     width:100%;
@@ -256,11 +241,9 @@ select:focus{
     background:#444;
 }
 
-
 /* =====================================================
    GENERATED CARD AREA
 ===================================================== */
-
 .generated-card-area{
     display:none;
     margin-top:35px;
@@ -272,11 +255,9 @@ select:focus{
     display:block;
 }
 
-
 /* =====================================================
    GENERATED ACCESS CARD
 ===================================================== */
-
 .generated-card{
     width:100%;
     max-width:650px;
@@ -290,53 +271,39 @@ select:focus{
     text-align:center;
 }
 
-
 /* =====================================================
    CARD LOGO
-   IMPORTANT:
-   Keep original aspect ratio
 ===================================================== */
-
 .card-logo{
     width:100%;
     height:90px;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
     margin-bottom:12px;
-
     overflow:hidden;
 }
 
 .card-logo img{
     width:auto;
     height:100%;
-
     max-width:80%;
-
     object-fit:contain;
-
     display:block;
 }
-
 
 /* =====================================================
    CARD TITLE
 ===================================================== */
-
 .generated-card h2{
     color:#0b6b4a;
     margin:8px 0 18px;
     font-size:21px;
 }
 
-
 /* =====================================================
    QR
 ===================================================== */
-
 .qr-area{
     display:flex;
     justify-content:center;
@@ -350,11 +317,9 @@ select:focus{
     align-items:center;
 }
 
-
 /* =====================================================
    INFORMATION ROWS
 ===================================================== */
-
 .info-row{
     text-align:left;
     background:#f6f8f7;
@@ -370,11 +335,9 @@ select:focus{
     color:#0b6b4a;
 }
 
-
 /* =====================================================
    ACCESS STATUS
 ===================================================== */
-
 .access-status{
     margin-top:10px;
     padding:8px 12px;
@@ -386,11 +349,9 @@ select:focus{
     text-align:center;
 }
 
-
 /* =====================================================
    SECURITY NOTICE
 ===================================================== */
-
 .security-notice{
     margin-top:12px;
     padding:11px;
@@ -414,11 +375,9 @@ select:focus{
     line-height:1.5;
 }
 
-
 /* =====================================================
    CARD FOOTER
 ===================================================== */
-
 .card-footer{
     margin-top:12px;
     padding-top:10px;
@@ -427,11 +386,9 @@ select:focus{
     font-size:11px;
 }
 
-
 /* =====================================================
    MORE BUTTON
 ===================================================== */
-
 .card-actions{
     position:relative;
     width:100%;
@@ -448,12 +405,10 @@ select:focus{
     border-radius:10px;
     font-size:15px;
     cursor:pointer;
-
     display:inline-flex;
     align-items:center;
     justify-content:center;
     gap:8px;
-
     transition:.2s ease;
 }
 
@@ -471,29 +426,20 @@ select:focus{
     line-height:15px;
 }
 
-
 /* =====================================================
    MODAL
 ===================================================== */
-
 .card-modal{
     display:none;
-
     position:fixed;
-
     top:0;
     left:0;
-
     width:100%;
     height:100%;
-
     background:rgba(0,0,0,.55);
-
     z-index:999999;
-
     align-items:center;
     justify-content:center;
-
     padding:20px;
 }
 
@@ -504,31 +450,23 @@ select:focus{
 .card-modal-box{
     width:100%;
     max-width:390px;
-
     background:white;
-
     border-radius:20px;
-
     padding:25px;
-
     box-shadow:
     0 15px 45px rgba(0,0,0,.30);
-
     animation:modalAppear .25s ease;
 }
 
 @keyframes modalAppear{
-
     from{
         opacity:0;
         transform:scale(.90);
     }
-
     to{
         opacity:1;
         transform:scale(1);
     }
-
 }
 
 .card-modal-header{
@@ -550,29 +488,17 @@ select:focus{
 
 .card-modal-option{
     width:100%;
-
     border:none;
-
     background:#f6f8f7;
-
     border-radius:12px;
-
     padding:14px;
-
     margin-top:10px;
-
     display:flex;
-
     align-items:center;
-
     gap:14px;
-
     font-size:15px;
-
     text-align:left;
-
     cursor:pointer;
-
     transition:
     background .2s ease,
     transform .15s ease;
@@ -590,21 +516,14 @@ select:focus{
 .card-modal-icon{
     width:44px;
     height:44px;
-
     border-radius:11px;
-
     background:white;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     font-size:22px;
-
     box-shadow:
     0 2px 6px rgba(0,0,0,.08);
-
     flex-shrink:0;
 }
 
@@ -627,19 +546,12 @@ select:focus{
 
 .card-modal-close{
     width:100%;
-
     border:none;
-
     background:transparent;
-
     color:#666;
-
     padding:12px;
-
     margin-top:10px;
-
     font-size:14px;
-
     cursor:pointer;
 }
 
@@ -647,69 +559,47 @@ select:focus{
     color:#0b6b4a;
 }
 
-
 /* =====================================================
    SUCCESS TOAST
 ===================================================== */
-
 #successToast{
     position:fixed;
-
     left:50%;
-
     bottom:30px;
-
     transform:
     translateX(-50%)
     translateY(30px);
-
     background:#0b6b4a;
-
     color:white;
-
     padding:14px 22px;
-
     border-radius:12px;
-
     font-size:14px;
-
     font-weight:500;
-
     box-shadow:
     0 6px 20px rgba(0,0,0,.25);
-
     opacity:0;
-
     visibility:hidden;
-
     transition:
     opacity .3s ease,
     transform .3s ease,
     visibility .3s ease;
-
     z-index:1000000;
-
     text-align:center;
-
     min-width:260px;
-
     max-width:90%;
 }
 
 #successToast.show{
     opacity:1;
     visibility:visible;
-
     transform:
     translateX(-50%)
     translateY(0);
 }
 
-
 /* =====================================================
    MOBILE
 ===================================================== */
-
 @media(max-width:600px){
 
     .container{
@@ -797,16 +687,12 @@ select:focus{
         padding:13px 18px;
         min-width:240px;
     }
-
 }
-
 </style>
 
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      SPLASH SCREEN
@@ -814,27 +700,28 @@ select:focus{
 
 <div id="splashScreen">
 
-    <div class="splash-content">
+```
+<div class="splash-content">
 
-        <img
-            src="logo.png"
-            class="splash-logo"
-        >
+    <img
+        src="logo.png"
+        class="splash-logo"
+    >
 
-        <h1>
-            Iftaa Systems Access Card
-        </h1>
+    <h1>
+        Iftaa Systems Access Card
+    </h1>
 
-        <p>
-            Loading System...
-        </p>
+    <p>
+        Loading System...
+    </p>
 
-        <div class="spinner"></div>
-
-    </div>
+    <div class="spinner"></div>
 
 </div>
+```
 
+</div>
 
 <!-- =====================================================
      MAIN HEADER
@@ -842,18 +729,19 @@ select:focus{
 
 <div class="header">
 
-    <img src="logo.png">
+```
+<img src="logo.png">
 
-    <h1>
-        Iftaa Systems Access Card
-    </h1>
+<h1>
+    Iftaa Systems Access Card
+</h1>
 
-    <p>
-        Systems Access Authorization Management Tool
-    </p>
+<p>
+    Systems Access Authorization Management Tool
+</p>
+```
 
 </div>
-
 
 <!-- =====================================================
      MAIN CONTENT
@@ -863,11 +751,9 @@ select:focus{
 
 <div class="box">
 
-
 <h2 class="section-title">
 Create Access Card
 </h2>
-
 
 <!-- EMPLOYEE -->
 
@@ -878,13 +764,13 @@ Employee Name
 </label>
 
 <input
-    type="text"
-    id="employeeName"
-    placeholder="Enter employee name"
+type="text"
+id="employeeName"
+placeholder="Enter employee name"
+
 >
 
 </div>
-
 
 <!-- SYSTEM -->
 
@@ -895,13 +781,13 @@ System Name
 </label>
 
 <input
-    type="text"
-    id="systemName"
-    placeholder="Enter system name"
+type="text"
+id="systemName"
+placeholder="Enter system name"
+
 >
 
 </div>
-
 
 <!-- ENVIRONMENT -->
 
@@ -912,8 +798,9 @@ System Environment
 </label>
 
 <select
-    id="environment"
-    onchange="changeEnvironment()"
+id="environment"
+onchange="changeEnvironment()"
+
 >
 
 <option value="">
@@ -935,7 +822,6 @@ Web App
 </select>
 
 </div>
-
 
 <!-- ACCESS LEVEL -->
 
@@ -971,7 +857,6 @@ Administrator
 
 </div>
 
-
 <!-- URL -->
 
 <div
@@ -985,13 +870,13 @@ System URL
 </label>
 
 <input
-    type="text"
-    id="systemUrl"
-    placeholder="Paste web system URL here"
+type="text"
+id="systemUrl"
+placeholder="Paste web system URL here"
+
 >
 
 </div>
-
 
 <!-- NOTES -->
 
@@ -1008,30 +893,25 @@ Notes
 
 </div>
 
-
 <!-- CREATE -->
 
 <button
-    class="create-btn"
-    onclick="generateCard()"
+class="create-btn"
+onclick="generateCard()"
+
 >
 
-Create Access Card
-
-</button>
-
+Create Access Card </button>
 
 <!-- SEARCH -->
 
 <button
-    class="search-btn"
-    onclick="showSearch()"
+class="search-btn"
+onclick="showSearch()"
+
 >
 
-Search / Query
-
-</button>
-
+Search / Query </button>
 
 <!-- =====================================================
      GENERATED CARD
@@ -1042,36 +922,34 @@ Search / Query
     class="generated-card-area"
 >
 
-    <div id="generatedCard"></div>
+```
+<div id="generatedCard"></div>
 
+<div class="card-actions">
 
-    <div class="card-actions">
+    <button
+        type="button"
+        class="more-btn"
+        onclick="openCardModal()"
+    >
 
-        <button
-            type="button"
-            class="more-btn"
-            onclick="openCardModal()"
-        >
+        <span class="more-dots">
+            ⋮
+        </span>
 
-            <span class="more-dots">
-                ⋮
-            </span>
+        <span>
+            More
+        </span>
 
-            <span>
-                More
-            </span>
-
-        </button>
-
-    </div>
+    </button>
 
 </div>
-
+```
 
 </div>
 
 </div>
-
+</div>
 
 <!-- =====================================================
      CARD OPTIONS MODAL
@@ -1085,7 +963,6 @@ Search / Query
 
 <div class="card-modal-box">
 
-
 <div class="card-modal-header">
 
 <h3>
@@ -1098,13 +975,13 @@ Choose an action for this access card
 
 </div>
 
-
 <!-- SAVE IMAGE -->
 
 <button
-    type="button"
-    class="card-modal-option"
-    onclick="saveCardAsImage()"
+type="button"
+class="card-modal-option"
+onclick="saveCardAsImage()"
+
 >
 
 <div class="card-modal-icon">
@@ -1125,13 +1002,13 @@ Save the access card as a PNG image
 
 </button>
 
-
 <!-- SAVE PDF -->
 
 <button
-    type="button"
-    class="card-modal-option"
-    onclick="saveCardAsPDF()"
+type="button"
+class="card-modal-option"
+onclick="saveCardAsPDF()"
+
 >
 
 <div class="card-modal-icon">
@@ -1152,23 +1029,19 @@ Create and save a PDF access card
 
 </button>
 
-
 <!-- CLOSE -->
 
 <button
-    type="button"
-    class="card-modal-close"
-    onclick="closeCardModal()"
+type="button"
+class="card-modal-close"
+onclick="closeCardModal()"
+
 >
 
-Cancel
-
-</button>
+Cancel </button>
 
 </div>
-
 </div>
-
 
 <!-- =====================================================
      SUCCESS TOAST
@@ -1176,8 +1049,20 @@ Cancel
 
 <div id="successToast"></div>
 
-
 <script>
+
+/* =====================================================
+   LOCAL STORAGE CONFIGURATION
+===================================================== */
+
+/*
+   Dedicated storage key for this application.
+
+   All generated access cards are stored as an array
+   under this key inside the browser localStorage.
+*/
+const STORAGE_KEY =
+    "iftaa_systems_access_cards_v1";
 
 
 /* =====================================================
@@ -1192,29 +1077,210 @@ let currentCardData = null;
 
 
 /* =====================================================
+   LOCAL STORAGE
+===================================================== */
+
+/*
+   Read all saved access cards.
+
+   If the storage is empty, damaged, or contains
+   invalid JSON, return an empty array instead of
+   stopping the application.
+*/
+function getStoredCards(){
+
+    try{
+
+        const storedData =
+            localStorage.getItem(
+                STORAGE_KEY
+            );
+
+        if(!storedData){
+            return [];
+        }
+
+        const parsedData =
+            JSON.parse(storedData);
+
+        if(!Array.isArray(parsedData)){
+            return [];
+        }
+
+        return parsedData;
+
+    }
+    catch(error){
+
+        console.error(
+            "Unable to read localStorage:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/*
+   Save all access cards to localStorage.
+*/
+function saveStoredCards(cards){
+
+    try{
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(cards)
+        );
+
+        return true;
+
+    }
+    catch(error){
+
+        console.error(
+            "Unable to save data to localStorage:",
+            error
+        );
+
+        alert(
+            "Unable to save the access card locally. Please check available browser storage."
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/*
+   Save one new access card.
+
+   The new card is added to the existing archive.
+*/
+function saveCardToLocalStorage(cardData){
+
+    const cards =
+        getStoredCards();
+
+    /*
+       Internal archive record ID.
+       This is separate from the visible Access Card ID.
+    */
+    const archiveRecord = {
+
+        recordID:
+            Date.now().toString() +
+            "-" +
+            Math.floor(
+                Math.random() * 1000
+            ),
+
+        ...cardData
+
+    };
+
+    cards.push(
+        archiveRecord
+    );
+
+    const saved =
+        saveStoredCards(cards);
+
+    if(saved){
+
+        /*
+           Keep the saved record as the current card.
+        */
+        currentCardData =
+            archiveRecord;
+
+    }
+
+    return saved;
+
+}
+
+
+/*
+   Get number of stored cards.
+
+   This function will be useful for the
+   Search / Query module in the next stage.
+*/
+function getStoredCardsCount(){
+
+    return getStoredCards().length;
+
+}
+
+
+/*
+   Optional diagnostic information.
+
+   Available from the browser console:
+   getArchiveInfo()
+*/
+function getArchiveInfo(){
+
+    const cards =
+        getStoredCards();
+
+    return {
+
+        storageKey:
+            STORAGE_KEY,
+
+        totalCards:
+            cards.length,
+
+        cards:
+            cards
+
+    };
+
+}
+
+
+/* =====================================================
    SPLASH
 ===================================================== */
 
-window.addEventListener("load", function(){
+window.addEventListener(
+    "load",
+    function(){
 
-    let splash =
-        document.getElementById("splashScreen");
+        let splash =
+            document.getElementById(
+                "splashScreen"
+            );
 
+        setTimeout(
+            function(){
 
-    setTimeout(function(){
+                splash.style.opacity =
+                    "0";
 
-        splash.style.opacity="0";
+                setTimeout(
+                    function(){
 
+                        splash.style.display =
+                            "none";
 
-        setTimeout(function(){
+                    },
+                    600
+                );
 
-            splash.style.display="none";
+            },
+            5000
+        );
 
-        },600);
-
-    },5000);
-
-});
+    }
+);
 
 
 /* =====================================================
@@ -1224,28 +1290,35 @@ window.addEventListener("load", function(){
 function changeEnvironment(){
 
     let selected =
-        document.getElementById("environment");
-
+        document.getElementById(
+            "environment"
+        );
 
     selectedEnvironment =
         selected.value;
 
-
     let urlSection =
-        document.getElementById("urlSection");
+        document.getElementById(
+            "urlSection"
+        );
 
+    if(
+        selectedEnvironment ===
+        "Web"
+    ){
 
-    if(selectedEnvironment === "Web"){
-
-        urlSection.style.display="block";
+        urlSection.style.display =
+            "block";
 
     }
-
     else{
 
-        urlSection.style.display="none";
+        urlSection.style.display =
+            "none";
 
-        document.getElementById("systemUrl").value="";
+        document.getElementById(
+            "systemUrl"
+        ).value = "";
 
     }
 
@@ -1258,13 +1331,11 @@ function changeEnvironment(){
 
 function generateCard(){
 
-
     let employee =
         document
         .getElementById("employeeName")
         .value
         .trim();
-
 
     let system =
         document
@@ -1272,25 +1343,21 @@ function generateCard(){
         .value
         .trim();
 
-
     let environment =
         document
         .getElementById("environment")
         .value;
-
 
     let accessLevel =
         document
         .getElementById("accessLevel")
         .value;
 
-
     let url =
         document
         .getElementById("systemUrl")
         .value
         .trim();
-
 
     let notes =
         document
@@ -1302,15 +1369,10 @@ function generateCard(){
     /* REQUIRED */
 
     if(
-
         employee === "" ||
-
         system === "" ||
-
         environment === "" ||
-
         accessLevel === ""
-
     ){
 
         alert(
@@ -1325,11 +1387,8 @@ function generateCard(){
     /* WEB URL */
 
     if(
-
         environment === "Web" &&
-
         url === ""
-
     ){
 
         alert(
@@ -1344,60 +1403,89 @@ function generateCard(){
     /* CARD ID */
 
     let cardID =
-
         "IFT-" +
-
         new Date().getFullYear() +
-
         "-" +
-
         Math.floor(
-            Math.random()*90000+10000
+            Math.random() * 90000 + 10000
         );
 
 
     /* DATE */
 
     let created =
-
         new Date()
-        .toLocaleDateString("en-US");
+        .toLocaleDateString(
+            "en-US"
+        );
 
 
     /* STORE DATA */
 
-    currentCardData = {
+    const newCardData = {
 
-        cardID:cardID,
+        cardID:
+            cardID,
 
-        employee:employee,
+        employee:
+            employee,
 
-        system:system,
+        system:
+            system,
 
-        environment:environment,
+        environment:
+            environment,
 
-        accessLevel:accessLevel,
+        accessLevel:
+            accessLevel,
 
-        url:url,
+        url:
+            url,
 
-        notes:notes,
+        notes:
+            notes,
 
-        created:created
+        created:
+            created
 
     };
+
+
+    /*
+       SAVE TO LOCAL STORAGE
+       BEFORE DISPLAYING THE CARD.
+    */
+
+    const saved =
+        saveCardToLocalStorage(
+            newCardData
+        );
+
+
+    /*
+       If localStorage failed, stop here.
+
+       We do not want the user to believe
+       the card was archived when it wasn't.
+    */
+
+    if(!saved){
+
+        return;
+
+    }
 
 
     /* CREATE CARD */
 
     document
-    .getElementById("generatedCard")
+    .getElementById(
+        "generatedCard"
+    )
     .innerHTML =
 
-
     `
-
     <div class="generated-card">
-
 
         <!-- CARD LOGO -->
 
@@ -1414,9 +1502,7 @@ function generateCard(){
         <!-- TITLE -->
 
         <h2>
-
             System Access Authorization
-
         </h2>
 
 
@@ -1424,23 +1510,16 @@ function generateCard(){
 
         ${
             environment === "Web"
-
             ?
-
             `
-
             <div class="qr-area">
 
                 <div id="qrCode"></div>
 
             </div>
-
             `
-
             :
-
             ""
-
         }
 
 
@@ -1523,11 +1602,8 @@ function generateCard(){
 
         ${
             environment === "Web"
-
             ?
-
             `
-
             <div class="info-row">
 
                 <b>
@@ -1539,13 +1615,9 @@ function generateCard(){
                 ${escapeHTML(url)}
 
             </div>
-
             `
-
             :
-
             ""
-
         }
 
 
@@ -1553,11 +1625,8 @@ function generateCard(){
 
         ${
             notes
-
             ?
-
             `
-
             <div class="info-row">
 
                 <b>
@@ -1569,13 +1638,9 @@ function generateCard(){
                 ${escapeHTML(notes)}
 
             </div>
-
             `
-
             :
-
             ""
-
         }
 
 
@@ -1614,35 +1679,29 @@ function generateCard(){
         <div class="card-footer">
 
             Created Date:
-
             ${escapeHTML(created)}
 
         </div>
 
-
     </div>
-
     `;
 
 
     /* QR */
 
-    if(environment === "Web"){
+    if(
+        environment === "Web"
+    ){
 
         new QRCode(
-
-            document.getElementById("qrCode"),
-
+            document.getElementById(
+                "qrCode"
+            ),
             {
-
                 text:url,
-
                 width:110,
-
                 height:110
-
             }
-
         );
 
     }
@@ -1651,25 +1710,38 @@ function generateCard(){
     /* SHOW */
 
     document
-    .getElementById("generatedCardArea")
-    .classList.add("show");
+    .getElementById(
+        "generatedCardArea"
+    )
+    .classList.add(
+        "show"
+    );
+
+
+    /* SUCCESS */
+
+    showSuccessToast(
+        "Access card created and saved successfully."
+    );
 
 
     /* SCROLL */
 
-    setTimeout(function(){
+    setTimeout(
+        function(){
 
-        document
-        .getElementById("generatedCardArea")
-        .scrollIntoView({
+            document
+            .getElementById(
+                "generatedCardArea"
+            )
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
 
-            behavior:"smooth",
-
-            block:"start"
-
-        });
-
-    },100);
+        },
+        100
+    );
 
 }
 
@@ -1682,15 +1754,30 @@ function escapeHTML(value){
 
     return String(value)
 
-        .replace(/&/g,"&amp;")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
 
-        .replace(/</g,"&lt;")
+        .replace(
+            /</g,
+            "&lt;"
+        )
 
-        .replace(/>/g,"&gt;")
+        .replace(
+            />/g,
+            "&gt;"
+        )
 
-        .replace(/"/g,"&quot;")
+        .replace(
+            /"/g,
+            "&quot;"
+        )
 
-        .replace(/'/g,"&#039;");
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
@@ -1702,8 +1789,12 @@ function escapeHTML(value){
 function openCardModal(){
 
     document
-    .getElementById("cardModal")
-    .classList.add("show");
+    .getElementById(
+        "cardModal"
+    )
+    .classList.add(
+        "show"
+    );
 
 }
 
@@ -1711,19 +1802,25 @@ function openCardModal(){
 function closeCardModal(){
 
     document
-    .getElementById("cardModal")
-    .classList.remove("show");
+    .getElementById(
+        "cardModal"
+    )
+    .classList.remove(
+        "show"
+    );
 
 }
 
 
-function handleModalBackgroundClick(event){
+function handleModalBackgroundClick(
+    event
+){
 
     if(
-
         event.target ===
-        document.getElementById("cardModal")
-
+        document.getElementById(
+            "cardModal"
+        )
     ){
 
         closeCardModal();
@@ -1737,29 +1834,37 @@ function handleModalBackgroundClick(event){
    SUCCESS TOAST
 ===================================================== */
 
-function showSuccessToast(message){
+function showSuccessToast(
+    message
+){
 
     let toast =
-        document.getElementById("successToast");
+        document.getElementById(
+            "successToast"
+        );
 
-
-    clearTimeout(toastTimer);
-
+    clearTimeout(
+        toastTimer
+    );
 
     toast.innerHTML =
         "✅ " + message;
 
-
-    toast.classList.add("show");
-
+    toast.classList.add(
+        "show"
+    );
 
     toastTimer =
+        setTimeout(
+            function(){
 
-        setTimeout(function(){
+                toast.classList.remove(
+                    "show"
+                );
 
-            toast.classList.remove("show");
-
-        },3500);
+            },
+            3500
+        );
 
 }
 
@@ -1770,10 +1875,10 @@ function showSuccessToast(message){
 
 async function saveCardAsImage(){
 
-
     let card =
-        document.querySelector(".generated-card");
-
+        document.querySelector(
+            ".generated-card"
+        );
 
     if(!card){
 
@@ -1785,77 +1890,53 @@ async function saveCardAsImage(){
 
     }
 
-
     closeCardModal();
-
 
     try{
 
-
         let canvas =
-
             await html2canvas(
-
                 card,
-
                 {
-
                     scale:3,
-
                     useCORS:true,
-
                     allowTaint:false,
-
                     backgroundColor:"#ffffff",
-
                     imageTimeout:15000
-
                 }
-
             );
 
-
         let link =
-            document.createElement("a");
-
+            document.createElement(
+                "a"
+            );
 
         let cardID =
-
             currentCardData
-
             ?
-
             currentCardData.cardID
-
             :
-
             "Iftaa-Access-Card";
-
 
         link.download =
             cardID + ".png";
-
 
         link.href =
             canvas.toDataURL(
                 "image/png"
             );
 
-
         link.click();
-
 
         showSuccessToast(
             "Access card image saved successfully."
         );
-
 
     }
 
     catch(error){
 
         console.error(error);
-
 
         alert(
             "Unable to save the access card as an image."
@@ -1872,10 +1953,10 @@ async function saveCardAsImage(){
 
 async function saveCardAsPDF(){
 
-
     let card =
-        document.querySelector(".generated-card");
-
+        document.querySelector(
+            ".generated-card"
+        );
 
     if(!card){
 
@@ -1887,41 +1968,26 @@ async function saveCardAsPDF(){
 
     }
 
-
     closeCardModal();
-
 
     try{
 
-
         let canvas =
-
             await html2canvas(
-
                 card,
-
                 {
-
                     scale:3,
-
                     useCORS:true,
-
                     allowTaint:false,
-
                     backgroundColor:"#ffffff",
-
                     imageTimeout:15000
-
                 }
-
             );
-
 
         let imageData =
             canvas.toDataURL(
                 "image/png"
             );
-
 
         const { jsPDF } =
             window.jspdf;
@@ -1938,18 +2004,13 @@ async function saveCardAsPDF(){
 
 
         let pdf =
-
             new jsPDF({
-
                 orientation:"landscape",
-
                 unit:"mm",
-
                 format:[
                     cardWidth,
                     cardHeight
                 ]
-
             });
 
 
@@ -1961,19 +2022,22 @@ async function saveCardAsPDF(){
             canvas.width /
             canvas.height;
 
-
         let pdfRatio =
             cardWidth /
             cardHeight;
 
-
         let imageWidth;
+
         let imageHeight;
+
         let x;
+
         let y;
 
 
-        if(imageRatio > pdfRatio){
+        if(
+            imageRatio > pdfRatio
+        ){
 
             imageWidth =
                 cardWidth;
@@ -2007,43 +2071,27 @@ async function saveCardAsPDF(){
 
 
         pdf.addImage(
-
             imageData,
-
             "PNG",
-
             x,
-
             y,
-
             imageWidth,
-
             imageHeight,
-
             undefined,
-
             "FAST"
-
         );
 
 
         let cardID =
-
             currentCardData
-
             ?
-
             currentCardData.cardID
-
             :
-
             "Iftaa-Access-Card";
 
 
         pdf.save(
-
             cardID + ".pdf"
-
         );
 
 
@@ -2051,13 +2099,11 @@ async function saveCardAsPDF(){
             "Access card PDF saved successfully."
         );
 
-
     }
 
     catch(error){
 
         console.error(error);
-
 
         alert(
             "Unable to create the access card PDF."
@@ -2074,15 +2120,18 @@ async function saveCardAsPDF(){
 
 function showSearch(){
 
+    const totalCards =
+        getStoredCardsCount();
+
     alert(
-        "Search / Archive module will be added in the next version."
+        "Search / Archive module will be added in the next version.\n\n" +
+        "Currently stored access cards: " +
+        totalCards
     );
 
 }
 
 </script>
 
-
 </body>
-
 </html>
