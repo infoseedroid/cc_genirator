@@ -19,9 +19,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
+
 /* =====================================================
    GLOBAL STYLE
 ===================================================== */
+
 *{
     box-sizing:border-box;
     font-family:
@@ -40,6 +42,7 @@ body{
 /* =====================================================
    SPLASH SCREEN
 ===================================================== */
+
 #splashScreen{
     position:fixed;
     top:0;
@@ -106,6 +109,7 @@ body{
 /* =====================================================
    HEADER
 ===================================================== */
+
 .header{
     background:#0b6b4a;
     color:white;
@@ -135,6 +139,7 @@ body{
 /* =====================================================
    CONTAINER
 ===================================================== */
+
 .container{
     max-width:900px;
     margin:auto;
@@ -159,6 +164,7 @@ body{
 /* =====================================================
    FORM
 ===================================================== */
+
 .form-group{
     margin-top:18px;
 }
@@ -171,7 +177,8 @@ body{
 }
 
 input,
-textarea{
+textarea,
+select{
     width:100%;
     padding:13px;
     border-radius:10px;
@@ -181,7 +188,8 @@ textarea{
 }
 
 input:focus,
-textarea:focus{
+textarea:focus,
+select:focus{
     border-color:#0b6b4a;
     box-shadow:
     0 0 5px rgba(11,107,74,.3);
@@ -193,25 +201,14 @@ textarea{
 }
 
 select{
-    width:100%;
-    padding:13px;
-    border-radius:10px;
-    border:1px solid #ccc;
-    font-size:15px;
     background:white;
-    outline:none;
     cursor:pointer;
-}
-
-select:focus{
-    border-color:#0b6b4a;
-    box-shadow:
-    0 0 5px rgba(11,107,74,.3);
 }
 
 /* =====================================================
    BUTTONS
 ===================================================== */
+
 .create-btn,
 .search-btn{
     width:100%;
@@ -242,8 +239,25 @@ select:focus{
 }
 
 /* =====================================================
+   ARCHIVE COUNT
+===================================================== */
+
+.archive-summary{
+    margin-top:18px;
+    padding:12px;
+    background:#eef7f3;
+    border:1px solid #d5e9df;
+    border-radius:10px;
+    text-align:center;
+    color:#0b6b4a;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* =====================================================
    GENERATED CARD AREA
 ===================================================== */
+
 .generated-card-area{
     display:none;
     margin-top:35px;
@@ -258,6 +272,7 @@ select:focus{
 /* =====================================================
    GENERATED ACCESS CARD
 ===================================================== */
+
 .generated-card{
     width:100%;
     max-width:650px;
@@ -274,6 +289,7 @@ select:focus{
 /* =====================================================
    CARD LOGO
 ===================================================== */
+
 .card-logo{
     width:100%;
     height:90px;
@@ -295,6 +311,7 @@ select:focus{
 /* =====================================================
    CARD TITLE
 ===================================================== */
+
 .generated-card h2{
     color:#0b6b4a;
     margin:8px 0 18px;
@@ -304,6 +321,7 @@ select:focus{
 /* =====================================================
    QR
 ===================================================== */
+
 .qr-area{
     display:flex;
     justify-content:center;
@@ -320,6 +338,7 @@ select:focus{
 /* =====================================================
    INFORMATION ROWS
 ===================================================== */
+
 .info-row{
     text-align:left;
     background:#f6f8f7;
@@ -338,6 +357,7 @@ select:focus{
 /* =====================================================
    ACCESS STATUS
 ===================================================== */
+
 .access-status{
     margin-top:10px;
     padding:8px 12px;
@@ -352,6 +372,7 @@ select:focus{
 /* =====================================================
    SECURITY NOTICE
 ===================================================== */
+
 .security-notice{
     margin-top:12px;
     padding:11px;
@@ -378,6 +399,7 @@ select:focus{
 /* =====================================================
    CARD FOOTER
 ===================================================== */
+
 .card-footer{
     margin-top:12px;
     padding-top:10px;
@@ -389,6 +411,7 @@ select:focus{
 /* =====================================================
    MORE BUTTON
 ===================================================== */
+
 .card-actions{
     position:relative;
     width:100%;
@@ -429,6 +452,7 @@ select:focus{
 /* =====================================================
    MODAL
 ===================================================== */
+
 .card-modal{
     display:none;
     position:fixed;
@@ -449,7 +473,9 @@ select:focus{
 
 .card-modal-box{
     width:100%;
-    max-width:390px;
+    max-width:440px;
+    max-height:90vh;
+    overflow-y:auto;
     background:white;
     border-radius:20px;
     padding:25px;
@@ -560,8 +586,73 @@ select:focus{
 }
 
 /* =====================================================
+   SEARCH RESULTS
+===================================================== */
+
+.search-input-area{
+    margin-top:5px;
+}
+
+.search-results{
+    margin-top:15px;
+}
+
+.search-result{
+    width:100%;
+    border:none;
+    background:#f6f8f7;
+    border-radius:12px;
+    padding:14px;
+    margin-top:10px;
+    text-align:left;
+    cursor:pointer;
+    transition:.2s ease;
+}
+
+.search-result:hover{
+    background:#eaf1ee;
+    transform:translateY(-1px);
+}
+
+.search-result strong{
+    display:block;
+    color:#0b6b4a;
+    font-size:15px;
+}
+
+.search-result span{
+    display:block;
+    color:#444;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.search-result small{
+    display:block;
+    color:#777;
+    margin-top:4px;
+}
+
+.no-results{
+    text-align:center;
+    color:#777;
+    padding:18px 10px;
+    background:#f8f8f8;
+    border-radius:10px;
+    margin-top:12px;
+}
+
+.search-total{
+    text-align:center;
+    color:#555;
+    font-size:13px;
+    margin-top:15px;
+}
+
+/* =====================================================
    SUCCESS TOAST
 ===================================================== */
+
 #successToast{
     position:fixed;
     left:50%;
@@ -600,6 +691,7 @@ select:focus{
 /* =====================================================
    MOBILE
 ===================================================== */
+
 @media(max-width:600px){
 
     .container{
@@ -688,6 +780,7 @@ select:focus{
         min-width:240px;
     }
 }
+
 </style>
 
 </head>
@@ -755,7 +848,28 @@ select:focus{
 Create Access Card
 </h2>
 
-<!-- EMPLOYEE -->
+<!-- =====================================================
+     EMPLOYEE NUMBER
+===================================================== -->
+
+<div class="form-group">
+
+<label>
+Employee Number
+</label>
+
+<input
+type="text"
+id="employeeNumber"
+placeholder="Enter employee number"
+
+>
+
+</div>
+
+<!-- =====================================================
+     EMPLOYEE
+===================================================== -->
 
 <div class="form-group">
 
@@ -772,7 +886,9 @@ placeholder="Enter employee name"
 
 </div>
 
-<!-- SYSTEM -->
+<!-- =====================================================
+     SYSTEM
+===================================================== -->
 
 <div class="form-group">
 
@@ -789,7 +905,9 @@ placeholder="Enter system name"
 
 </div>
 
-<!-- ENVIRONMENT -->
+<!-- =====================================================
+     ENVIRONMENT
+===================================================== -->
 
 <div class="form-group">
 
@@ -823,7 +941,9 @@ Web App
 
 </div>
 
-<!-- ACCESS LEVEL -->
+<!-- =====================================================
+     ACCESS LEVEL
+===================================================== -->
 
 <div class="form-group">
 
@@ -857,7 +977,9 @@ Administrator
 
 </div>
 
-<!-- URL -->
+<!-- =====================================================
+     URL
+===================================================== -->
 
 <div
     class="form-group"
@@ -878,7 +1000,9 @@ placeholder="Paste web system URL here"
 
 </div>
 
-<!-- NOTES -->
+<!-- =====================================================
+     NOTES
+===================================================== -->
 
 <div class="form-group">
 
@@ -893,7 +1017,9 @@ Notes
 
 </div>
 
-<!-- CREATE -->
+<!-- =====================================================
+     CREATE
+===================================================== -->
 
 <button
 class="create-btn"
@@ -903,7 +1029,9 @@ onclick="generateCard()"
 
 Create Access Card </button>
 
-<!-- SEARCH -->
+<!-- =====================================================
+     SEARCH
+===================================================== -->
 
 <button
 class="search-btn"
@@ -912,6 +1040,17 @@ onclick="showSearch()"
 >
 
 Search / Query </button>
+
+<!-- =====================================================
+     ARCHIVE SUMMARY
+===================================================== -->
+
+<div
+    id="archiveSummary"
+    class="archive-summary"
+>
+    Stored Access Cards: 0
+</div>
 
 <!-- =====================================================
      GENERATED CARD
@@ -949,6 +1088,7 @@ Search / Query </button>
 </div>
 
 </div>
+
 </div>
 
 <!-- =====================================================
@@ -963,84 +1103,86 @@ Search / Query </button>
 
 <div class="card-modal-box">
 
+```
 <div class="card-modal-header">
 
-<h3>
-Card Options
-</h3>
+    <h3 id="modalTitle">
+        Card Options
+    </h3>
 
-<p>
-Choose an action for this access card
-</p>
+    <p id="modalSubtitle">
+        Choose an action for this access card
+    </p>
 
 </div>
 
-<!-- SAVE IMAGE -->
+<div id="modalContent">
+
+    <!-- SAVE IMAGE -->
+
+    <button
+        type="button"
+        class="card-modal-option"
+        onclick="saveCardAsImage()"
+    >
+
+        <div class="card-modal-icon">
+            🖼️
+        </div>
+
+        <div class="card-modal-text">
+
+            <strong>
+                Save as Image
+            </strong>
+
+            <small>
+                Save the access card as a PNG image
+            </small>
+
+        </div>
+
+    </button>
+
+    <!-- SAVE PDF -->
+
+    <button
+        type="button"
+        class="card-modal-option"
+        onclick="saveCardAsPDF()"
+    >
+
+        <div class="card-modal-icon">
+            📄
+        </div>
+
+        <div class="card-modal-text">
+
+            <strong>
+                Save as PDF
+            </strong>
+
+            <small>
+                Create and save a PDF access card
+            </small>
+
+        </div>
+
+    </button>
+
+</div>
 
 <button
-type="button"
-class="card-modal-option"
-onclick="saveCardAsImage()"
-
+    type="button"
+    class="card-modal-close"
+    onclick="closeCardModal()"
 >
-
-<div class="card-modal-icon">
-🖼️
-</div>
-
-<div class="card-modal-text">
-
-<strong>
-Save as Image
-</strong>
-
-<small>
-Save the access card as a PNG image
-</small>
-
-</div>
-
+    Cancel
 </button>
-
-<!-- SAVE PDF -->
-
-<button
-type="button"
-class="card-modal-option"
-onclick="saveCardAsPDF()"
-
->
-
-<div class="card-modal-icon">
-📄
-</div>
-
-<div class="card-modal-text">
-
-<strong>
-Save as PDF
-</strong>
-
-<small>
-Create and save a PDF access card
-</small>
+```
 
 </div>
 
-</button>
-
-<!-- CLOSE -->
-
-<button
-type="button"
-class="card-modal-close"
-onclick="closeCardModal()"
-
->
-
-Cancel </button>
-
-</div>
 </div>
 
 <!-- =====================================================
@@ -1052,20 +1194,6 @@ Cancel </button>
 <script>
 
 /* =====================================================
-   LOCAL STORAGE CONFIGURATION
-===================================================== */
-
-/*
-   Dedicated storage key for this application.
-
-   All generated access cards are stored as an array
-   under this key inside the browser localStorage.
-*/
-const STORAGE_KEY =
-    "iftaa_systems_access_cards_v1";
-
-
-/* =====================================================
    GLOBAL VARIABLES
 ===================================================== */
 
@@ -1075,39 +1203,39 @@ let toastTimer;
 
 let currentCardData = null;
 
+/*
+    localStorage database key
+*/
+
+const STORAGE_KEY =
+    "iftaa_systems_access_cards_v1";
+
 
 /* =====================================================
    LOCAL STORAGE
 ===================================================== */
 
-/*
-   Read all saved access cards.
-
-   If the storage is empty, damaged, or contains
-   invalid JSON, return an empty array instead of
-   stopping the application.
-*/
 function getStoredCards(){
 
     try{
 
-        const storedData =
+        const data =
             localStorage.getItem(
                 STORAGE_KEY
             );
 
-        if(!storedData){
+        if(!data){
             return [];
         }
 
-        const parsedData =
-            JSON.parse(storedData);
+        const parsed =
+            JSON.parse(data);
 
-        if(!Array.isArray(parsedData)){
+        if(!Array.isArray(parsed)){
             return [];
         }
 
-        return parsedData;
+        return parsed;
 
     }
     catch(error){
@@ -1124,9 +1252,10 @@ function getStoredCards(){
 }
 
 
-/*
-   Save all access cards to localStorage.
-*/
+/* =====================================================
+   SAVE TO LOCAL STORAGE
+===================================================== */
+
 function saveStoredCards(cards){
 
     try{
@@ -1136,18 +1265,20 @@ function saveStoredCards(cards){
             JSON.stringify(cards)
         );
 
+        updateArchiveSummary();
+
         return true;
 
     }
     catch(error){
 
         console.error(
-            "Unable to save data to localStorage:",
+            "Unable to save localStorage:",
             error
         );
 
         alert(
-            "Unable to save the access card locally. Please check available browser storage."
+            "Unable to save the access card locally. Please check browser storage."
         );
 
         return false;
@@ -1157,91 +1288,135 @@ function saveStoredCards(cards){
 }
 
 
-/*
-   Save one new access card.
+/* =====================================================
+   UPDATE ARCHIVE COUNT
+===================================================== */
 
-   The new card is added to the existing archive.
-*/
-function saveCardToLocalStorage(cardData){
+function updateArchiveSummary(){
+
+    const cards =
+        getStoredCards();
+
+    const summary =
+        document.getElementById(
+            "archiveSummary"
+        );
+
+    if(summary){
+
+        summary.textContent =
+            "Stored Access Cards: " +
+            cards.length;
+
+    }
+
+}
+
+
+/* =====================================================
+   NORMALIZE SEARCH VALUE
+===================================================== */
+
+function normalizeValue(value){
+
+    return String(value || "")
+        .trim()
+        .toLowerCase();
+
+}
+
+
+/* =====================================================
+   SAVE NEW CARD
+===================================================== */
+
+function saveCardToArchive(cardData){
 
     const cards =
         getStoredCards();
 
     /*
-       Internal archive record ID.
-       This is separate from the visible Access Card ID.
+        Prevent accidental duplicate
+        Employee Number + System Name
     */
-    const archiveRecord = {
 
-        recordID:
-            Date.now().toString() +
-            "-" +
-            Math.floor(
-                Math.random() * 1000
-            ),
+    const duplicate =
+        cards.some(function(card){
 
-        ...cardData
+            return (
 
-    };
+                normalizeValue(
+                    card.employeeNumber
+                )
+                ===
+                normalizeValue(
+                    cardData.employeeNumber
+                )
 
-    cards.push(
-        archiveRecord
-    );
+                &&
 
-    const saved =
-        saveStoredCards(cards);
+                normalizeValue(
+                    card.system
+                )
+                ===
+                normalizeValue(
+                    cardData.system
+                )
 
-    if(saved){
+            );
 
-        /*
-           Keep the saved record as the current card.
-        */
-        currentCardData =
-            archiveRecord;
+        });
+
+
+    if(duplicate){
+
+        const proceed =
+            confirm(
+                "An access card already exists for this employee number and system.\n\nDo you want to create another card?"
+            );
+
+        if(!proceed){
+
+            return false;
+
+        }
 
     }
 
-    return saved;
 
-}
+    /*
+        Unique archive record ID
+    */
 
-
-/*
-   Get number of stored cards.
-
-   This function will be useful for the
-   Search / Query module in the next stage.
-*/
-function getStoredCardsCount(){
-
-    return getStoredCards().length;
-
-}
+    cardData.recordID =
+        Date.now().toString()
+        +
+        "-"
+        +
+        Math.floor(
+            Math.random()*1000
+        );
 
 
-/*
-   Optional diagnostic information.
+    cards.push(
+        cardData
+    );
 
-   Available from the browser console:
-   getArchiveInfo()
-*/
-function getArchiveInfo(){
 
-    const cards =
-        getStoredCards();
+    if(
+        !saveStoredCards(cards)
+    ){
 
-    return {
+        return false;
 
-        storageKey:
-            STORAGE_KEY,
+    }
 
-        totalCards:
-            cards.length,
 
-        cards:
-            cards
+    currentCardData =
+        cardData;
 
-    };
+
+    return true;
 
 }
 
@@ -1253,6 +1428,8 @@ function getArchiveInfo(){
 window.addEventListener(
     "load",
     function(){
+
+        updateArchiveSummary();
 
         let splash =
             document.getElementById(
@@ -1302,15 +1479,16 @@ function changeEnvironment(){
             "urlSection"
         );
 
+
     if(
-        selectedEnvironment ===
-        "Web"
+        selectedEnvironment === "Web"
     ){
 
         urlSection.style.display =
             "block";
 
     }
+
     else{
 
         urlSection.style.display =
@@ -1318,7 +1496,8 @@ function changeEnvironment(){
 
         document.getElementById(
             "systemUrl"
-        ).value = "";
+        ).value =
+            "";
 
     }
 
@@ -1331,52 +1510,95 @@ function changeEnvironment(){
 
 function generateCard(){
 
-    let employee =
+    let employeeNumber =
         document
-        .getElementById("employeeName")
+        .getElementById(
+            "employeeNumber"
+        )
         .value
         .trim();
+
+
+    let employee =
+        document
+        .getElementById(
+            "employeeName"
+        )
+        .value
+        .trim();
+
 
     let system =
         document
-        .getElementById("systemName")
+        .getElementById(
+            "systemName"
+        )
         .value
         .trim();
+
 
     let environment =
         document
-        .getElementById("environment")
+        .getElementById(
+            "environment"
+        )
         .value;
+
 
     let accessLevel =
         document
-        .getElementById("accessLevel")
+        .getElementById(
+            "accessLevel"
+        )
         .value;
+
 
     let url =
         document
-        .getElementById("systemUrl")
+        .getElementById(
+            "systemUrl"
+        )
         .value
         .trim();
+
 
     let notes =
         document
-        .getElementById("notes")
+        .getElementById(
+            "notes"
+        )
         .value
         .trim();
 
 
-    /* REQUIRED */
+    /*
+        REQUIRED
+    */
 
     if(
-        employee === "" ||
-        system === "" ||
-        environment === "" ||
+
+        employeeNumber === ""
+
+        ||
+
+        employee === ""
+
+        ||
+
+        system === ""
+
+        ||
+
+        environment === ""
+
+        ||
+
         accessLevel === ""
+
     ){
 
         alert(
-            "Please complete all required fields."
+            "Please complete all required fields, including Employee Number."
         );
 
         return;
@@ -1384,11 +1606,18 @@ function generateCard(){
     }
 
 
-    /* WEB URL */
+    /*
+        WEB URL
+    */
 
     if(
-        environment === "Web" &&
+
+        environment === "Web"
+
+        &&
+
         url === ""
+
     ){
 
         alert(
@@ -1400,32 +1629,55 @@ function generateCard(){
     }
 
 
-    /* CARD ID */
+    /*
+        CARD ID
+    */
 
     let cardID =
-        "IFT-" +
-        new Date().getFullYear() +
-        "-" +
+
+        "IFT-"
+
+        +
+
+        new Date()
+        .getFullYear()
+
+        +
+
+        "-"
+
+        +
+
         Math.floor(
-            Math.random() * 90000 + 10000
+            Math.random()*90000
+            +
+            10000
         );
 
 
-    /* DATE */
+    /*
+        DATE
+    */
 
     let created =
+
         new Date()
         .toLocaleDateString(
             "en-US"
         );
 
 
-    /* STORE DATA */
+    /*
+        CARD DATA
+    */
 
-    const newCardData = {
+    let cardData = {
 
         cardID:
             cardID,
+
+        employeeNumber:
+            employeeNumber,
 
         employee:
             employee,
@@ -1452,31 +1704,100 @@ function generateCard(){
 
 
     /*
-       SAVE TO LOCAL STORAGE
-       BEFORE DISPLAYING THE CARD.
+        SAVE
     */
 
-    const saved =
-        saveCardToLocalStorage(
-            newCardData
-        );
-
-
-    /*
-       If localStorage failed, stop here.
-
-       We do not want the user to believe
-       the card was archived when it wasn't.
-    */
-
-    if(!saved){
+    if(
+        !saveCardToArchive(
+            cardData
+        )
+    ){
 
         return;
 
     }
 
 
-    /* CREATE CARD */
+    /*
+        CREATE CARD
+    */
+
+    renderCard(
+        cardData
+    );
+
+
+    /*
+        SUCCESS
+    */
+
+    showSuccessToast(
+        "Access card created and saved successfully."
+    );
+
+
+    /*
+        SCROLL
+    */
+
+    setTimeout(
+        function(){
+
+            document
+            .getElementById(
+                "generatedCardArea"
+            )
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+        },
+        100
+    );
+
+}
+
+
+/* =====================================================
+   RENDER CARD
+===================================================== */
+
+function renderCard(
+    data
+){
+
+    currentCardData =
+        data;
+
+
+    let cardID =
+        data.cardID;
+
+    let employeeNumber =
+        data.employeeNumber;
+
+    let employee =
+        data.employee;
+
+    let system =
+        data.system;
+
+    let environment =
+        data.environment;
+
+    let accessLevel =
+        data.accessLevel;
+
+    let url =
+        data.url;
+
+    let notes =
+        data.notes;
+
+    let created =
+        data.created;
+
 
     document
     .getElementById(
@@ -1485,6 +1806,7 @@ function generateCard(){
     .innerHTML =
 
     `
+
     <div class="generated-card">
 
         <!-- CARD LOGO -->
@@ -1510,16 +1832,23 @@ function generateCard(){
 
         ${
             environment === "Web"
+
             ?
+
             `
+
             <div class="qr-area">
 
                 <div id="qrCode"></div>
 
             </div>
+
             `
+
             :
+
             ""
+
         }
 
 
@@ -1534,6 +1863,21 @@ function generateCard(){
             <br>
 
             ${escapeHTML(cardID)}
+
+        </div>
+
+
+        <!-- EMPLOYEE NUMBER -->
+
+        <div class="info-row">
+
+            <b>
+                Employee Number
+            </b>
+
+            <br>
+
+            ${escapeHTML(employeeNumber)}
 
         </div>
 
@@ -1602,8 +1946,11 @@ function generateCard(){
 
         ${
             environment === "Web"
+
             ?
+
             `
+
             <div class="info-row">
 
                 <b>
@@ -1615,9 +1962,13 @@ function generateCard(){
                 ${escapeHTML(url)}
 
             </div>
+
             `
+
             :
+
             ""
+
         }
 
 
@@ -1625,8 +1976,11 @@ function generateCard(){
 
         ${
             notes
+
             ?
+
             `
+
             <div class="info-row">
 
                 <b>
@@ -1638,9 +1992,13 @@ function generateCard(){
                 ${escapeHTML(notes)}
 
             </div>
+
             `
+
             :
+
             ""
+
         }
 
 
@@ -1679,35 +2037,51 @@ function generateCard(){
         <div class="card-footer">
 
             Created Date:
+
             ${escapeHTML(created)}
 
         </div>
 
     </div>
+
     `;
 
 
-    /* QR */
+    /*
+        QR
+    */
 
     if(
         environment === "Web"
     ){
 
         new QRCode(
+
             document.getElementById(
                 "qrCode"
             ),
+
             {
-                text:url,
-                width:110,
-                height:110
+
+                text:
+                    url,
+
+                width:
+                    110,
+
+                height:
+                    110
+
             }
+
         );
 
     }
 
 
-    /* SHOW */
+    /*
+        SHOW
+    */
 
     document
     .getElementById(
@@ -1717,32 +2091,6 @@ function generateCard(){
         "show"
     );
 
-
-    /* SUCCESS */
-
-    showSuccessToast(
-        "Access card created and saved successfully."
-    );
-
-
-    /* SCROLL */
-
-    setTimeout(
-        function(){
-
-            document
-            .getElementById(
-                "generatedCardArea"
-            )
-            .scrollIntoView({
-                behavior:"smooth",
-                block:"start"
-            });
-
-        },
-        100
-    );
-
 }
 
 
@@ -1750,7 +2098,9 @@ function generateCard(){
    ESCAPE HTML
 ===================================================== */
 
-function escapeHTML(value){
+function escapeHTML(
+    value
+){
 
     return String(value)
 
@@ -1790,6 +2140,80 @@ function openCardModal(){
 
     document
     .getElementById(
+        "modalTitle"
+    )
+    .textContent =
+        "Card Options";
+
+
+    document
+    .getElementById(
+        "modalSubtitle"
+    )
+    .textContent =
+        "Choose an action for this access card";
+
+
+    document
+    .getElementById(
+        "modalContent"
+    )
+    .innerHTML = `
+
+        <button
+            type="button"
+            class="card-modal-option"
+            onclick="saveCardAsImage()"
+        >
+
+            <div class="card-modal-icon">
+                🖼️
+            </div>
+
+            <div class="card-modal-text">
+
+                <strong>
+                    Save as Image
+                </strong>
+
+                <small>
+                    Save the access card as a PNG image
+                </small>
+
+            </div>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="card-modal-option"
+            onclick="saveCardAsPDF()"
+        >
+
+            <div class="card-modal-icon">
+                📄
+            </div>
+
+            <div class="card-modal-text">
+
+                <strong>
+                    Save as PDF
+                </strong>
+
+                <small>
+                    Create and save a PDF access card
+                </small>
+
+            </div>
+
+        </button>
+
+    `;
+
+
+    document
+    .getElementById(
         "cardModal"
     )
     .classList.add(
@@ -1817,15 +2241,417 @@ function handleModalBackgroundClick(
 ){
 
     if(
+
         event.target ===
+
         document.getElementById(
             "cardModal"
         )
+
     ){
 
         closeCardModal();
 
     }
+
+}
+
+
+/* =====================================================
+   SEARCH / QUERY
+===================================================== */
+
+function showSearch(){
+
+    const cards =
+        getStoredCards();
+
+
+    document
+    .getElementById(
+        "modalTitle"
+    )
+    .textContent =
+        "Search / Query";
+
+
+    document
+    .getElementById(
+        "modalSubtitle"
+    )
+    .textContent =
+        "Search access cards using Employee Number";
+
+
+    document
+    .getElementById(
+        "modalContent"
+    )
+    .innerHTML = `
+
+        <div class="search-input-area">
+
+            <label>
+                Employee Number
+            </label>
+
+            <input
+                type="text"
+                id="searchEmployeeNumber"
+                placeholder="Enter employee number"
+                onkeydown="if(event.key==='Enter') performSearch()"
+            >
+
+        </div>
+
+
+        <button
+            type="button"
+            class="create-btn"
+            onclick="performSearch()"
+        >
+            Search
+        </button>
+
+
+        <div class="search-total">
+
+            Stored Access Cards:
+            ${cards.length}
+
+        </div>
+
+
+        <div
+            id="searchResults"
+            class="search-results"
+        >
+
+        </div>
+
+    `;
+
+
+    document
+    .getElementById(
+        "cardModal"
+    )
+    .classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        function(){
+
+            document
+            .getElementById(
+                "searchEmployeeNumber"
+            )
+            .focus();
+
+        },
+        100
+    );
+
+}
+
+
+/* =====================================================
+   PERFORM SEARCH
+===================================================== */
+
+function performSearch(){
+
+    const input =
+        document
+        .getElementById(
+            "searchEmployeeNumber"
+        );
+
+
+    const results =
+        document
+        .getElementById(
+            "searchResults"
+        );
+
+
+    if(!input || !results){
+
+        return;
+
+    }
+
+
+    const employeeNumber =
+        input
+        .value
+        .trim();
+
+
+    if(
+        employeeNumber === ""
+    ){
+
+        results.innerHTML = `
+
+            <div class="no-results">
+
+                Please enter an Employee Number.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const cards =
+        getStoredCards();
+
+
+    const matches =
+        cards.filter(
+            function(card){
+
+                return (
+
+                    normalizeValue(
+                        card.employeeNumber
+                    )
+
+                    ===
+
+                    normalizeValue(
+                        employeeNumber
+                    )
+
+                );
+
+            }
+        );
+
+
+    if(
+        matches.length === 0
+    ){
+
+        results.innerHTML = `
+
+            <div class="no-results">
+
+                No access cards found for this employee number.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+        RESULTS
+    */
+
+    results.innerHTML =
+
+        matches
+        .map(
+            function(card){
+
+                return `
+
+                <button
+                    type="button"
+                    class="search-result"
+                    onclick="openStoredCard('${escapeJS(card.recordID)}')"
+                >
+
+                    <strong>
+
+                        ${escapeHTML(
+                            card.system
+                        )}
+
+                    </strong>
+
+
+                    <span>
+
+                        Employee:
+                        ${escapeHTML(
+                            card.employee
+                        )}
+
+                    </span>
+
+
+                    <span>
+
+                        Access Level:
+                        ${escapeHTML(
+                            card.accessLevel
+                        )}
+
+                    </span>
+
+
+                    <small>
+
+                        Card ID:
+                        ${escapeHTML(
+                            card.cardID
+                        )}
+
+                        ·
+
+                        ${escapeHTML(
+                            card.environment
+                        )}
+
+                        ·
+
+                        Created:
+                        ${escapeHTML(
+                            card.created
+                        )}
+
+                    </small>
+
+                </button>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =====================================================
+   ESCAPE JAVASCRIPT
+===================================================== */
+
+function escapeJS(
+    value
+){
+
+    return String(value)
+
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+
+        .replace(
+            /'/g,
+            "\\'"
+        )
+
+        .replace(
+            /\r/g,
+            "\\r"
+        )
+
+        .replace(
+            /\n/g,
+            "\\n"
+        );
+
+}
+
+
+/* =====================================================
+   OPEN STORED CARD
+===================================================== */
+
+function openStoredCard(
+    recordID
+){
+
+    const cards =
+        getStoredCards();
+
+
+    const card =
+        cards.find(
+            function(item){
+
+                return (
+                    item.recordID ===
+                    recordID
+                );
+
+            }
+        );
+
+
+    if(!card){
+
+        alert(
+            "The selected access card could not be found."
+        );
+
+        return;
+
+    }
+
+
+    /*
+        Close search
+    */
+
+    closeCardModal();
+
+
+    /*
+        Render selected card
+    */
+
+    renderCard(
+        card
+    );
+
+
+    /*
+        Notification
+    */
+
+    showSuccessToast(
+        "Stored access card loaded successfully."
+    );
+
+
+    /*
+        Scroll
+    */
+
+    setTimeout(
+        function(){
+
+            document
+            .getElementById(
+                "generatedCardArea"
+            )
+            .scrollIntoView({
+
+                behavior:
+                    "smooth",
+
+                block:
+                    "start"
+
+            });
+
+        },
+        100
+    );
 
 }
 
@@ -1843,16 +2669,20 @@ function showSuccessToast(
             "successToast"
         );
 
+
     clearTimeout(
         toastTimer
     );
 
+
     toast.innerHTML =
         "✅ " + message;
+
 
     toast.classList.add(
         "show"
     );
+
 
     toastTimer =
         setTimeout(
@@ -1880,17 +2710,20 @@ async function saveCardAsImage(){
             ".generated-card"
         );
 
+
     if(!card){
 
         alert(
-            "Please create an access card first."
+            "Please create or load an access card first."
         );
 
         return;
 
     }
 
+
     closeCardModal();
+
 
     try{
 
@@ -1898,35 +2731,56 @@ async function saveCardAsImage(){
             await html2canvas(
                 card,
                 {
-                    scale:3,
-                    useCORS:true,
-                    allowTaint:false,
-                    backgroundColor:"#ffffff",
-                    imageTimeout:15000
+
+                    scale:
+                        3,
+
+                    useCORS:
+                        true,
+
+                    allowTaint:
+                        false,
+
+                    backgroundColor:
+                        "#ffffff",
+
+                    imageTimeout:
+                        15000
+
                 }
             );
+
 
         let link =
             document.createElement(
                 "a"
             );
 
+
         let cardID =
             currentCardData
+
             ?
+
             currentCardData.cardID
+
             :
+
             "Iftaa-Access-Card";
+
 
         link.download =
             cardID + ".png";
+
 
         link.href =
             canvas.toDataURL(
                 "image/png"
             );
 
+
         link.click();
+
 
         showSuccessToast(
             "Access card image saved successfully."
@@ -1936,7 +2790,9 @@ async function saveCardAsImage(){
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         alert(
             "Unable to save the access card as an image."
@@ -1958,17 +2814,20 @@ async function saveCardAsPDF(){
             ".generated-card"
         );
 
+
     if(!card){
 
         alert(
-            "Please create an access card first."
+            "Please create or load an access card first."
         );
 
         return;
 
     }
 
+
     closeCardModal();
+
 
     try{
 
@@ -1976,55 +2835,80 @@ async function saveCardAsPDF(){
             await html2canvas(
                 card,
                 {
-                    scale:3,
-                    useCORS:true,
-                    allowTaint:false,
-                    backgroundColor:"#ffffff",
-                    imageTimeout:15000
+
+                    scale:
+                        3,
+
+                    useCORS:
+                        true,
+
+                    allowTaint:
+                        false,
+
+                    backgroundColor:
+                        "#ffffff",
+
+                    imageTimeout:
+                        15000
+
                 }
             );
+
 
         let imageData =
             canvas.toDataURL(
                 "image/png"
             );
 
-        const { jsPDF } =
+
+        const {
+            jsPDF
+        } =
             window.jspdf;
 
 
         /*
-           Access Card size:
-           90 × 55 mm
+            Access Card size:
+            90 × 55 mm
         */
 
-        let cardWidth = 90;
+        let cardWidth =
+            90;
 
-        let cardHeight = 55;
+        let cardHeight =
+            55;
 
 
         let pdf =
             new jsPDF({
-                orientation:"landscape",
-                unit:"mm",
+
+                orientation:
+                    "landscape",
+
+                unit:
+                    "mm",
+
                 format:[
                     cardWidth,
                     cardHeight
                 ]
+
             });
 
 
         /*
-           Preserve exact image aspect ratio
+            Preserve exact image aspect ratio
         */
 
         let imageRatio =
             canvas.width /
             canvas.height;
 
+
         let pdfRatio =
             cardWidth /
             cardHeight;
+
 
         let imageWidth;
 
@@ -2036,7 +2920,8 @@ async function saveCardAsPDF(){
 
 
         if(
-            imageRatio > pdfRatio
+            imageRatio >
+            pdfRatio
         ){
 
             imageWidth =
@@ -2046,10 +2931,14 @@ async function saveCardAsPDF(){
                 cardWidth /
                 imageRatio;
 
-            x = 0;
+            x =
+                0;
 
             y =
-                (cardHeight-imageHeight)/2;
+                (
+                    cardHeight -
+                    imageHeight
+                ) / 2;
 
         }
 
@@ -2063,30 +2952,47 @@ async function saveCardAsPDF(){
                 imageRatio;
 
             x =
-                (cardWidth-imageWidth)/2;
+                (
+                    cardWidth -
+                    imageWidth
+                ) / 2;
 
-            y = 0;
+            y =
+                0;
 
         }
 
 
         pdf.addImage(
+
             imageData,
+
             "PNG",
+
             x,
+
             y,
+
             imageWidth,
+
             imageHeight,
+
             undefined,
+
             "FAST"
+
         );
 
 
         let cardID =
             currentCardData
+
             ?
+
             currentCardData.cardID
+
             :
+
             "Iftaa-Access-Card";
 
 
@@ -2103,7 +3009,9 @@ async function saveCardAsPDF(){
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         alert(
             "Unable to create the access card PDF."
@@ -2115,21 +3023,10 @@ async function saveCardAsPDF(){
 
 
 /* =====================================================
-   SEARCH PLACEHOLDER
+   INITIALIZE
 ===================================================== */
 
-function showSearch(){
-
-    const totalCards =
-        getStoredCardsCount();
-
-    alert(
-        "Search / Archive module will be added in the next version.\n\n" +
-        "Currently stored access cards: " +
-        totalCards
-    );
-
-}
+updateArchiveSummary();
 
 </script>
 
