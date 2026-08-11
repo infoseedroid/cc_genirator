@@ -643,6 +643,7 @@ body.rtl .card-modal-option{
     display:flex;
     gap:8px;
     margin-top:12px;
+    flex-wrap:wrap;
 }
 
 .result-btn{
@@ -660,6 +661,11 @@ body.rtl .card-modal-option{
 
 .result-btn.delete{
     background:#b42318;
+    color:white;
+}
+
+.result-btn.edit{
+    background:#8a6500;
     color:white;
 }
 
@@ -904,7 +910,7 @@ Employee Number
 <input
 type="text"
 id="employeeNumber"
-placeholder="Enter employee number"
+placeholder="Enter employee number, name or location"
 
 >
 
@@ -924,6 +930,44 @@ id="employeeName"
 placeholder="Enter employee name"
 
 >
+
+</div>
+
+<!-- LOCATION -->
+
+<div class="form-group">
+
+<label id="locationLabel">
+Location
+</label>
+
+<select id="location">
+<option value="" id="locationPlaceholder">Select location</option>
+<option value="دوام عن بعد">دوام عن بعد</option>
+<option value="غرب عمان">غرب عمان</option>
+<option value="لواء الاغوار الجنوبية">لواء الاغوار الجنوبية</option>
+<option value="لواء الاغوار الشمالية">لواء الاغوار الشمالية</option>
+<option value="لواء البادية الشمالية">لواء البادية الشمالية</option>
+<option value="لواء البتراء">لواء البتراء</option>
+<option value="لواء الرصيفة">لواء الرصيفة</option>
+<option value="لواء الرمثا">لواء الرمثا</option>
+<option value="لواء الكورة">لواء الكورة</option>
+<option value="لواء دير علا">لواء دير علا</option>
+<option value="لواء عين الباشا">لواء عين الباشا</option>
+<option value="محافظة اربد">محافظة اربد</option>
+<option value="محافظة البلقاء">محافظة البلقاء</option>
+<option value="محافظة الزرقاء">محافظة الزرقاء</option>
+<option value="محافظة السلط">محافظة السلط</option>
+<option value="محافظة الطفيلة">محافظة الطفيلة</option>
+<option value="محافظة العاصمة - المركز">محافظة العاصمة - المركز</option>
+<option value="محافظة العقبة">محافظة العقبة</option>
+<option value="محافظة الكرك">محافظة الكرك</option>
+<option value="محافظة المفرق">محافظة المفرق</option>
+<option value="محافظة جرش">محافظة جرش</option>
+<option value="محافظة عجلون">محافظة عجلون</option>
+<option value="محافظة مادبا">محافظة مادبا</option>
+<option value="محافظة معان">محافظة معان</option>
+</select>
 
 </div>
 
@@ -1172,7 +1216,7 @@ Search / Query </button>
 <div class="form-group">
 
     <label id="searchEmployeeLabel">
-        Search by Employee Number
+        Search by Employee Number, Name or Location
     </label>
 
     <div class="search-input-row">
@@ -1180,7 +1224,7 @@ Search / Query </button>
         <input
             type="text"
             id="searchEmployeeNumber"
-            placeholder="Enter employee number"
+            placeholder="Enter employee number, name or location"
             onkeydown="handleSearchKey(event)"
         >
 
@@ -1194,6 +1238,14 @@ Search / Query </button>
     </div>
 
 </div>
+
+<button
+    class="search-btn"
+    onclick="showAllCards()"
+    id="showAllButton"
+>
+    Show All Employee Cards
+</button>
 
 <div
     id="searchResults"
@@ -1312,6 +1364,8 @@ Cancel </button>
 let selectedEnvironment = "";
 let toastTimer;
 let currentCardData = null;
+let editingCardID = null;
+let searchMode = "none";
 
 const STORAGE_KEY = "iftaaAccessCards";
 const LANGUAGE_KEY = "iftaaAccessLanguage";
@@ -1335,10 +1389,13 @@ const translations = {
         createTitle:"Create Access Card",
 
         employeeNumberLabel:"Employee Number",
-        employeeNumberPlaceholder:"Enter employee number",
+        employeeNumberPlaceholder:"Enter employee number, name or location",
 
         employeeNameLabel:"Employee Name",
         employeeNamePlaceholder:"Enter employee name",
+
+        locationLabel:"Location",
+        locationPlaceholder:"Select location",
 
         systemNameLabel:"System Name",
         systemNamePlaceholder:"Enter system name",
@@ -1383,8 +1440,8 @@ const translations = {
         refreshButton:"Refresh",
         deleteAllButton:"Delete All",
 
-        searchEmployeeLabel:"Search by Employee Number",
-        searchEmployeePlaceholder:"Enter employee number",
+        searchEmployeeLabel:"Search by Employee Number, Name or Location",
+        searchEmployeePlaceholder:"Enter employee number, name or location",
         searchNowButton:"Search",
 
         cardSaved:"Access card saved successfully.",
@@ -1392,7 +1449,13 @@ const translations = {
         cardPDFSaved:"Access card PDF saved successfully.",
 
         noCards:"No saved access cards found.",
-        noSearchResults:"No cards found for this employee number.",
+        noSearchResults:"No cards found for the search.",
+noSearchInput:"Enter an employee number, name or location to search.",
+showAllButton:"Show All Employee Cards",
+edit:"Edit",
+updateButton:"Update Access Card",
+editQuestion:"Do you want to save these changes?",
+cardUpdated:"Access card updated successfully.",
 
         deleteConfirm:"Are you sure you want to delete this card?",
         deleteAllConfirm:"Are you sure you want to delete ALL saved cards?",
@@ -1415,6 +1478,7 @@ const translations = {
 
         accessCard:"Access Card",
         employee:"Employee",
+        location:"Location",
         employeeNumber:"Employee Number",
         system:"System",
         environment:"Environment",
@@ -1458,10 +1522,13 @@ const translations = {
         createTitle:"إنشاء بطاقة صلاحية",
 
         employeeNumberLabel:"رقم الموظف",
-        employeeNumberPlaceholder:"أدخل رقم الموظف",
+        employeeNumberPlaceholder:"أدخل رقم الموظف أو الاسم أو الموقع",
 
         employeeNameLabel:"اسم الموظف",
         employeeNamePlaceholder:"أدخل اسم الموظف",
+
+        locationLabel:"الموقع",
+        locationPlaceholder:"اختر الموقع",
 
         systemNameLabel:"اسم النظام",
         systemNamePlaceholder:"أدخل اسم النظام",
@@ -1506,8 +1573,8 @@ const translations = {
         refreshButton:"تحديث",
         deleteAllButton:"حذف الكل",
 
-        searchEmployeeLabel:"البحث باستخدام رقم الموظف",
-        searchEmployeePlaceholder:"أدخل رقم الموظف",
+        searchEmployeeLabel:"البحث باستخدام رقم الموظف أو الاسم أو الموقع",
+        searchEmployeePlaceholder:"أدخل رقم الموظف أو الاسم أو الموقع",
         searchNowButton:"بحث",
 
         cardSaved:"تم حفظ بطاقة الصلاحية بنجاح.",
@@ -1515,7 +1582,13 @@ const translations = {
         cardPDFSaved:"تم حفظ ملف PDF بنجاح.",
 
         noCards:"لا توجد بطاقات صلاحية محفوظة.",
-        noSearchResults:"لم يتم العثور على بطاقات لهذا الرقم الوظيفي.",
+        noSearchResults:"لم يتم العثور على بطاقات مطابقة لعملية البحث.",
+noSearchInput:"يرجى إدخال رقم الموظف أو الاسم أو الموقع لإجراء البحث.",
+showAllButton:"عرض جميع بطاقات الموظفين",
+edit:"تعديل",
+updateButton:"تحديث بطاقة الصلاحية",
+editQuestion:"هل تريد حفظ هذه التعديلات؟",
+cardUpdated:"تم تحديث بطاقة الصلاحية بنجاح.",
 
         deleteConfirm:"هل أنت متأكد من رغبتك في حذف هذه البطاقة؟",
         deleteAllConfirm:"هل أنت متأكد من رغبتك في حذف جميع البطاقات المحفوظة؟",
@@ -1538,6 +1611,7 @@ const translations = {
 
         accessCard:"بطاقة صلاحية",
         employee:"الموظف",
+        location:"الموقع",
         employeeNumber:"رقم الموظف",
         system:"النظام",
         environment:"البيئة",
@@ -1618,6 +1692,7 @@ function applyLanguage(){
         "createTitle",
         "employeeNumberLabel",
         "employeeNameLabel",
+        "locationLabel",
         "systemNameLabel",
         "environmentLabel",
         "accessLevelLabel",
@@ -1636,7 +1711,8 @@ function applyLanguage(){
         "refreshButton",
         "deleteAllButton",
         "searchEmployeeLabel",
-        "searchNowButton"
+        "searchNowButton",
+        "showAllButton"
 
     ];
 
@@ -1661,6 +1737,9 @@ function applyLanguage(){
 
         employeeName:
             "employeeNamePlaceholder",
+
+        location:
+            "locationPlaceholder",
 
         systemName:
             "systemNamePlaceholder",
@@ -1738,6 +1817,10 @@ function applyLanguage(){
 
     updateArchiveCount();
 
+    if(editingCardID){
+        document.getElementById("createButton").textContent = t("updateButton");
+    }
+
     /*
        If a card is currently displayed,
        re-render it using the new language.
@@ -1773,32 +1856,10 @@ function toggleLanguage(){
     applyLanguage();
 
     if(
-        document
-        .getElementById("searchPanel")
+        document.getElementById("searchPanel")
         .classList.contains("show")
     ){
-
-        const searchValue =
-            document
-            .getElementById(
-                "searchEmployeeNumber"
-            )
-            .value
-            .trim();
-
-        if(searchValue){
-
-            searchCards();
-
-        }
-        else{
-
-            renderSearchResults(
-                getStoredCards()
-            );
-
-        }
-
+        refreshVisibleResults();
     }
 
 }
@@ -2016,6 +2077,10 @@ function clearInputForm(){
     ).value = "";
 
     document.getElementById(
+        "location"
+    ).value = "";
+
+    document.getElementById(
         "systemName"
     ).value = "";
 
@@ -2034,6 +2099,8 @@ function clearInputForm(){
     document.getElementById(
         "notes"
     ).value = "";
+
+    document.getElementById("location").value = "";
 
     selectedEnvironment = "";
 
@@ -2061,6 +2128,14 @@ function generateCard(){
         document
         .getElementById(
             "employeeName"
+        )
+        .value
+        .trim();
+
+    const location =
+        document
+        .getElementById(
+            "location"
         )
         .value
         .trim();
@@ -2233,61 +2308,76 @@ function generateCard(){
         100
     );
 
-    /*
-       ASK USER WHETHER TO SAVE
-    */
+    /* SAVE NEW CARD OR UPDATE EXISTING CARD */
 
-    const shouldSave =
-        confirm(
-            t("saveQuestion")
+    if(editingCardID){
+
+        const shouldSave =
+            confirm(t("editQuestion"));
+
+        const cards = getStoredCards();
+        const index = cards.findIndex(
+            function(card){
+                return card.cardID === editingCardID;
+            }
         );
 
-    if(!shouldSave){
+        if(index === -1){
+            alert(t("noSearchResults"));
+            editingCardID = null;
+            document.getElementById("createButton").textContent = t("createButton");
+            return;
+        }
 
-        showSuccessToast(
-            t("cardNotSaved")
-        );
+        if(!shouldSave){
+            currentCardData = cards[index];
+            editingCardID = null;
+            document.getElementById("createButton").textContent = t("createButton");
+            renderCard(currentCardData);
+            clearInputForm();
+            showSuccessToast(t("cardNotSaved"));
+            return;
+        }
 
+        /* Preserve the original creation information. */
+        currentCardData.created = cards[index].created;
+        currentCardData.createdISO = cards[index].createdISO || currentCardData.createdISO;
+        cards[index] = currentCardData;
+
+        const saved = saveStoredCards(cards);
+        if(!saved){
+            alert("Unable to save card data.");
+            return;
+        }
+
+        editingCardID = null;
+        document.getElementById("createButton").textContent = t("createButton");
+        updateArchiveCount();
+        showSuccessToast(t("cardUpdated"));
+        clearInputForm();
+        refreshVisibleResults();
         return;
-
     }
 
-    /*
-       SAVE ONLY AFTER USER CONFIRMS
-    */
+    const shouldSave =
+        confirm(t("saveQuestion"));
 
-    const cards =
-        getStoredCards();
-
-    cards.unshift(
-        currentCardData
-    );
-
-    const saved =
-        saveStoredCards(
-            cards
-        );
-
-    if(!saved){
-
-        alert(
-            "Unable to save card data."
-        );
-
+    if(!shouldSave){
+        showSuccessToast(t("cardNotSaved"));
         return;
+    }
 
+    const cards = getStoredCards();
+    cards.unshift(currentCardData);
+
+    const saved = saveStoredCards(cards);
+    if(!saved){
+        alert("Unable to save card data.");
+        return;
     }
 
     updateArchiveCount();
-
-    showSuccessToast(
-        t("cardSaved")
-    );
-
-    /*
-       CLEAR INPUT FIELDS AFTER SUCCESSFUL SAVE
-    */
-
+    showSuccessToast(t("cardSaved"));
     clearInputForm();
 
 }
@@ -2309,6 +2399,11 @@ function renderCard(data){
     const employee =
         escapeHTML(
             data.employee
+        );
+
+    const location =
+        escapeHTML(
+            data.location || ""
         );
 
     const system =
@@ -2441,6 +2536,18 @@ function renderCard(data){
             <br>
 
             ${employee}
+
+        </div>
+
+        <div class="info-row">
+
+            <b>
+                ${t("location")}
+            </b>
+
+            <br>
+
+            ${location}
 
         </div>
 
@@ -2698,32 +2805,24 @@ function escapeHTML(value){
 function showSearch(){
 
     const panel =
-        document.getElementById(
-            "searchPanel"
-        );
+        document.getElementById("searchPanel");
 
-    panel.classList.toggle(
-        "show"
-    );
+    panel.classList.toggle("show");
 
-    if(
-        panel.classList.contains("show")
-    ){
+    if(panel.classList.contains("show")){
 
-        refreshArchive();
+        updateArchiveCount();
 
-        setTimeout(
-            function(){
+        /* Search mode starts empty. No cards are displayed automatically. */
+        searchMode = "none";
+        document.getElementById("searchResults").innerHTML = "";
 
-                panel.scrollIntoView({
-                    behavior:"smooth",
-                    block:"start"
-                });
-
-            },
-            100
-        );
-
+        setTimeout(function(){
+            panel.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+        },100);
     }
 
 }
@@ -2736,13 +2835,24 @@ function refreshArchive(){
 
     updateArchiveCount();
 
-    const cards =
-        getStoredCards();
+    /* Refresh does not automatically expose all cards. */
+    refreshVisibleResults();
 
-    renderSearchResults(
-        cards
-    );
+}
 
+function refreshVisibleResults(){
+
+    if(searchMode === "search"){
+        searchCards();
+        return;
+    }
+
+    if(searchMode === "all"){
+        renderSearchResults(getStoredCards());
+        return;
+    }
+
+    document.getElementById("searchResults").innerHTML = "";
 }
 
 /* =====================================================
@@ -2767,44 +2877,55 @@ function handleSearchKey(event){
 
 function searchCards(){
 
-    const number =
-        document
-        .getElementById(
-            "searchEmployeeNumber"
-        )
-        .value
-        .trim()
-        .toLowerCase();
+    const query =
+        document.getElementById("searchEmployeeNumber")
+        .value.trim().toLowerCase();
 
-    const cards =
-        getStoredCards();
-
-    if(number === ""){
-
-        renderSearchResults(
-            cards
-        );
-
+    if(query === ""){
+        searchMode = "none";
+        document.getElementById("searchResults").innerHTML = `
+            <div class="no-results">${t("noSearchInput")}</div>
+        `;
         return;
-
     }
 
-    const results =
-        cards.filter(
-            function(card){
+    const cards = getStoredCards();
 
-                return String(
-                    card.employeeNumber
-                )
-                .toLowerCase()
-                .includes(number);
+    /*
+       Search is intentionally limited to the three requested fields:
+       Employee Number, Employee Name and Location.
+       It does not search system name, access level, notes, etc.
+    */
+    const results = cards.filter(function(card){
 
-            }
-        );
+        const employeeNumber =
+            String(card.employeeNumber || "").toLowerCase();
 
-    renderSearchResults(
-        results
-    );
+        const employeeName =
+            String(card.employee || "").toLowerCase();
+
+        const location =
+            String(card.location || "").toLowerCase();
+
+        return employeeNumber.includes(query) ||
+               employeeName.includes(query) ||
+               location.includes(query);
+    });
+
+    searchMode = "search";
+    renderSearchResults(results);
+
+} 
+
+/* =====================================================
+   SHOW ALL CARDS
+===================================================== */
+
+function showAllCards(){
+
+    searchMode = "all";
+    document.getElementById("searchEmployeeNumber").value = "";
+    renderSearchResults(getStoredCards());
 
 }
 
@@ -2925,6 +3046,13 @@ function renderSearchResults(cards){
                         </button>
 
                         <button
+                            class="result-btn edit"
+                            onclick="editStoredCard('${escapeJS(card.cardID)}')"
+                        >
+                            ${t("edit")}
+                        </button>
+
+                        <button
                             class="result-btn delete"
                             onclick="deleteCard('${escapeJS(card.cardID)}')"
                         >
@@ -3037,6 +3165,56 @@ function viewStoredCard(cardID){
 }
 
 /* =====================================================
+   EDIT STORED CARD
+===================================================== */
+
+function editStoredCard(cardID){
+
+    const cards = getStoredCards();
+    const card = cards.find(function(item){
+        return item.cardID === cardID;
+    });
+
+    if(!card){
+        return;
+    }
+
+    editingCardID = cardID;
+
+    document.getElementById("employeeNumber").value = card.employeeNumber || "";
+    document.getElementById("employeeName").value = card.employee || "";
+    const locationSelect = document.getElementById("location");
+    if(card.location && !Array.from(locationSelect.options).some(o => o.value === card.location)){
+        const legacyOption = document.createElement("option");
+        legacyOption.value = card.location;
+        legacyOption.textContent = card.location;
+        locationSelect.appendChild(legacyOption);
+    }
+    locationSelect.value = card.location || "";
+    document.getElementById("systemName").value = card.system || "";
+    document.getElementById("environment").value = card.environment || "";
+    document.getElementById("accessLevel").value = card.accessLevel || "";
+    document.getElementById("systemUrl").value = card.url || "";
+    document.getElementById("notes").value = card.notes || "";
+
+    selectedEnvironment = card.environment || "";
+    const urlSection = document.getElementById("urlSection");
+    urlSection.style.display = card.environment === "Web" ? "block" : "none";
+
+    document.getElementById("createButton").textContent = t("updateButton");
+
+    renderCard(card);
+    document.getElementById("generatedCardArea").classList.add("show");
+
+    setTimeout(function(){
+        document.getElementById("createTitle").scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+    },100);
+}
+
+/* =====================================================
    DELETE CARD
 ===================================================== */
 
@@ -3070,9 +3248,7 @@ function deleteCard(cardID){
 
     updateArchiveCount();
 
-    renderSearchResults(
-        cards
-    );
+    refreshVisibleResults();
 
     if(
         currentCardData &&
@@ -3080,6 +3256,8 @@ function deleteCard(cardID){
     ){
 
         currentCardData = null;
+        editingCardID = null;
+        document.getElementById("createButton").textContent = t("createButton");
 
         document
         .getElementById(
@@ -3135,6 +3313,8 @@ function deleteAllCards(){
     );
 
     currentCardData = null;
+    editingCardID = null;
+    document.getElementById("createButton").textContent = t("createButton");
 
     document
     .getElementById(
@@ -3149,10 +3329,8 @@ function deleteAllCards(){
     .classList.remove("show");
 
     updateArchiveCount();
-
-    renderSearchResults(
-        []
-    );
+    searchMode = "none";
+    document.getElementById("searchResults").innerHTML = "";
 
     showSuccessToast(
         t("allCardsDeleted")
